@@ -1,0 +1,174 @@
+/* =============================================================================
+   LOADING STATES & ANIMATIONS
+   ============================================================================= */
+
+/* Loading spinner animation */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+/* Skeleton loader for event cards */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.skeleton-text {
+    height: 12px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+}
+
+.skeleton-title {
+    height: 20px;
+    width: 70%;
+    margin-bottom: 12px;
+    border-radius: 4px;
+}
+
+/* Loading overlay */
+#loading-spinner {
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+}
+
+/* Toast notification styles */
+#toast-notification {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Pulse animation for loading indicators */
+.pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Error state styling */
+.error-state {
+    background-color: #fee;
+    border: 2px dashed #f66;
+    border-radius: 8px;
+    padding: 24px;
+    text-align: center;
+    color: #c33;
+}
+
+.error-state svg {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 16px;
+    color: #f66;
+}
+
+/* Empty state styling */
+.empty-state {
+    background-color: #f9fafb;
+    border: 2px dashed #d1d5db;
+    border-radius: 8px;
+    padding: 32px;
+    text-align: center;
+    color: #6b7280;
+}
+
+.empty-state svg {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 16px;
+    color: #9ca3af;
+}
+
+/* Success banner */
+.success-banner {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 6px rgba(16, 185, 129, 0.2);
+}
+
+.success-banner svg {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+/* Info banner */
+.info-banner {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 6px rgba(59, 130, 246, 0.2);
+}
+
+.info-banner svg {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+/* Fade in animation */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Disabled state */
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+}

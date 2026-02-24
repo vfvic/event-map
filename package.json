@@ -1,0 +1,13 @@
+{
+  "name": "vfvic-event-map",
+  "version": "1.0.0",
+  "description": "Interactive event map for VFVIC WordPress site",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "devDependencies": {
+    "clean-css": "^5.3.3",
+    "terser": "^5.37.0"
+  },
+  "private": true
+}

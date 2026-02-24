@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Veterans Diary - Event Map</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        gridTemplateColumns: {
+                            'event-layout': '300px 1fr'
+                        }
+                    }
+                }
+            }
+        </script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <link rel="stylesheet" href="styles.css?v=1.0">
+        <link rel="stylesheet" href="css/loading-states.css?v=1.0">
+        <style>
+            /* Additional custom styles for Leaflet map integration */
+            .leaflet-popup-content h4 {
+                color: #1f2937;
+                margin-bottom: 8px;
+            }
+
+            .leaflet-popup-content p {
+                margin-bottom: 5px;
+                color: #6b7280;
+            }
+
+        </style>
+    </head>
+
+    <body class="bg-gray-50 font-sans text-gray-800">
+        <!-- Set events data URL from query param for iframe embed (e.g. ?dataSource=https://...) -->
+        <script>
+            (function () {
+                var params = new URLSearchParams(window.location.search);
+                var url = params.get('dataSource') || params.get('data_source');
+                if (url) { window.VFVIC_MAP_DATA_URL = url; }
+            })();
+        </script>
+        <div id="vfvic-event-map-container" class="max-w-7xl mx-auto p-5" data-data-source="">
+            <header class="text-center mb-8">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-3">The Veterans Diary</h1>
+                <p class="text-lg text-gray-600">Interactive map showing veteran events across the Northeast of England
+                </p>
+            </header>
+
+            <div class="bg-white p-3 md:p-5 rounded-lg shadow-md mb-5">
+                <div class="flex flex-col md:flex-row gap-3 mb-4">
+                    <input type="text" id="searchInput" placeholder="Search events..."
+                        class="flex-1 px-3 py-3 border-2 border-gray-300 rounded-md text-base focus:outline-none focus:border-blue-500 transition-colors">
+                    <button id="searchBtn"
+                        class="px-5 py-3 bg-blue-500 text-white border-none rounded-md cursor-pointer text-sm font-medium hover:bg-blue-600 transition-colors whitespace-nowrap">
+                        Search
+                    </button>
+                </div>
+
+                <!-- Quick Date Filters -->
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <button id="filterToday"
+                        class="px-3 py-2 bg-green-100 text-green-800 rounded-md text-sm hover:bg-green-200 transition-colors">
+                        Today
+                    </button>
+                    <button id="filterWeek"
+                        class="px-3 py-2 bg-blue-100 text-blue-800 rounded-md text-sm hover:bg-blue-200 transition-colors">
+                        This Week
+                    </button>
+                    <button id="filterMonth"
+                        class="px-3 py-2 bg-purple-100 text-purple-800 rounded-md text-sm hover:bg-purple-200 transition-colors">
+                        This Month
+                    </button>
+                    <button id="filterAll"
+                        class="px-3 py-2 bg-gray-100 text-gray-800 rounded-md text-sm hover:bg-gray-200 transition-colors">
+                        All Events
+                    </button>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3 flex-wrap">
+                    <select id="categoryFilter" title="Filter by event category"
+                        class="px-3 py-2 border-2 border-gray-300 rounded-md text-sm focus:outline-none focus:border-blue-500 min-w-0 flex-1 sm:flex-none sm:min-w-[150px]">
+                        <option value="">All Categories</option>
+                        <!-- Categories will be populated dynamically based on available events -->
+                    </select>
+
+                    <input type="date" id="dateFilter" title="Filter events by date"
+                        class="px-3 py-2 border-2 border-gray-300 rounded-md text-sm focus:outline-none focus:border-blue-500 min-w-0 flex-1 sm:flex-none">
+                    <button id="clearFilters"
+                        class="px-5 py-2 bg-gray-500 text-white border-none rounded-md cursor-pointer text-sm hover:bg-gray-600 transition-colors whitespace-nowrap">
+                        Clear Filters
+                    </button>
+                </div>
+
+                <!-- Mobile event count and info -->
+                <div class="lg:hidden mt-4">
+                    <div class="flex items-center justify-between">
+                        <span id="mobileEventCount" class="text-sm text-gray-600">Click markers to view event
+                            details</span>
+                        <div class="flex gap-2">
+                            <span id="mobileCounter"
+                                class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">0</span>
+                            <button id="showMobileList"
+                                class="px-3 py-2 bg-blue-500 text-white text-sm rounded-md hover:bg-blue-600 transition-colors">
+                                View List
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desktop: Side-by-side layout, Mobile: Map-only with popups -->
+            <div class="grid grid-cols-1 lg:grid-cols-event-layout gap-5 h-[70vh] md:h-[600px]">
+                <!-- Event list - hidden on mobile, shown on desktop -->
+                <div class="hidden lg:block bg-white rounded-lg shadow-md p-5 overflow-hidden order-2 lg:order-1">
+                    <div class="flex items-center justify-between mb-3 pb-2 border-b border-gray-200">
+                        <h3 class="text-xl font-semibold text-gray-800">Events</h3>
+                        <span id="eventCounter" class="text-sm text-gray-600 bg-gray-100 px-2 py-1 rounded-full">0
+                            events</span>
+                    </div>
+                    <div id="eventItems" class="h-full overflow-y-auto pr-2"></div>
+
+                    <!-- Load More Button for Desktop -->
+                    <div id="loadMoreContainer" class="mt-4 text-center hidden">
+                        <button id="loadMoreBtn"
+                            class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors text-sm">
+                            Load More Events
+                        </button>
+                        <p id="loadingText" class="text-sm text-gray-500 mt-2 hidden">Loading more events...</p>
+                    </div>
+                </div>
+                <!-- Map - full width on mobile, shared space on desktop -->
+                <div id="map" class="rounded-lg shadow-md order-1 lg:order-2 col-span-1 lg:col-span-1"></div>
+            </div>
+
+            <!-- Mobile event list modal -->
+            <div id="mobileEventModal" class="fixed inset-0 bg-black bg-opacity-50 z-[10000] hidden lg:hidden">
+                <div class="absolute bottom-0 left-0 right-0 bg-white rounded-t-xl max-h-[85vh] overflow-hidden">
+                    <div
+                        class="p-4 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white z-10">
+                        <div class="flex items-center gap-3">
+                            <h3 class="text-lg font-semibold text-gray-800">Events</h3>
+                            <span id="mobileEventCounter"
+                                class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">0</span>
+                        </div>
+                        <button id="closeMobileList" class="text-gray-500 hover:text-gray-700" title="Close event list">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="mobileEventItems" class="overflow-y-auto mobile-event-scroll"></div>
+
+                    <!-- Load More for Mobile -->
+                    <div id="mobileLoadMoreContainer" class="p-4 border-t border-gray-200 bg-white hidden">
+                        <button id="mobileLoadMoreBtn"
+                            class="w-full py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors text-sm font-medium">
+                            Load More Events
+                        </button>
+                        <p id="mobileLoadingText" class="text-sm text-gray-500 text-center mt-2 hidden">Loading more
+                            events...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <!-- Utility functions -->
+        <script src="js/utils.js"></script>
+        <!-- Optional: Include config.js for Google Calendar integration -->
+        <script>
+                (function () {
+                    function loadMainScript() {
+                        var mainScript = document.createElement('script');
+                        mainScript.src = 'script.js';
+                        document.body.appendChild(mainScript);
+                    }
+
+                    var configScript = document.createElement('script');
+                    configScript.src = 'config.js';
+                    configScript.onload = function () {
+                        window.__CONFIG_LOADED__ = true;
+                        loadMainScript();
+                    };
+                    configScript.onerror = function () {
+                        console.log('config.js not found - using sample data');
+                        window.__CONFIG_LOADED__ = false;
+                        loadMainScript();
+                    };
+
+                    document.body.appendChild(configScript);
+                })();
+        </script>
+    </body>
+
+</html>

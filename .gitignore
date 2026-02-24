@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Config (contains API keys)
+config.js
+
+# Build output (regenerated via npm run build)
+dist/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp
