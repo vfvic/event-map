@@ -1658,37 +1658,54 @@ class EventMap {
     const tagBadges = categories
       .map(
         (category) =>
-          `<span style="display: inline-block; padding: 3px 8px; border-radius: 12px; font-size: 11px; font-weight: 500; color: white; margin-right: 4px; margin-bottom: 4px;" class="${this.getCategoryColorClass(
+          `<span style="display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 500; color: white; margin-right: 4px;" class="${this.getCategoryColorClass(
             category
           )}">${this.formatCategoryName(category)}</span>`
       )
       .join("");
 
+    // Truncate description to keep popup cleaner
+    let descriptionHtml = "";
+    if (event.description) {
+      const maxLength = 150;
+      const truncated = event.description.length > maxLength
+        ? event.description.substring(0, maxLength).trim() + "..."
+        : event.description;
+      descriptionHtml = `
+        <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb;">
+          <p style="margin: 0; font-size: 12px; color: #4b5563; line-height: 1.6;">${truncated}</p>
+        </div>`;
+    }
+
     return `
-            <div style="max-width: 280px; line-height: 1.5;">
-                <h4 style="margin: 0 0 12px 0; font-size: 16px; font-weight: 600; ${titleStyle}">${
+            <div style="max-width: 300px; line-height: 1.4; padding: 4px;">
+                <h4 style="margin: 0 0 10px 0; font-size: 15px; font-weight: 600; line-height: 1.3; ${titleStyle}">${
       event.title
     }${elapsedLabel}</h4>
 
-                <div style="margin-bottom: 12px;">
-                    <p style="margin: 0 0 6px 0; font-size: 13px; color: #4b5563;">
-                        <strong>📅</strong> ${this.formatDate(event.date)}
-                    </p>
-                    <p style="margin: 0 0 6px 0; font-size: 13px; color: #4b5563;">
-                        <strong>⏰</strong> ${event.time}
-                    </p>
-                    <p style="margin: 0; font-size: 13px; color: #4b5563;">
-                        <strong>📍</strong> ${event.location}
-                    </p>
-                </div>
+                <table style="border-collapse: collapse; width: 100%; margin-bottom: 10px;">
+                    <tr>
+                        <td style="padding: 3px 8px 3px 0; font-size: 12px; color: #6b7280; vertical-align: top; width: 20px;">📅</td>
+                        <td style="padding: 3px 0; font-size: 12px; color: #374151;">${this.formatDate(event.date)}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 3px 8px 3px 0; font-size: 12px; color: #6b7280; vertical-align: top;">⏰</td>
+                        <td style="padding: 3px 0; font-size: 12px; color: #374151;">${event.time}</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 3px 8px 3px 0; font-size: 12px; color: #6b7280; vertical-align: top;">📍</td>
+                        <td style="padding: 3px 0; font-size: 12px; color: #374151;">${event.location}</td>
+                    </tr>
+                    ${event.organizer ? `<tr>
+                        <td style="padding: 3px 8px 3px 0; font-size: 12px; color: #6b7280; vertical-align: top;">👤</td>
+                        <td style="padding: 3px 0; font-size: 12px; color: #374151;">${event.organizer}</td>
+                    </tr>` : ""}
+                </table>
 
-                <div style="margin-bottom: 12px;">
+                <div style="margin-bottom: 4px;">
                     ${tagBadges}
                 </div>
-
-                ${event.description ? `<p style="margin: 0 0 10px 0; font-size: 13px; color: #374151; line-height: 1.6;">${event.description}</p>` : ""}
-
-                ${event.organizer ? `<p style="margin: 0; font-size: 12px; color: #6b7280;"><strong>👤</strong> ${event.organizer}</p>` : ""}
+                ${descriptionHtml}
             </div>
         `;
   }
@@ -1707,48 +1724,43 @@ class EventMap {
           ? "color: #6b7280; opacity: 0.8;"
           : "color: #1f2937;";
 
+        // Generate category badges for multi-event popup
+        const categories =
+          Array.isArray(event.categories) && event.categories.length > 0
+            ? event.categories
+            : event.category
+            ? [event.category]
+            : [];
+        const tagBadge = categories.length > 0
+          ? `<span style="display: inline-block; padding: 2px 6px; border-radius: 8px; font-size: 10px; font-weight: 500; color: white;" class="${this.getCategoryColorClass(categories[0])}">${this.formatCategoryName(categories[0])}</span>${categories.length > 1 ? `<span style="font-size: 10px; color: #9ca3af; margin-left: 4px;">+${categories.length - 1}</span>` : ""}`
+          : "";
+
         return `
-                <div class="border-b border-gray-200 pb-2 mb-2 ${
-                  index === events.length - 1 ? "border-b-0 pb-0 mb-0" : ""
-                }"
-                     style="cursor: pointer;"
-                     onclick="eventMap.highlightEvent(${
-                       event.id
-                     }); eventMap.map.closePopup();">
-                    <h5 style="margin: 0 0 5px 0; ${titleStyle} font-weight: bold;">${
-          event.title
-        }${elapsedLabel}</h5>
-                    <p style="margin: 2px 0; font-size: 12px; color: #6b7280;">
-                        <strong>⏰</strong> ${event.time || "Time TBD"}
-                    </p>
-                    <p style="margin: 2px 0; font-size: 12px; color: #6b7280;">
-                        <span class="inline-block px-2 py-1 rounded text-xs text-white ${this.getCategoryColorClass(
-                          event.category
-                        )}">${this.formatCategoryName(event.category)}</span>
-                    </p>
-                    <p style="margin: 5px 0 0 0; font-size: 12px; color: #4b5563;">${event.description.substring(
-                      0,
-                      80
-                    )}${event.description.length > 80 ? "..." : ""}</p>
+                <div style="padding: 8px 0; cursor: pointer; ${index !== events.length - 1 ? "border-bottom: 1px solid #e5e7eb;" : ""}"
+                     onclick="eventMap.highlightEvent(${event.id}); eventMap.map.closePopup();">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px;">
+                        <h5 style="margin: 0; font-size: 13px; ${titleStyle} font-weight: 600; line-height: 1.3; flex: 1;">${event.title}${elapsedLabel}</h5>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="font-size: 11px; color: #6b7280;">⏰ ${event.time || "Time TBD"}</span>
+                        ${tagBadge}
+                    </div>
                 </div>
             `;
       })
       .join("");
 
     return `
-            <div style="max-width: 300px;">
-                <h4 style="margin: 0 0 10px 0; color: #1f2937;">📍 ${location}</h4>
-                <p style="margin: 0 0 5px 0; font-size: 12px; color: #6b7280;">
-                    <strong>📅</strong> ${this.formatDate(date)}
+            <div style="max-width: 320px; padding: 4px;">
+                <h4 style="margin: 0 0 6px 0; font-size: 14px; font-weight: 600; color: #1f2937;">📍 ${location}</h4>
+                <p style="margin: 0 0 8px 0; font-size: 12px; color: #6b7280;">
+                    📅 ${this.formatDate(date)} · <span style="color: #059669; font-weight: 600;">${eventCount} event${eventCount > 1 ? "s" : ""}</span>
                 </p>
-                <p style="margin: 0 0 10px 0; font-weight: bold; color: #059669;">
-                    ${eventCount} event${eventCount > 1 ? "s" : ""} on this day
-                </p>
-                <div style="max-height: 250px; overflow-y: auto;">
+                <div style="max-height: 220px; overflow-y: auto;">
                     ${eventsHtml}
                 </div>
-                <p style="margin: 10px 0 0 0; font-size: 11px; color: #9ca3af; font-style: italic;">
-                    Click on an event above to highlight it in the list
+                <p style="margin: 8px 0 0 0; font-size: 10px; color: #9ca3af; text-align: center;">
+                    Tap an event to see it in the list
                 </p>
             </div>
         `;
@@ -1977,13 +1989,7 @@ class EventMap {
                             ${distanceInfo}
                         </div>
 
-                        <div class="mb-2">${tagBadges}</div>
-
-                        ${
-                          event.description
-                            ? `<p class="text-xs text-gray-700 line-clamp-3 leading-relaxed">${event.description}</p>`
-                            : ""
-                        }
+                        <div>${tagBadges}</div>
                     </div>
                 `;
           })
@@ -2112,11 +2118,9 @@ class EventMap {
                             ${distanceInfo}
                         </div>
 
-                        <div class="flex flex-wrap mb-3">${tagBadges}</div>
+                        <div class="flex flex-wrap">${tagBadges}</div>
 
-                        ${event.description ? `<p class="text-gray-700 text-sm leading-relaxed mb-3">${event.description}</p>` : ""}
-
-                        ${event.organizer ? `<p class="text-gray-500 text-sm"><strong>👤</strong> ${event.organizer}</p>` : ""}
+                        ${event.organizer ? `<p class="text-gray-500 text-sm mt-2"><strong>👤</strong> ${event.organizer}</p>` : ""}
                     </div>
                 `;
           })
