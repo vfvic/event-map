@@ -1642,7 +1642,7 @@ class EventMap {
 
   createPopupContent(event) {
     const elapsedLabel = event.isElapsed
-      ? '<span style="background: #6b7280; color: white; padding: 2px 6px; border-radius: 10px; font-size: 10px; margin-left: 8px;">Ended</span>'
+      ? '<span style="background: #6b7280; color: white; padding: 3px 8px; border-radius: 10px; font-size: 12px; margin-left: 8px;">Ended</span>'
       : "";
     const titleStyle = event.isElapsed
       ? "color: #6b7280; opacity: 0.8;"
@@ -1658,54 +1658,100 @@ class EventMap {
     const tagBadges = categories
       .map(
         (category) =>
-          `<span style="display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 500; color: white; margin-right: 4px;" class="${this.getCategoryColorClass(
+          `<span style="display: inline-block; padding: 5px 12px; border-radius: 12px; font-size: 13px; font-weight: 500; color: white; margin-right: 5px;" class="${this.getCategoryColorClass(
             category
           )}">${this.formatCategoryName(category)}</span>`
       )
       .join("");
 
-    // Truncate description to keep popup cleaner
+    // Parse description to separate main text from contact details
     let descriptionHtml = "";
+    let contactHtml = "";
+
     if (event.description) {
-      const maxLength = 150;
-      const truncated = event.description.length > maxLength
-        ? event.description.substring(0, maxLength).trim() + "..."
-        : event.description;
-      descriptionHtml = `
-        <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb;">
-          <p style="margin: 0; font-size: 12px; color: #4b5563; line-height: 1.6;">${truncated}</p>
-        </div>`;
+      // Patterns for contact details
+      const contactPatterns = [
+        /(?:Mob|Mobile|Phone|Tel|Call):\s*[\d\s\-+()]+/gi,
+        /Email:\s*[^\s]+@[^\s]+/gi,
+        /Web:\s*[^\s]+/gi,
+        /FB:\s*[^\s]+/gi,
+        /Facebook:\s*[^\s]+/gi,
+        /Website:\s*[^\s]+/gi
+      ];
+
+      let description = event.description;
+      const contactDetails = [];
+
+      // Extract contact details
+      contactPatterns.forEach(pattern => {
+        const matches = description.match(pattern);
+        if (matches) {
+          matches.forEach(match => {
+            contactDetails.push(match.trim());
+            description = description.replace(match, '');
+          });
+        }
+      });
+
+      // Clean up the description (remove extra spaces, trailing punctuation)
+      description = description.replace(/\s+/g, ' ').trim();
+      description = description.replace(/[.,\s]+$/, '').trim();
+
+      if (description) {
+        descriptionHtml = `
+          <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb;">
+            <p style="margin: 0; font-size: 14px; color: #374151; line-height: 1.7;">${description}</p>
+          </div>`;
+      }
+
+      if (contactDetails.length > 0) {
+        const contactItems = contactDetails.map(detail => {
+          // Add appropriate icons
+          let icon = '📞';
+          if (detail.toLowerCase().includes('email')) icon = '✉️';
+          else if (detail.toLowerCase().includes('web') || detail.toLowerCase().includes('http')) icon = '🌐';
+          else if (detail.toLowerCase().includes('fb') || detail.toLowerCase().includes('facebook')) icon = '📘';
+
+          return `<div style="margin: 6px 0; font-size: 13px; color: #4b5563;">${icon} ${detail}</div>`;
+        }).join('');
+
+        contactHtml = `
+          <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb;">
+            ${contactItems}
+          </div>`;
+      }
     }
 
     return `
-            <div style="max-width: 300px; line-height: 1.4; padding: 4px;">
-                <h4 style="margin: 0 0 10px 0; font-size: 15px; font-weight: 600; line-height: 1.3; ${titleStyle}">${
+            <div style="max-width: 360px; line-height: 1.5; padding: 6px;">
+                <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; line-height: 1.4; ${titleStyle}">${
       event.title
     }${elapsedLabel}</h4>
 
                 <table style="border-collapse: collapse; width: 100%; margin-bottom: 10px;">
                     <tr>
-                        <td style="padding: 3px 8px 3px 0; font-size: 12px; color: #6b7280; vertical-align: top; width: 20px;">📅</td>
-                        <td style="padding: 3px 0; font-size: 12px; color: #374151;">${this.formatDate(event.date)}</td>
+                        <td style="padding: 4px 10px 4px 0; font-size: 14px; color: #6b7280; vertical-align: top; width: 24px;">📅</td>
+                        <td style="padding: 4px 0; font-size: 14px; color: #374151;">${this.formatDate(event.date)}</td>
                     </tr>
                     <tr>
-                        <td style="padding: 3px 8px 3px 0; font-size: 12px; color: #6b7280; vertical-align: top;">⏰</td>
-                        <td style="padding: 3px 0; font-size: 12px; color: #374151;">${event.time}</td>
+                        <td style="padding: 4px 10px 4px 0; font-size: 14px; color: #6b7280; vertical-align: top;">⏰</td>
+                        <td style="padding: 4px 0; font-size: 14px; color: #374151;">${event.time}</td>
                     </tr>
                     <tr>
-                        <td style="padding: 3px 8px 3px 0; font-size: 12px; color: #6b7280; vertical-align: top;">📍</td>
-                        <td style="padding: 3px 0; font-size: 12px; color: #374151;">${event.location}</td>
+                        <td style="padding: 4px 10px 4px 0; font-size: 14px; color: #6b7280; vertical-align: top;">📍</td>
+                        <td style="padding: 4px 0; font-size: 14px; color: #374151;">${event.location}</td>
                     </tr>
                     ${event.organizer ? `<tr>
-                        <td style="padding: 3px 8px 3px 0; font-size: 12px; color: #6b7280; vertical-align: top;">👤</td>
-                        <td style="padding: 3px 0; font-size: 12px; color: #374151;">${event.organizer}</td>
+                        <td style="padding: 4px 10px 4px 0; font-size: 14px; color: #6b7280; vertical-align: top;">👤</td>
+                        <td style="padding: 4px 0; font-size: 14px; color: #374151;">${event.organizer}</td>
                     </tr>` : ""}
                 </table>
 
-                <div style="margin-bottom: 4px;">
+                <div style="margin-bottom: 6px;">
                     ${tagBadges}
                 </div>
                 ${descriptionHtml}
+                ${contactHtml}
             </div>
         `;
   }
@@ -1718,7 +1764,7 @@ class EventMap {
     const eventsHtml = events
       .map((event, index) => {
         const elapsedLabel = event.isElapsed
-          ? '<span style="background: #6b7280; color: white; padding: 1px 4px; border-radius: 8px; font-size: 9px; margin-left: 5px;">Ended</span>'
+          ? '<span style="background: #6b7280; color: white; padding: 2px 6px; border-radius: 8px; font-size: 11px; margin-left: 6px;">Ended</span>'
           : "";
         const titleStyle = event.isElapsed
           ? "color: #6b7280; opacity: 0.8;"
@@ -1732,17 +1778,17 @@ class EventMap {
             ? [event.category]
             : [];
         const tagBadge = categories.length > 0
-          ? `<span style="display: inline-block; padding: 2px 6px; border-radius: 8px; font-size: 10px; font-weight: 500; color: white;" class="${this.getCategoryColorClass(categories[0])}">${this.formatCategoryName(categories[0])}</span>${categories.length > 1 ? `<span style="font-size: 10px; color: #9ca3af; margin-left: 4px;">+${categories.length - 1}</span>` : ""}`
+          ? `<span style="display: inline-block; padding: 3px 8px; border-radius: 8px; font-size: 12px; font-weight: 500; color: white;" class="${this.getCategoryColorClass(categories[0])}">${this.formatCategoryName(categories[0])}</span>${categories.length > 1 ? `<span style="font-size: 12px; color: #9ca3af; margin-left: 4px;">+${categories.length - 1}</span>` : ""}`
           : "";
 
         return `
-                <div style="padding: 8px 0; cursor: pointer; ${index !== events.length - 1 ? "border-bottom: 1px solid #e5e7eb;" : ""}"
+                <div style="padding: 10px 0; cursor: pointer; ${index !== events.length - 1 ? "border-bottom: 1px solid #e5e7eb;" : ""}"
                      onclick="eventMap.highlightEvent(${event.id}); eventMap.map.closePopup();">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px;">
-                        <h5 style="margin: 0; font-size: 13px; ${titleStyle} font-weight: 600; line-height: 1.3; flex: 1;">${event.title}${elapsedLabel}</h5>
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+                        <h5 style="margin: 0; font-size: 15px; ${titleStyle} font-weight: 600; line-height: 1.4; flex: 1;">${event.title}${elapsedLabel}</h5>
                     </div>
                     <div style="display: flex; align-items: center; gap: 12px;">
-                        <span style="font-size: 11px; color: #6b7280;">⏰ ${event.time || "Time TBD"}</span>
+                        <span style="font-size: 13px; color: #4b5563;">⏰ ${event.time || "Time TBD"}</span>
                         ${tagBadge}
                     </div>
                 </div>
@@ -1751,15 +1797,15 @@ class EventMap {
       .join("");
 
     return `
-            <div style="max-width: 320px; padding: 4px;">
-                <h4 style="margin: 0 0 6px 0; font-size: 14px; font-weight: 600; color: #1f2937;">📍 ${location}</h4>
-                <p style="margin: 0 0 8px 0; font-size: 12px; color: #6b7280;">
+            <div style="max-width: 380px; padding: 6px;">
+                <h4 style="margin: 0 0 8px 0; font-size: 16px; font-weight: 600; color: #1f2937;">📍 ${location}</h4>
+                <p style="margin: 0 0 10px 0; font-size: 14px; color: #4b5563;">
                     📅 ${this.formatDate(date)} · <span style="color: #059669; font-weight: 600;">${eventCount} event${eventCount > 1 ? "s" : ""}</span>
                 </p>
-                <div style="max-height: 220px; overflow-y: auto;">
+                <div style="max-height: 280px; overflow-y: auto;">
                     ${eventsHtml}
                 </div>
-                <p style="margin: 8px 0 0 0; font-size: 10px; color: #9ca3af; text-align: center;">
+                <p style="margin: 10px 0 0 0; font-size: 12px; color: #9ca3af; text-align: center;">
                     Tap an event to see it in the list
                 </p>
             </div>
