@@ -1669,7 +1669,7 @@ class EventMap {
                 <h4 style="margin: 0 0 12px 0; font-size: 16px; font-weight: 600; ${titleStyle}">${
       event.title
     }${elapsedLabel}</h4>
-                
+
                 <div style="margin-bottom: 12px;">
                     <p style="margin: 0 0 6px 0; font-size: 13px; color: #4b5563;">
                         <strong>📅</strong> ${this.formatDate(event.date)}
@@ -1681,13 +1681,13 @@ class EventMap {
                         <strong>📍</strong> ${event.location}
                     </p>
                 </div>
-                
+
                 <div style="margin-bottom: 12px;">
                     ${tagBadges}
                 </div>
-                
+
                 ${event.description ? `<p style="margin: 0 0 10px 0; font-size: 13px; color: #374151; line-height: 1.6;">${event.description}</p>` : ""}
-                
+
                 ${event.organizer ? `<p style="margin: 0; font-size: 12px; color: #6b7280;"><strong>👤</strong> ${event.organizer}</p>` : ""}
             </div>
         `;
@@ -1969,16 +1969,16 @@ class EventMap {
                                 }</span>
                             </div>
                         </div>
-                        
+
                         <div class="space-y-1.5 mb-2">
                             <p class="text-xs text-gray-600"><strong>📍</strong> ${
                               event.location
                             }</p>
                             ${distanceInfo}
                         </div>
-                        
+
                         <div class="mb-2">${tagBadges}</div>
-                        
+
                         ${
                           event.description
                             ? `<p class="text-xs text-gray-700 line-clamp-3 leading-relaxed">${event.description}</p>`
@@ -2105,17 +2105,17 @@ class EventMap {
                             <h4 class="text-gray-800 text-lg font-semibold flex-1 leading-snug">${event.title}</h4>
                             ${elapsedLabel}
                         </div>
-                        
+
                         <div class="space-y-2 mb-3">
                             <p class="text-gray-600 text-sm"><strong>⏰</strong> ${event.time}</p>
                             <p class="text-gray-600 text-sm"><strong>📍</strong> ${event.location}</p>
                             ${distanceInfo}
                         </div>
-                        
+
                         <div class="flex flex-wrap mb-3">${tagBadges}</div>
-                        
+
                         ${event.description ? `<p class="text-gray-700 text-sm leading-relaxed mb-3">${event.description}</p>` : ""}
-                        
+
                         ${event.organizer ? `<p class="text-gray-500 text-sm"><strong>👤</strong> ${event.organizer}</p>` : ""}
                     </div>
                 `;
