@@ -1575,7 +1575,7 @@ class EventMap {
     }, 100);
 
     // Also recalculate on window resize
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       this.map.invalidateSize();
     });
 
@@ -2198,7 +2198,7 @@ class EventMap {
 
                         <div class="flex flex-wrap">${tagBadges}</div>
 
-                        ${event.organizer ? `<p class="text-gray-500 text-sm mt-2"><strong>👤</strong> ${event.organizer}</p>` : ""}
+
                     </div>
                 `;
           })
