@@ -1648,28 +1648,47 @@ class EventMap {
       ? "color: #6b7280; opacity: 0.8;"
       : "color: #1f2937;";
 
+    // Generate category badges
+    const categories =
+      Array.isArray(event.categories) && event.categories.length > 0
+        ? event.categories
+        : event.category
+        ? [event.category]
+        : [];
+    const tagBadges = categories
+      .map(
+        (category) =>
+          `<span style="display: inline-block; padding: 3px 8px; border-radius: 12px; font-size: 11px; font-weight: 500; color: white; margin-right: 4px; margin-bottom: 4px;" class="${this.getCategoryColorClass(
+            category
+          )}">${this.formatCategoryName(category)}</span>`
+      )
+      .join("");
+
     return `
-            <div style="max-width: 250px;">
-                <h4 style="margin: 0 0 10px 0; ${titleStyle}">${
+            <div style="max-width: 280px; line-height: 1.5;">
+                <h4 style="margin: 0 0 12px 0; font-size: 16px; font-weight: 600; ${titleStyle}">${
       event.title
     }${elapsedLabel}</h4>
-                <p style="margin: 2px 0; font-size: 12px; color: #6b7280;">
-                    <strong>📅</strong> ${this.formatDate(event.date)}
-                </p>
-                <p style="margin: 2px 0; font-size: 12px; color: #6b7280;">
-                    <strong>⏰</strong> ${event.time}
-                </p>
-                <p style="margin: 2px 0; font-size: 12px; color: #6b7280;">
-                    <strong>📍</strong> ${event.location}
-                </p>
-                <p style="margin: 5px 0; font-size: 12px; color: #6b7280;">
-                    <span class="inline-block px-2 py-1 rounded text-xs text-white ${this.getCategoryColorClass(
-                      event.category
-                    )}">${this.formatCategoryName(event.category)}</span>
-                </p>
-                <p style="margin: 5px 0; font-size: 12px; color: #4b5563;">${
-                  event.description
-                }</p>
+                
+                <div style="margin-bottom: 12px;">
+                    <p style="margin: 0 0 6px 0; font-size: 13px; color: #4b5563;">
+                        <strong>📅</strong> ${this.formatDate(event.date)}
+                    </p>
+                    <p style="margin: 0 0 6px 0; font-size: 13px; color: #4b5563;">
+                        <strong>⏰</strong> ${event.time}
+                    </p>
+                    <p style="margin: 0; font-size: 13px; color: #4b5563;">
+                        <strong>📍</strong> ${event.location}
+                    </p>
+                </div>
+                
+                <div style="margin-bottom: 12px;">
+                    ${tagBadges}
+                </div>
+                
+                ${event.description ? `<p style="margin: 0 0 10px 0; font-size: 13px; color: #374151; line-height: 1.6;">${event.description}</p>` : ""}
+                
+                ${event.organizer ? `<p style="margin: 0; font-size: 12px; color: #6b7280;"><strong>👤</strong> ${event.organizer}</p>` : ""}
             </div>
         `;
   }
@@ -1920,7 +1939,7 @@ class EventMap {
             // Add distance information if available
             const distanceInfo =
               event._searchDistance !== undefined
-                ? `<p class="text-gray-600 text-xs mb-1">📏 ${event._searchDistance.toFixed(
+                ? `<p class="text-gray-600 text-xs">📏 ${event._searchDistance.toFixed(
                     1
                   )} km away</p>`
                 : "";
@@ -1950,14 +1969,19 @@ class EventMap {
                                 }</span>
                             </div>
                         </div>
-                        ${distanceInfo}
-                        <p class="text-xs text-gray-600 mb-1"><strong>📍</strong> ${
-                          event.location
-                        }</p>
+                        
+                        <div class="space-y-1.5 mb-2">
+                            <p class="text-xs text-gray-600"><strong>📍</strong> ${
+                              event.location
+                            }</p>
+                            ${distanceInfo}
+                        </div>
+                        
                         <div class="mb-2">${tagBadges}</div>
+                        
                         ${
                           event.description
-                            ? `<p class="text-xs text-gray-700 line-clamp-2">${event.description}</p>`
+                            ? `<p class="text-xs text-gray-700 line-clamp-3 leading-relaxed">${event.description}</p>`
                             : ""
                         }
                     </div>
@@ -2075,18 +2099,24 @@ class EventMap {
               : "";
 
             return `
-                    <div class="${elapsedClass} rounded-lg p-4 cursor-pointer transition-all duration-300 border-l-4 ${borderClass} ${hoverClass} hover:shadow-md hover:-translate-y-1 mb-4"
+                    <div class="${elapsedClass} rounded-lg p-4 cursor-pointer transition-all duration-300 border-l-4 ${borderClass} ${hoverClass} hover:shadow-md hover:-translate-y-1 mb-5"
                          data-event-id="${event.id}" onclick="eventMap.focusEvent(${event.id})">
-                        <div class="flex items-start justify-between mb-2">
-                            <h4 class="text-gray-800 text-lg font-semibold flex-1">${event.title}</h4>
+                        <div class="flex items-start justify-between mb-3">
+                            <h4 class="text-gray-800 text-lg font-semibold flex-1 leading-snug">${event.title}</h4>
                             ${elapsedLabel}
                         </div>
-                        <p class="text-gray-600 text-sm mb-1"><strong>⏰</strong> ${event.time}</p>
-                        <p class="text-gray-600 text-sm mb-1"><strong>📍</strong> ${event.location}</p>
-                        ${distanceInfo}
-                        <p class="text-gray-600 text-sm mb-1">${event.description}</p>
-                        <p class="text-gray-600 text-sm mb-2"><strong>👤</strong> ${event.organizer}</p>
-                        <div class="flex flex-wrap">${tagBadges}</div>
+                        
+                        <div class="space-y-2 mb-3">
+                            <p class="text-gray-600 text-sm"><strong>⏰</strong> ${event.time}</p>
+                            <p class="text-gray-600 text-sm"><strong>📍</strong> ${event.location}</p>
+                            ${distanceInfo}
+                        </div>
+                        
+                        <div class="flex flex-wrap mb-3">${tagBadges}</div>
+                        
+                        ${event.description ? `<p class="text-gray-700 text-sm leading-relaxed mb-3">${event.description}</p>` : ""}
+                        
+                        ${event.organizer ? `<p class="text-gray-500 text-sm"><strong>👤</strong> ${event.organizer}</p>` : ""}
                     </div>
                 `;
           })
