@@ -1569,6 +1569,16 @@ class EventMap {
       attribution: "© OpenStreetMap contributors",
     }).addTo(this.map);
 
+    // Force map to recalculate size after container is fully rendered
+    setTimeout(() => {
+      this.map.invalidateSize();
+    }, 100);
+
+    // Also recalculate on window resize
+    window.addEventListener('resize', () => {
+      this.map.invalidateSize();
+    });
+
     this.addMarkers();
   }
 
