@@ -31,7 +31,8 @@ class EventMap {
     this.dataSourceUrl =
       window.VFVIC_MAP_DATA_URL ||
       (typeof document !== "undefined" &&
-        document.getElementById("vfvic-event-map-container")?.dataset?.dataSource) ||
+        document.getElementById("vfvic-event-map-container")?.dataset
+          ?.dataSource) ||
       (window.CALENDAR_CONFIG && window.CALENDAR_CONFIG.DATA_SOURCE_URL) ||
       "";
 
@@ -64,7 +65,7 @@ class EventMap {
           this.utils.showToast(
             "Could not load events. Showing sample data.",
             "info",
-            5000
+            5000,
           );
         }
         this.loadSampleEvents();
@@ -76,14 +77,14 @@ class EventMap {
       } catch (error) {
         console.warn(
           "Could not load local calendar events, trying Google Calendar API:",
-          error
+          error,
         );
         try {
           await this.loadGoogleCalendarEvents();
         } catch (apiError) {
           console.warn(
             "Could not load Google Calendar events, using sample data:",
-            apiError
+            apiError,
           );
           this.loadSampleEvents();
 
@@ -91,7 +92,7 @@ class EventMap {
             this.utils.showToast(
               "Using sample data. Configure Google Calendar for live events.",
               "info",
-              5000
+              5000,
             );
           }
         }
@@ -125,12 +126,12 @@ class EventMap {
     if (cached) {
       this.events = cached;
       console.log(
-        `[WordPress] Loaded ${this.events.length} events from client cache`
+        `[WordPress] Loaded ${this.events.length} events from client cache`,
       );
       if (this.utils) {
         this.utils.showToast(
           `Loaded ${this.events.length} events (cached)`,
-          "success"
+          "success",
         );
       }
       return;
@@ -145,7 +146,7 @@ class EventMap {
 
     if (!response.ok) {
       throw new Error(
-        `Events endpoint error: ${response.status} ${response.statusText}`
+        `Events endpoint error: ${response.status} ${response.statusText}`,
       );
     }
 
@@ -168,7 +169,7 @@ class EventMap {
     if (this.utils) {
       this.utils.showToast(
         `Loaded ${this.events.length} events from server`,
-        "success"
+        "success",
       );
     }
   }
@@ -189,7 +190,7 @@ class EventMap {
         const lng = parseFloat(item.lng);
         if (Number.isNaN(lat) || Number.isNaN(lng)) {
           console.warn(
-            `[WordPress] Skipping event "${item.title || "?"}" - invalid lat/lng`
+            `[WordPress] Skipping event "${item.title || "?"}" - invalid lat/lng`,
           );
           return null;
         }
@@ -198,28 +199,27 @@ class EventMap {
         const categories = Array.isArray(item.categories)
           ? item.categories.map((c) => String(c).trim())
           : category
-          ? [category]
-          : ["Other"];
+            ? [category]
+            : ["Other"];
         const date =
-          item.date ||
-          (item.start && (item.start.date || item.start.dateTime))
-          ? this._normaliseDate(
-              item.date || item.start?.date || item.start?.dateTime
-            )
-          : "";
+          item.date || (item.start && (item.start.date || item.start.dateTime))
+            ? this._normaliseDate(
+                item.date || item.start?.date || item.start?.dateTime,
+              )
+            : "";
         const time =
-          item.time ||
-          (item.start && item.start.dateTime)
-          ? this._normaliseTime(item.start.dateTime)
-          : "";
-        const startTime = item.startTime || (item.start && item.start.dateTime) || "";
+          item.time || (item.start && item.start.dateTime)
+            ? this._normaliseTime(item.start.dateTime)
+            : "";
+        const startTime =
+          item.startTime || (item.start && item.start.dateTime) || "";
         const endTime = item.endTime || (item.end && item.end.dateTime) || "";
 
         return {
           id: item.id != null ? item.id : index + 1,
           title: this.sanitiseText(item.title || "Unnamed Event"),
           description: this.sanitiseHtml(
-            item.description || "No description available"
+            item.description || "No description available",
           ),
           category,
           categories,
@@ -290,7 +290,7 @@ class EventMap {
       const key = this._clientCacheKey(url);
       sessionStorage.setItem(
         key,
-        JSON.stringify({ data: events, fetchedAt: Date.now() })
+        JSON.stringify({ data: events, fetchedAt: Date.now() }),
       );
     } catch (e) {
       // Ignore storage errors
@@ -324,17 +324,17 @@ class EventMap {
       // If no events after filtering, throw error to trigger fallback to sample data
       if (this.events.length === 0) {
         console.warn(
-          "No upcoming events found in calendar file (all events may be in the past)"
+          "No upcoming events found in calendar file (all events may be in the past)",
         );
         throw new Error(
-          "No upcoming events found in calendar file (all events may be in the past)"
+          "No upcoming events found in calendar file (all events may be in the past)",
         );
       }
 
       if (this.utils) {
         this.utils.showToast(
           `Loaded ${this.events.length} events from calendar`,
-          "success"
+          "success",
         );
       }
     } catch (error) {
@@ -364,7 +364,7 @@ class EventMap {
         // Check if event is in the past
         const eventDate = new Date(item.start?.dateTime || item.start?.date);
         const eventDateTime = new Date(
-          item.start?.dateTime || `${item.start?.date}T23:59:59`
+          item.start?.dateTime || `${item.start?.date}T23:59:59`,
         );
         const today = new Date();
         today.setHours(0, 0, 0, 0);
@@ -384,7 +384,7 @@ class EventMap {
         // Transform to our event format
         const event = await this.transformCalendarItem(
           item,
-          processedEvents.length + 1
+          processedEvents.length + 1,
         );
 
         // Mark event as elapsed if it's today but the time has passed
@@ -394,7 +394,7 @@ class EventMap {
         // Skip events without valid location coordinates
         if (event.lat === 0 && event.lng === 0) {
           console.warn(
-            `Skipping event "${event.title}" - no valid coordinates`
+            `Skipping event "${event.title}" - no valid coordinates`,
           );
           continue;
         }
@@ -416,7 +416,7 @@ class EventMap {
     // Clean and sanitise the data
     const title = this.sanitiseText(item.summary || "Unnamed Event");
     const description = this.sanitiseHtml(
-      item.description || "No description available"
+      item.description || "No description available",
     );
     const location = this.sanitiseText(item.location || "Location TBD");
 
@@ -440,7 +440,7 @@ class EventMap {
     // Get coordinates for the location (pass event title as venue name for better geocoding)
     const coordinates = await this.getCoordinatesForLocation(
       location,
-      event.title
+      event.title,
     );
     event.lat = coordinates.lat;
     event.lng = coordinates.lng;
@@ -501,20 +501,20 @@ class EventMap {
     const config = window.CALENDAR_CONFIG;
     if (!config || !config.API_KEY || !config.CALENDAR_ID) {
       throw new Error(
-        "Google Calendar configuration not found. Copy config.example.js to config.js and fill in your details."
+        "Google Calendar configuration not found. Copy config.example.js to config.js and fill in your details.",
       );
     }
 
     if (config.API_KEY === "your-google-calendar-api-key-here") {
       throw new Error(
-        "Please configure your Google Calendar API key in config.js"
+        "Please configure your Google Calendar API key in config.js",
       );
     }
 
     try {
       const timeMin = new Date().toISOString();
       const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(
-        config.CALENDAR_ID
+        config.CALENDAR_ID,
       )}/events?key=${
         config.API_KEY
       }&timeMin=${timeMin}&singleEvents=true&orderBy=startTime&maxResults=${
@@ -526,7 +526,7 @@ class EventMap {
 
       if (!response.ok) {
         throw new Error(
-          `Google Calendar API error: ${response.status} ${response.statusText}`
+          `Google Calendar API error: ${response.status} ${response.statusText}`,
         );
       }
 
@@ -551,7 +551,7 @@ class EventMap {
 
         const transformedEvent = await this.transformGoogleCalendarEvent(
           calendarEvent,
-          i + 1
+          i + 1,
         );
         transformedEvents.push(transformedEvent);
       }
@@ -568,7 +568,7 @@ class EventMap {
     // Transform Google Calendar event to our format
     const categorization = this.categorizeEvent(
       calendarEvent.summary,
-      calendarEvent.description
+      calendarEvent.description,
     );
 
     const event = {
@@ -657,9 +657,15 @@ class EventMap {
     const config = window.CALENDAR_CONFIG;
 
     // Debug: Log geocoding attempt
-    console.log(`[Geocoding] Attempting to geocode: "${location}" (venue: ${venueName || 'N/A'})`);
-    console.log(`[Geocoding] Config ENABLE_GEOCODING: ${config?.ENABLE_GEOCODING}`);
-    console.log(`[Geocoding] Config GEOCODING_API_KEY exists: ${!!config?.GEOCODING_API_KEY && config.GEOCODING_API_KEY !== "your-google-geocoding-api-key-here"}`);
+    console.log(
+      `[Geocoding] Attempting to geocode: "${location}" (venue: ${venueName || "N/A"})`,
+    );
+    console.log(
+      `[Geocoding] Config ENABLE_GEOCODING: ${config?.ENABLE_GEOCODING}`,
+    );
+    console.log(
+      `[Geocoding] Config GEOCODING_API_KEY exists: ${!!config?.GEOCODING_API_KEY && config.GEOCODING_API_KEY !== "your-google-geocoding-api-key-here"}`,
+    );
 
     let result = null;
 
@@ -672,14 +678,18 @@ class EventMap {
       try {
         const googleCoords = await this.geocodeWithGoogle(location, venueName);
         if (googleCoords) {
-          console.log(`[Geocoding] SUCCESS: "${location}" -> [${googleCoords.lat}, ${googleCoords.lng}]`);
+          console.log(
+            `[Geocoding] SUCCESS: "${location}" -> [${googleCoords.lat}, ${googleCoords.lng}]`,
+          );
           result = googleCoords;
         }
       } catch (error) {
         console.error(`[Geocoding] FAILED for "${location}":`, error);
       }
     } else {
-      console.warn(`[Geocoding] Skipped - geocoding disabled or API key missing`);
+      console.warn(
+        `[Geocoding] Skipped - geocoding disabled or API key missing`,
+      );
     }
 
     if (!result) {
@@ -693,7 +703,9 @@ class EventMap {
 
     if (!result) {
       // Last resort: Generate unique coordinates using hash-based offset
-      console.warn(`[Geocoding] Using fallback hash coordinates for "${location}"`);
+      console.warn(
+        `[Geocoding] Using fallback hash coordinates for "${location}"`,
+      );
       const fallbackCoords = config?.DEFAULT_REGION || {
         lat: 54.9783,
         lng: -1.6178,
@@ -717,8 +729,8 @@ class EventMap {
 
     const response = await fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-        searchQuery
-      )}&key=${config.GEOCODING_API_KEY}`
+        searchQuery,
+      )}&key=${config.GEOCODING_API_KEY}`,
     );
 
     if (!response.ok) {
@@ -731,17 +743,21 @@ class EventMap {
     if (data.status === "OK" && data.results && data.results.length > 0) {
       const location = data.results[0].geometry.location;
       const formattedAddress = data.results[0].formatted_address;
-      console.log(`[Google Geocoding] Resolved to: "${formattedAddress}" [${location.lat}, ${location.lng}]`);
+      console.log(
+        `[Google Geocoding] Resolved to: "${formattedAddress}" [${location.lat}, ${location.lng}]`,
+      );
       return { lat: location.lat, lng: location.lng };
     } else if (data.status === "REQUEST_DENIED") {
-      console.error(`[Google Geocoding] REQUEST_DENIED - Check API key permissions. Error: ${data.error_message}`);
+      console.error(
+        `[Google Geocoding] REQUEST_DENIED - Check API key permissions. Error: ${data.error_message}`,
+      );
       throw new Error(`API key issue: ${data.error_message}`);
     } else if (data.status === "OVER_QUERY_LIMIT") {
       console.error(`[Google Geocoding] OVER_QUERY_LIMIT - Too many requests`);
-      throw new Error('Over query limit');
+      throw new Error("Over query limit");
     } else if (data.status === "ZERO_RESULTS") {
       console.warn(`[Google Geocoding] No results for: "${searchQuery}"`);
-      throw new Error('No results found');
+      throw new Error("No results found");
     } else {
       console.error(`[Google Geocoding] Unexpected status: ${data.status}`);
       throw new Error(`Google API error: ${data.status}`);
@@ -767,7 +783,6 @@ class EventMap {
       lng: baseCoords.lng + lngOffset,
     };
   }
-
 
   getKnownLocationCoordinates(location) {
     const locationMap = {
@@ -907,8 +922,8 @@ class EventMap {
       // Use Google Maps Geocoding API
       const response = await fetch(
         `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-          address + ", Northeast England, UK"
-        )}&key=${config.GEOCODING_API_KEY}`
+          address + ", Northeast England, UK",
+        )}&key=${config.GEOCODING_API_KEY}`,
       );
 
       if (!response.ok) {
@@ -1567,7 +1582,7 @@ class EventMap {
 
     if (eventsToShow.length < this.filteredEvents.length) {
       console.log(
-        `Showing ${eventsToShow.length} of ${this.filteredEvents.length} events on map for performance`
+        `Showing ${eventsToShow.length} of ${this.filteredEvents.length} events on map for performance`,
       );
     }
 
@@ -1653,14 +1668,14 @@ class EventMap {
       Array.isArray(event.categories) && event.categories.length > 0
         ? event.categories
         : event.category
-        ? [event.category]
-        : [];
+          ? [event.category]
+          : [];
     const tagBadges = categories
       .map(
         (category) =>
           `<span style="display: inline-block; padding: 5px 12px; border-radius: 12px; font-size: 13px; font-weight: 500; color: white; margin-right: 5px;" class="${this.getCategoryColorClass(
-            category
-          )}">${this.formatCategoryName(category)}</span>`
+            category,
+          )}">${this.formatCategoryName(category)}</span>`,
       )
       .join("");
 
@@ -1676,26 +1691,26 @@ class EventMap {
         /Web:\s*[^\s]+/gi,
         /FB:\s*[^\s]+/gi,
         /Facebook:\s*[^\s]+/gi,
-        /Website:\s*[^\s]+/gi
+        /Website:\s*[^\s]+/gi,
       ];
 
       let description = event.description;
       const contactDetails = [];
 
       // Extract contact details
-      contactPatterns.forEach(pattern => {
+      contactPatterns.forEach((pattern) => {
         const matches = description.match(pattern);
         if (matches) {
-          matches.forEach(match => {
+          matches.forEach((match) => {
             contactDetails.push(match.trim());
-            description = description.replace(match, '');
+            description = description.replace(match, "");
           });
         }
       });
 
       // Clean up the description (remove extra spaces, trailing punctuation)
-      description = description.replace(/\s+/g, ' ').trim();
-      description = description.replace(/[.,\s]+$/, '').trim();
+      description = description.replace(/\s+/g, " ").trim();
+      description = description.replace(/[.,\s]+$/, "").trim();
 
       if (description) {
         descriptionHtml = `
@@ -1705,15 +1720,25 @@ class EventMap {
       }
 
       if (contactDetails.length > 0) {
-        const contactItems = contactDetails.map(detail => {
-          // Add appropriate icons
-          let icon = '📞';
-          if (detail.toLowerCase().includes('email')) icon = '✉️';
-          else if (detail.toLowerCase().includes('web') || detail.toLowerCase().includes('http')) icon = '🌐';
-          else if (detail.toLowerCase().includes('fb') || detail.toLowerCase().includes('facebook')) icon = '📘';
+        const contactItems = contactDetails
+          .map((detail) => {
+            // Add appropriate icons
+            let icon = "📞";
+            if (detail.toLowerCase().includes("email")) icon = "✉️";
+            else if (
+              detail.toLowerCase().includes("web") ||
+              detail.toLowerCase().includes("http")
+            )
+              icon = "🌐";
+            else if (
+              detail.toLowerCase().includes("fb") ||
+              detail.toLowerCase().includes("facebook")
+            )
+              icon = "📘";
 
-          return `<div style="margin: 6px 0; font-size: 13px; color: #4b5563;">${icon} ${detail}</div>`;
-        }).join('');
+            return `<div style="margin: 6px 0; font-size: 13px; color: #4b5563;">${icon} ${detail}</div>`;
+          })
+          .join("");
 
         contactHtml = `
           <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #e5e7eb;">
@@ -1725,8 +1750,8 @@ class EventMap {
     return `
             <div style="max-width: 360px; line-height: 1.5; padding: 6px;">
                 <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; line-height: 1.4; ${titleStyle}">${
-      event.title
-    }${elapsedLabel}</h4>
+                  event.title
+                }${elapsedLabel}</h4>
 
                 <table style="border-collapse: collapse; width: 100%; margin-bottom: 10px;">
                     <tr>
@@ -1741,10 +1766,6 @@ class EventMap {
                         <td style="padding: 4px 10px 4px 0; font-size: 14px; color: #6b7280; vertical-align: top;">📍</td>
                         <td style="padding: 4px 0; font-size: 14px; color: #374151;">${event.location}</td>
                     </tr>
-                    ${event.organizer ? `<tr>
-                        <td style="padding: 4px 10px 4px 0; font-size: 14px; color: #6b7280; vertical-align: top;">👤</td>
-                        <td style="padding: 4px 0; font-size: 14px; color: #374151;">${event.organizer}</td>
-                    </tr>` : ""}
                 </table>
 
                 <div style="margin-bottom: 6px;">
@@ -1775,11 +1796,12 @@ class EventMap {
           Array.isArray(event.categories) && event.categories.length > 0
             ? event.categories
             : event.category
-            ? [event.category]
-            : [];
-        const tagBadge = categories.length > 0
-          ? `<span style="display: inline-block; padding: 3px 8px; border-radius: 8px; font-size: 12px; font-weight: 500; color: white;" class="${this.getCategoryColorClass(categories[0])}">${this.formatCategoryName(categories[0])}</span>${categories.length > 1 ? `<span style="font-size: 12px; color: #9ca3af; margin-left: 4px;">+${categories.length - 1}</span>` : ""}`
-          : "";
+              ? [event.category]
+              : [];
+        const tagBadge =
+          categories.length > 0
+            ? `<span style="display: inline-block; padding: 3px 8px; border-radius: 8px; font-size: 12px; font-weight: 500; color: white;" class="${this.getCategoryColorClass(categories[0])}">${this.formatCategoryName(categories[0])}</span>${categories.length > 1 ? `<span style="font-size: 12px; color: #9ca3af; margin-left: 4px;">+${categories.length - 1}</span>` : ""}`
+            : "";
 
         return `
                 <div style="padding: 10px 0; cursor: pointer; ${index !== events.length - 1 ? "border-bottom: 1px solid #e5e7eb;" : ""}"
@@ -1840,13 +1862,13 @@ class EventMap {
 
     // Check if any events have distance info (location-based search active)
     const hasDistanceInfo = this.filteredEvents.some(
-      (event) => event._searchDistance !== undefined
+      (event) => event._searchDistance !== undefined,
     );
     const isPartialPostcodeSearch = this.filteredEvents.some(
-      (event) => event._isPartialPostcode
+      (event) => event._isPartialPostcode,
     );
     const isPlaceSearch = this.filteredEvents.some(
-      (event) => event._isPlaceSearch
+      (event) => event._isPlaceSearch,
     );
 
     // Add header info for location-based searches
@@ -1862,7 +1884,7 @@ class EventMap {
       }
 
       const maxRadius = Math.max(
-        ...this.filteredEvents.map((e) => e._searchRadius || 50)
+        ...this.filteredEvents.map((e) => e._searchRadius || 50),
       );
       searchInfoHeader = `
                 <div class="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
@@ -1950,7 +1972,7 @@ class EventMap {
 
     // Sort dates chronologically
     const sortedDates = Array.from(eventsByDate.keys()).sort(
-      (a, b) => new Date(a) - new Date(b)
+      (a, b) => new Date(a) - new Date(b),
     );
 
     // Generate HTML for each date group - mobile optimized
@@ -1983,14 +2005,14 @@ class EventMap {
               Array.isArray(event.categories) && event.categories.length > 0
                 ? event.categories
                 : event.category
-                ? [event.category]
-                : [];
+                  ? [event.category]
+                  : [];
             const tagBadges = categories
               .map(
                 (category) =>
                   `<span class="inline-block px-2 py-1 rounded-full text-xs font-medium text-white mr-1 mb-1 ${this.getCategoryColorClass(
-                    category
-                  )}">${this.formatCategoryName(category)}</span>`
+                    category,
+                  )}">${this.formatCategoryName(category)}</span>`,
               )
               .join("");
 
@@ -1998,7 +2020,7 @@ class EventMap {
             const distanceInfo =
               event._searchDistance !== undefined
                 ? `<p class="text-gray-600 text-xs">📏 ${event._searchDistance.toFixed(
-                    1
+                    1,
                   )} km away</p>`
                 : "";
 
@@ -2084,7 +2106,7 @@ class EventMap {
 
     // Sort dates chronologically
     const sortedDates = Array.from(eventsByDate.keys()).sort(
-      (a, b) => new Date(a) - new Date(b)
+      (a, b) => new Date(a) - new Date(b),
     );
 
     // Generate HTML for each date group
@@ -2117,14 +2139,14 @@ class EventMap {
               Array.isArray(event.categories) && event.categories.length > 0
                 ? event.categories
                 : event.category != null
-                ? [event.category]
-                : [];
+                  ? [event.category]
+                  : [];
             const tagBadges = categories
               .map(
                 (category) =>
                   `<span class="inline-block px-2 py-1 rounded-full text-xs font-medium text-white mr-1 mb-1 ${this.getCategoryColorClass(
-                    category
-                  )}">${this.formatCategoryName(category)}</span>`
+                    category,
+                  )}">${this.formatCategoryName(category)}</span>`,
               )
               .join("");
 
@@ -2132,7 +2154,7 @@ class EventMap {
             const distanceInfo =
               event._searchDistance !== undefined
                 ? `<p class="text-gray-600 text-sm mb-1"><strong>📏</strong> ${event._searchDistance.toFixed(
-                    1
+                    1,
                   )} km away</p>`
                 : "";
 
@@ -2186,7 +2208,7 @@ class EventMap {
       // Open popup for the marker
       const marker = this.markers.find(
         (m) =>
-          m.getLatLng().lat === event.lat && m.getLatLng().lng === event.lng
+          m.getLatLng().lat === event.lat && m.getLatLng().lng === event.lng,
       );
       if (marker) {
         marker.openPopup();
@@ -2230,7 +2252,7 @@ class EventMap {
     const debouncedFilter =
       this.utils?.debounce(
         () => this.filterEvents(),
-        this.utils.CONFIG.DEBOUNCE_DELAY
+        this.utils.CONFIG.DEBOUNCE_DELAY,
       ) || (() => this.filterEvents());
 
     // Real-time search as user types (debounced)
@@ -2254,11 +2276,11 @@ class EventMap {
 
     categoryFilter.addEventListener(
       "change",
-      async () => await this.filterEvents()
+      async () => await this.filterEvents(),
     );
     dateFilter.addEventListener(
       "change",
-      async () => await this.filterEvents()
+      async () => await this.filterEvents(),
     );
 
     clearFilters.addEventListener("click", async () => {
@@ -2298,7 +2320,7 @@ class EventMap {
     }
     if (mobileLoadMoreBtn) {
       mobileLoadMoreBtn.addEventListener("click", () =>
-        this.loadMoreEvents(true)
+        this.loadMoreEvents(true),
       );
     }
 
@@ -2355,7 +2377,7 @@ class EventMap {
       if (btn) {
         btn.className = btn.className.replace(
           /bg-\w+-500|text-white/,
-          "bg-gray-100 text-gray-800"
+          "bg-gray-100 text-gray-800",
         );
       }
     });
@@ -2371,7 +2393,7 @@ class EventMap {
       };
       activeBtn.className = activeBtn.className.replace(
         /bg-\w+-\d+\s+text-\w+-\d+/,
-        colorMap[this.currentDateFilter]
+        colorMap[this.currentDateFilter],
       );
     }
   }
@@ -2385,7 +2407,7 @@ class EventMap {
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
     console.log(
-      `Filtering ${events.length} events by date filter: ${this.currentDateFilter}`
+      `Filtering ${events.length} events by date filter: ${this.currentDateFilter}`,
     );
 
     const filtered = events.filter((event) => {
@@ -2396,14 +2418,14 @@ class EventMap {
           return eventDate.toDateString() === today.toDateString();
         case "week":
           const weekFromNow = new Date(
-            today.getTime() + 7 * 24 * 60 * 60 * 1000
+            today.getTime() + 7 * 24 * 60 * 60 * 1000,
           );
           return eventDate >= today && eventDate <= weekFromNow;
         case "month":
           const monthFromNow = new Date(
             today.getFullYear(),
             today.getMonth() + 1,
-            today.getDate()
+            today.getDate(),
           );
           return eventDate >= today && eventDate <= monthFromNow;
         case "all":
@@ -2463,7 +2485,7 @@ class EventMap {
   toggleLoadMoreButtons(show) {
     const loadMoreContainer = document.getElementById("loadMoreContainer");
     const mobileLoadMoreContainer = document.getElementById(
-      "mobileLoadMoreContainer"
+      "mobileLoadMoreContainer",
     );
 
     if (loadMoreContainer) {
@@ -2500,7 +2522,7 @@ class EventMap {
 
     if (isPostcodeSearch && searchQuery.length > 0) {
       console.log(
-        "Postcode detected, getting coordinates for proximity search..."
+        "Postcode detected, getting coordinates for proximity search...",
       );
       searchCoords = await this.geocodePostcode(searchQuery);
       if (searchCoords) {
@@ -2508,7 +2530,7 @@ class EventMap {
       }
     } else if (isPlaceSearch && searchQuery.length > 0) {
       console.log(
-        "Place name detected, getting coordinates for proximity search..."
+        "Place name detected, getting coordinates for proximity search...",
       );
       searchCoords = await this.geocodePlaceName(searchQuery);
       if (searchCoords) {
@@ -2538,7 +2560,7 @@ class EventMap {
             searchCoords.lat,
             searchCoords.lng,
             event.lat,
-            event.lng
+            event.lng,
           );
 
           // Use dynamic radius based on search type
@@ -2582,12 +2604,12 @@ class EventMap {
 
       const radius = searchCoords.radius || 50;
       console.log(
-        `${searchType} search: Found ${this.filteredEvents.length} events within ${radius}km, sorted by distance`
+        `${searchType} search: Found ${this.filteredEvents.length} events within ${radius}km, sorted by distance`,
       );
     }
 
     console.log(
-      `Filtered ${this.filteredEvents.length} events from ${this.events.length} total`
+      `Filtered ${this.filteredEvents.length} events from ${this.events.length} total`,
     );
 
     // Reset pagination
@@ -2702,7 +2724,7 @@ class EventMap {
       (place) =>
         place === queryLower ||
         queryLower.includes(place) ||
-        place.includes(queryLower)
+        place.includes(queryLower),
     );
   }
 
@@ -2732,8 +2754,8 @@ class EventMap {
       ) {
         const response = await fetch(
           `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-            cleanPlace
-          )}&key=${config.GEOCODING_API_KEY}`
+            cleanPlace,
+          )}&key=${config.GEOCODING_API_KEY}`,
         );
 
         if (response.ok) {
@@ -2753,8 +2775,8 @@ class EventMap {
       // Fallback: Use free Nominatim API (OpenStreetMap)
       const response = await fetch(
         `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-          cleanPlace
-        )}&limit=1&countrycodes=gb`
+          cleanPlace,
+        )}&limit=1&countrycodes=gb`,
       );
 
       if (response.ok) {
@@ -2785,7 +2807,7 @@ class EventMap {
       const isPartial =
         !/^[A-Z]{1,2}[0-9][A-Z0-9]?\s[0-9][A-Z]{2}$/.test(cleanPostcode) &&
         !/^[A-Z]{1,2}[0-9][A-Z0-9]?[0-9][A-Z]{2}$/.test(
-          cleanPostcode.replace(/\s/g, "")
+          cleanPostcode.replace(/\s/g, ""),
         );
 
       let searchQuery = cleanPostcode;
@@ -2796,7 +2818,7 @@ class EventMap {
         searchQuery = cleanPostcode + ", UK";
         searchRadius = 25; // Larger radius for partial postcodes
         console.log(
-          `Partial postcode detected: ${cleanPostcode}, using larger search radius`
+          `Partial postcode detected: ${cleanPostcode}, using larger search radius`,
         );
       } else {
         searchQuery = cleanPostcode + ", UK";
@@ -2812,8 +2834,8 @@ class EventMap {
       ) {
         const response = await fetch(
           `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-            searchQuery
-          )}&key=${config.GEOCODING_API_KEY}`
+            searchQuery,
+          )}&key=${config.GEOCODING_API_KEY}`,
         );
 
         if (response.ok) {
@@ -2833,8 +2855,8 @@ class EventMap {
       // Fallback: Use free Nominatim API (OpenStreetMap)
       const response = await fetch(
         `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-          searchQuery
-        )}&limit=1&countrycodes=gb`
+          searchQuery,
+        )}&limit=1&countrycodes=gb`,
       );
 
       if (response.ok) {
@@ -2872,7 +2894,7 @@ class EventMap {
 
     // Remove 'other' if no events are actually categorized as 'other'
     const availableCategories = Array.from(allCategories).filter(
-      (cat) => cat && cat !== "other"
+      (cat) => cat && cat !== "other",
     );
 
     // Add 'other' only if there are events with 'other' category
@@ -2899,11 +2921,11 @@ class EventMap {
       const eventCount = this.events.filter(
         (event) =>
           event.category === category ||
-          (event.categories && event.categories.includes(category))
+          (event.categories && event.categories.includes(category)),
       ).length;
 
       option.textContent = `${this.formatCategoryName(
-        category
+        category,
       )} (${eventCount})`;
 
       // Restore previous selection if it still exists
