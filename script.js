@@ -56,9 +56,26 @@ class EventMap {
       this.utils.showLoadingSpinner("Loading...");
     }
 
-    // Load announcements independently (not tied to event loading)
-    await this.loadAnnouncements();
-    this.displayAnnouncements();
+    // Load announcements independently without blocking event/map rendering
+    (async () => {
+      try {
+        const timeoutMs =
+          (this.utils && this.utils.CONFIG && this.utils.CONFIG.ANNOUNCEMENTS_TIMEOUT_MS) ||
+          5000;
+        await Promise.race([
+          this.loadAnnouncements(),
+          new Promise((_, reject) =>
+            setTimeout(
+              () => reject(new Error("Announcements loading timed out")),
+              timeoutMs,
+            ),
+          ),
+        ]);
+        this.displayAnnouncements();
+      } catch (error) {
+        console.warn("Could not load announcements:", error);
+      }
+    })();
 
     // WordPress mode: if data source URL is set, fetch only from that endpoint (no Google Calendar or local file)
     if (this.dataSourceUrl) {
@@ -166,6 +183,16 @@ class EventMap {
     this.events = this._normaliseWordPressEvents(items);
     if (this.events.length === 0) {
       console.warn("[WordPress] No events after normalisation");
+    }
+
+    // Cache raw items so loadAnnouncements can reuse them without an extra network request
+    try {
+      sessionStorage.setItem(
+        this._clientCacheKey(url) + "_raw",
+        JSON.stringify({ data: items, fetchedAt: Date.now() }),
+      );
+    } catch (e) {
+      // Ignore storage errors
     }
 
     // Persist to client cache
@@ -1548,26 +1575,59 @@ class EventMap {
       let items = [];
 
       if (this.dataSourceUrl) {
-        // WordPress mode: fetch from endpoint
+        // WordPress mode: reuse raw payload cache populated by loadFromWordPressEndpoint
+        // to avoid a second network request to the same endpoint
         const url = this.dataSourceUrl.trim();
         if (url) {
-          const response = await fetch(url, {
-            method: "GET",
-            credentials: "same-origin",
-            headers: { Accept: "application/json" },
-          });
-          if (response.ok) {
-            const raw = await response.json();
-            items = Array.isArray(raw) ? raw : raw.events || raw.items || [];
+          const rawKey = this._clientCacheKey(url) + "_raw";
+          let rawItems = null;
+          try {
+            const c = sessionStorage.getItem(rawKey);
+            if (c) {
+              const { data, fetchedAt } = JSON.parse(c);
+              if (
+                Array.isArray(data) &&
+                typeof fetchedAt === "number" &&
+                Date.now() - fetchedAt <= this._clientCacheTtlMs
+              ) {
+                rawItems = data;
+              }
+            }
+          } catch (e) {
+            // sessionStorage unavailable
           }
+          if (!rawItems) {
+            // Cache miss: fetch and populate the raw cache for future use
+            const response = await fetch(url, {
+              method: "GET",
+              credentials: "same-origin",
+              headers: { Accept: "application/json" },
+            });
+            if (response.ok) {
+              const parsed = await response.json();
+              rawItems = Array.isArray(parsed) ? parsed : parsed.events || parsed.items || [];
+              try {
+                sessionStorage.setItem(
+                  rawKey,
+                  JSON.stringify({ data: rawItems, fetchedAt: Date.now() }),
+                );
+              } catch (e) {
+                // Ignore storage errors
+              }
+            }
+          }
+          items = rawItems || [];
         }
       } else {
-        // Standalone mode: try local calendar file
+        // Standalone mode: try same local calendar file/format as events loader
         try {
-          const response = await fetch("calendar-events.json");
+          const response = await fetch("./google-calendar-events");
           if (response.ok) {
-            const data = await response.json();
-            items = data.items || [];
+            const text = await response.text();
+            // Parse the JSON data (it starts with "items": so we need to wrap it)
+            const jsonText = text.trim().startsWith('"items"') ? `{${text}}` : text;
+            const data = JSON.parse(jsonText);
+            items = Array.isArray(data) ? data : data.items || data.events || [];
           }
         } catch (e) {
           // Local file not available, will fall back to sample announcements
@@ -1639,27 +1699,20 @@ class EventMap {
     // Check if already rendered
     if (document.getElementById("vfvic-announcements-banner")) return;
 
-    // Check collapsed state from localStorage
-    const isCollapsed = localStorage.getItem("vfvic_announcements_collapsed") === "true";
+    // Check collapsed state from localStorage; default to false if storage is unavailable
+    let isCollapsed = false;
+    try {
+      isCollapsed = localStorage.getItem("vfvic_announcements_collapsed") === "true";
+    } catch (e) {
+      // localStorage unavailable (e.g., private browsing, blocked storage)
+      isCollapsed = false;
+    }
 
     const banner = document.createElement("div");
     banner.id = "vfvic-announcements-banner";
     banner.className = "bg-blue-50 border-l-4 border-blue-500 text-blue-800 p-4 mb-5 rounded shadow-sm";
 
-    const announcementCards = this.announcements
-      .map((a) => {
-        const desc = a.description
-          ? `<p class="text-sm text-blue-700 mt-1">${this._truncateText(a.description, 200)}</p>`
-          : "";
-        return `
-          <div class="py-2 ${this.announcements.length > 1 ? "border-b border-blue-200 last:border-b-0" : ""}">
-            <h4 class="font-semibold text-blue-900">${a.title}</h4>
-            ${desc}
-          </div>
-        `;
-      })
-      .join("");
-
+    // Build static banner shell (no user data in innerHTML)
     banner.innerHTML = `
       <div class="flex items-start justify-between">
         <div class="flex items-start gap-3 flex-1">
@@ -1671,20 +1724,49 @@ class EventMap {
           <div class="flex-1">
             <div class="flex items-center gap-2 mb-1">
               <span class="font-semibold text-blue-900">Public Announcements</span>
-              <span class="text-xs bg-blue-200 text-blue-800 px-2 py-0.5 rounded-full">${this.announcements.length}</span>
+              <span class="text-xs bg-blue-200 text-blue-800 px-2 py-0.5 rounded-full"></span>
             </div>
             <div id="vfvic-announcements-content" class="${isCollapsed ? "hidden" : ""}">
-              ${announcementCards}
             </div>
           </div>
         </div>
-        <button id="vfvic-announcements-toggle" class="ml-3 text-blue-600 hover:text-blue-800 focus:outline-none" title="${isCollapsed ? "Expand" : "Collapse"} announcements">
+        <button
+          id="vfvic-announcements-toggle"
+          class="ml-3 text-blue-600 hover:text-blue-800 focus:outline-none"
+          title="${isCollapsed ? "Expand" : "Collapse"} announcements"
+          aria-label="${isCollapsed ? "Expand" : "Collapse"} announcements"
+          aria-controls="vfvic-announcements-content"
+          aria-expanded="${isCollapsed ? "false" : "true"}">
           <svg class="h-5 w-5 transition-transform ${isCollapsed ? "rotate-180" : ""}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
           </svg>
         </button>
       </div>
     `;
+
+    // Set count badge using textContent (safe)
+    banner.querySelector(".rounded-full").textContent = String(this.announcements.length);
+
+    // Build announcement cards using DOM nodes to avoid XSS via user-supplied content
+    const contentEl = banner.querySelector("#vfvic-announcements-content");
+    this.announcements.forEach((a) => {
+      const card = document.createElement("div");
+      card.className = `py-2 ${this.announcements.length > 1 ? "border-b border-blue-200 last:border-b-0" : ""}`;
+
+      const titleEl = document.createElement("h4");
+      titleEl.className = "font-semibold text-blue-900";
+      titleEl.textContent = a.title;
+      card.appendChild(titleEl);
+
+      if (a.description) {
+        const descEl = document.createElement("p");
+        descEl.className = "text-sm text-blue-700 mt-1";
+        descEl.textContent = this._truncateText(a.description, 200);
+        card.appendChild(descEl);
+      }
+
+      contentEl.appendChild(card);
+    });
 
     // Insert after header
     const header = document.querySelector("header");
@@ -1697,12 +1779,15 @@ class EventMap {
     const content = document.getElementById("vfvic-announcements-content");
     if (toggleBtn && content) {
       toggleBtn.addEventListener("click", () => {
-        const nowCollapsed = !content.classList.contains("hidden");
         content.classList.toggle("hidden");
         toggleBtn.querySelector("svg").classList.toggle("rotate-180");
-        toggleBtn.title = nowCollapsed ? "Expand announcements" : "Collapse announcements";
+        const isNowCollapsed = content.classList.contains("hidden");
+        const label = isNowCollapsed ? "Expand announcements" : "Collapse announcements";
+        toggleBtn.title = label;
+        toggleBtn.setAttribute("aria-label", label);
+        toggleBtn.setAttribute("aria-expanded", isNowCollapsed ? "false" : "true");
         try {
-          localStorage.setItem("vfvic_announcements_collapsed", nowCollapsed);
+          localStorage.setItem("vfvic_announcements_collapsed", isNowCollapsed);
         } catch (e) {
           // localStorage unavailable (private browsing)
         }
