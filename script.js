@@ -8,6 +8,7 @@ class EventMap {
     this.events = [];
     this.filteredEvents = [];
     this.displayedEvents = []; // Events currently shown in the list
+    this.announcements = []; // Public announcements (excluded from map but displayed in banner)
 
     // Recurring event IDs to exclude (Public Announcements)
     this.excludedRecurringEventIds = [
@@ -52,8 +53,12 @@ class EventMap {
   async init() {
     // Show loading state
     if (this.utils) {
-      this.utils.showLoadingSpinner("Loading events...");
+      this.utils.showLoadingSpinner("Loading...");
     }
+
+    // Load announcements independently (not tied to event loading)
+    await this.loadAnnouncements();
+    this.displayAnnouncements();
 
     // WordPress mode: if data source URL is set, fetch only from that endpoint (no Google Calendar or local file)
     if (this.dataSourceUrl) {
@@ -181,7 +186,7 @@ class EventMap {
   _normaliseWordPressEvents(items) {
     return items
       .map((item, index) => {
-        // Skip excluded recurring events (Public Announcements)
+        // Skip announcements (they are loaded separately via loadAnnouncements)
         if (this.isExcludedRecurringEvent(item.recurringEventId)) {
           return null;
         }
@@ -356,7 +361,7 @@ class EventMap {
       const item = items[i];
 
       try {
-        // Skip excluded recurring events (Public Announcements)
+        // Skip announcements (they are loaded separately via loadAnnouncements)
         if (this.isExcludedRecurringEvent(item.recurringEventId)) {
           continue;
         }
@@ -1532,6 +1537,185 @@ class EventMap {
 
     // Note: Don't call initMap(), displayEvents(), etc. here
     // These are called by the init() method which invokes loadSampleEvents()
+  }
+
+  /**
+   * Load public announcements independently from events.
+   * Announcements are informational content without map locations.
+   */
+  async loadAnnouncements() {
+    try {
+      let items = [];
+
+      if (this.dataSourceUrl) {
+        // WordPress mode: fetch from endpoint
+        const url = this.dataSourceUrl.trim();
+        if (url) {
+          const response = await fetch(url, {
+            method: "GET",
+            credentials: "same-origin",
+            headers: { Accept: "application/json" },
+          });
+          if (response.ok) {
+            const raw = await response.json();
+            items = Array.isArray(raw) ? raw : raw.events || raw.items || [];
+          }
+        }
+      } else {
+        // Standalone mode: try local calendar file
+        try {
+          const response = await fetch("calendar-events.json");
+          if (response.ok) {
+            const data = await response.json();
+            items = data.items || [];
+          }
+        } catch (e) {
+          // Local file not available, will fall back to sample announcements
+        }
+      }
+
+      // Extract announcements (by recurringEventId) from fetched items
+      for (const item of items) {
+        if (this.isExcludedRecurringEvent(item.recurringEventId)) {
+          const title = this.sanitiseText(item.summary || item.title || "Announcement");
+          const description = this.sanitiseHtml(item.description || "");
+          const id = item.recurringEventId || item.id || `announcement-${this.announcements.length}`;
+
+          if (title && title !== "Announcement" && !this.announcements.some((a) => a.id === id)) {
+            this.announcements.push({
+              id,
+              title,
+              description,
+              date: this._normaliseDate(item.start?.dateTime || item.start?.date || item.date),
+            });
+          }
+        }
+      }
+
+      // If no announcements loaded and no data source (sample data mode), use sample announcements
+      if (this.announcements.length === 0 && !this.dataSourceUrl) {
+        this.loadSampleAnnouncements();
+      }
+
+      if (this.announcements.length > 0) {
+        console.log(`[Announcements] Loaded ${this.announcements.length} public announcement(s)`);
+      }
+    } catch (error) {
+      console.warn("[Announcements] Could not load announcements:", error);
+      // Non-fatal: try sample announcements as fallback
+      if (this.announcements.length === 0) {
+        this.loadSampleAnnouncements();
+      }
+    }
+  }
+
+  /**
+   * Load sample announcements for demo/testing purposes.
+   */
+  loadSampleAnnouncements() {
+    this.announcements = [
+      {
+        id: "2scpgqhjtjh5tc33cg3jm3ik5c",
+        title: "VFVIC Newsletter - March 2026",
+        description:
+          "Our latest newsletter is now available! Read about upcoming events, success stories from our community, and important updates about veteran services in the Northeast. Download from our website or pick up a copy at any of our drop-in centres.",
+      },
+      {
+        id: "30ed1sa1ev6k8kgp0ucg1mq24j",
+        title: "New Support Services Available",
+        description:
+          "We're pleased to announce expanded mental health support services starting this month. Free confidential counselling sessions are now available at all VFVIC locations. Contact us to book an appointment or speak to a coordinator at any event.",
+      },
+    ];
+  }
+
+  /**
+   * Display public announcements in a banner after the header.
+   * Users can collapse/expand, with state persisted to localStorage.
+   */
+  displayAnnouncements() {
+    if (this.announcements.length === 0) return;
+
+    // Check if already rendered
+    if (document.getElementById("vfvic-announcements-banner")) return;
+
+    // Check collapsed state from localStorage
+    const isCollapsed = localStorage.getItem("vfvic_announcements_collapsed") === "true";
+
+    const banner = document.createElement("div");
+    banner.id = "vfvic-announcements-banner";
+    banner.className = "bg-blue-50 border-l-4 border-blue-500 text-blue-800 p-4 mb-5 rounded shadow-sm";
+
+    const announcementCards = this.announcements
+      .map((a) => {
+        const desc = a.description
+          ? `<p class="text-sm text-blue-700 mt-1">${this._truncateText(a.description, 200)}</p>`
+          : "";
+        return `
+          <div class="py-2 ${this.announcements.length > 1 ? "border-b border-blue-200 last:border-b-0" : ""}">
+            <h4 class="font-semibold text-blue-900">${a.title}</h4>
+            ${desc}
+          </div>
+        `;
+      })
+      .join("");
+
+    banner.innerHTML = `
+      <div class="flex items-start justify-between">
+        <div class="flex items-start gap-3 flex-1">
+          <div class="flex-shrink-0 mt-0.5">
+            <svg class="h-5 w-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="font-semibold text-blue-900">Public Announcements</span>
+              <span class="text-xs bg-blue-200 text-blue-800 px-2 py-0.5 rounded-full">${this.announcements.length}</span>
+            </div>
+            <div id="vfvic-announcements-content" class="${isCollapsed ? "hidden" : ""}">
+              ${announcementCards}
+            </div>
+          </div>
+        </div>
+        <button id="vfvic-announcements-toggle" class="ml-3 text-blue-600 hover:text-blue-800 focus:outline-none" title="${isCollapsed ? "Expand" : "Collapse"} announcements">
+          <svg class="h-5 w-5 transition-transform ${isCollapsed ? "rotate-180" : ""}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+          </svg>
+        </button>
+      </div>
+    `;
+
+    // Insert after header
+    const header = document.querySelector("header");
+    if (header && header.parentNode) {
+      header.parentNode.insertBefore(banner, header.nextSibling);
+    }
+
+    // Add toggle functionality
+    const toggleBtn = document.getElementById("vfvic-announcements-toggle");
+    const content = document.getElementById("vfvic-announcements-content");
+    if (toggleBtn && content) {
+      toggleBtn.addEventListener("click", () => {
+        const nowCollapsed = !content.classList.contains("hidden");
+        content.classList.toggle("hidden");
+        toggleBtn.querySelector("svg").classList.toggle("rotate-180");
+        toggleBtn.title = nowCollapsed ? "Expand announcements" : "Collapse announcements";
+        try {
+          localStorage.setItem("vfvic_announcements_collapsed", nowCollapsed);
+        } catch (e) {
+          // localStorage unavailable (private browsing)
+        }
+      });
+    }
+  }
+
+  /**
+   * Truncate text to a maximum length with ellipsis.
+   */
+  _truncateText(text, maxLength) {
+    if (!text || text.length <= maxLength) return text;
+    return text.slice(0, maxLength).trim() + "...";
   }
 
   showSampleDataNotification() {
