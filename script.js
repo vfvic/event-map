@@ -1863,13 +1863,6 @@ class EventMap {
       titleEl.textContent = a.title;
       titleWrap.appendChild(titleEl);
 
-    /*   if (a.date) {
-        const metaEl = document.createElement("p");
-        metaEl.className = "mt-1 text-xs text-slate-500";
-        metaEl.textContent = `Updated ${this.formatDate(a.date)}`;
-        titleWrap.appendChild(metaEl);
-      } */
-
       cardHeader.appendChild(titleWrap);
       card.appendChild(cardHeader);
 
