@@ -16,9 +16,23 @@ class EventMap {
       "30ed1sa1ev6k8kgp0ucg1mq24j",
     ];
 
+    this.announcementKeywords = [
+      "useful information",
+      "veterans for veterans in care",
+      "public announcement",
+    ];
+
     // Helper to check if a recurring event should be excluded
     this.isExcludedRecurringEvent = (recurringEventId) =>
       this.excludedRecurringEventIds.includes(recurringEventId);
+
+    this.isAnnouncementItem = (item = {}) => {
+      const title = String(item.summary || item.title || "").toLowerCase();
+      return (
+        this.isExcludedRecurringEvent(item.recurringEventId) ||
+        this.announcementKeywords.some((keyword) => title.includes(keyword))
+      );
+    };
 
     // Use config constants
     const config = window.EventMapUtils?.CONFIG || {};
@@ -214,7 +228,7 @@ class EventMap {
     return items
       .map((item, index) => {
         // Skip announcements (they are loaded separately via loadAnnouncements)
-        if (this.isExcludedRecurringEvent(item.recurringEventId)) {
+        if (this.isAnnouncementItem(item)) {
           return null;
         }
 
@@ -389,7 +403,7 @@ class EventMap {
 
       try {
         // Skip announcements (they are loaded separately via loadAnnouncements)
-        if (this.isExcludedRecurringEvent(item.recurringEventId)) {
+        if (this.isAnnouncementItem(item)) {
           continue;
         }
 
@@ -405,11 +419,6 @@ class EventMap {
 
         // Skip events from previous days, but keep today's events even if elapsed
         if (eventDateOnly < today) {
-          continue;
-        }
-
-        // Skip non-event entries like "Useful Information"
-        if ((item.summary || "").toLowerCase().includes("useful information")) {
           continue;
         }
 
@@ -515,6 +524,43 @@ class EventMap {
       .trim();
   }
 
+  sanitiseAnnouncementText(text) {
+    if (!text) return "";
+
+    return String(text)
+      .replace(/\r\n/g, "\n")
+      .replace(/<p[^>]*>/gi, "")
+      .replace(/<\/p>/gi, "\n\n")
+      .replace(/<br\s*\/?>/gi, "\n")
+      .replace(/<li[^>]*>/gi, "• ")
+      .replace(/<\/li>/gi, "\n")
+      .replace(/<\/div>/gi, "\n")
+      .replace(/<[^>]*>/g, "")
+      .replace(/&nbsp;/gi, " ")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&amp;/g, "&")
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/[ \t]+\n/g, "\n")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim();
+  }
+
+  getAnnouncementType(title = "") {
+    const normalisedTitle = String(title).toLowerCase();
+
+    if (normalisedTitle.includes("veterans for veterans in care")) {
+      return "Veterans for Veterans in Care";
+    }
+
+    if (normalisedTitle.includes("useful information")) {
+      return "Useful Information";
+    }
+
+    return "Public Announcement";
+  }
+
   extractOrganizer(item) {
     // Try to extract organizer from various fields
     if (item.organizer?.displayName) {
@@ -576,8 +622,8 @@ class EventMap {
       for (let i = 0; i < data.items.length; i++) {
         const calendarEvent = data.items[i];
 
-        // Skip excluded recurring events (Public Announcements)
-        if (this.isExcludedRecurringEvent(calendarEvent.recurringEventId)) {
+        // Skip public announcements (they are shown in the PA banner)
+        if (this.isAnnouncementItem(calendarEvent)) {
           continue;
         }
 
@@ -1636,21 +1682,58 @@ class EventMap {
 
       // Extract announcements (by recurringEventId) from fetched items
       for (const item of items) {
-        if (this.isExcludedRecurringEvent(item.recurringEventId)) {
-          const title = this.sanitiseText(item.summary || item.title || "Announcement");
-          const description = this.sanitiseHtml(item.description || "");
-          const id = item.recurringEventId || item.id || `announcement-${this.announcements.length}`;
+        if (this.isAnnouncementItem(item)) {
+          const title = this.sanitiseText(
+            item.summary || item.title || "Announcement",
+          );
+          const description = this.sanitiseAnnouncementText(
+            item.description || "",
+          );
+          const id =
+            item.recurringEventId ||
+            item.id ||
+            `announcement-${this.announcements.length}`;
+          const announcement = {
+            id,
+            title,
+            type: this.getAnnouncementType(title),
+            description,
+            date: this._normaliseDate(
+              item.start?.dateTime || item.start?.date || item.date,
+            ),
+          };
+          const existingIndex = this.announcements.findIndex(
+            (a) => a.id === id,
+          );
 
-          if (title && title !== "Announcement" && !this.announcements.some((a) => a.id === id)) {
-            this.announcements.push({
-              id,
-              title,
-              description,
-              date: this._normaliseDate(item.start?.dateTime || item.start?.date || item.date),
-            });
+          if (title && title !== "Announcement") {
+            if (existingIndex === -1) {
+              this.announcements.push(announcement);
+            } else {
+              const existing = this.announcements[existingIndex];
+              const shouldReplace =
+                (!existing.description && !!announcement.description) ||
+                announcement.description.length >
+                  (existing.description || "").length ||
+                (announcement.date || "") > (existing.date || "");
+
+              if (shouldReplace) {
+                this.announcements[existingIndex] = {
+                  ...existing,
+                  ...announcement,
+                  description: announcement.description || existing.description,
+                };
+              }
+            }
           }
         }
       }
+
+      this.announcements.sort(
+        (a, b) =>
+          (b.date || "").localeCompare(a.date || "") ||
+          a.title.localeCompare(b.title),
+      );
 
       // If no announcements loaded and no data source (sample data mode), use sample announcements
       if (this.announcements.length === 0 && !this.dataSourceUrl) {
@@ -1676,15 +1759,17 @@ class EventMap {
     this.announcements = [
       {
         id: "2scpgqhjtjh5tc33cg3jm3ik5c",
-        title: "VFVIC Newsletter - March 2026",
+        title: "Useful Information",
+        type: "Useful Information",
         description:
-          "Our latest newsletter is now available! Read about upcoming events, success stories from our community, and important updates about veteran services in the Northeast. Download from our website or pick up a copy at any of our drop-in centres.",
+          "Some organisations that could be of help\n\nCombat Stress: 0800 138 1619 - Text 07537 173 683 - helpline@combatstress.org.uk - Veterans Mental Health Organisation 24/7 contact\n\nOp Courage: 0300 373 3332 - opcouragenorth@cntw.nhs.uk - Veterans Mental Health and Wellbeing Service\n\nOp Restore: Veterans Physical Health & Wellbeing Service for veterans with significant physical injuries caused by time in the Armed Forces. GP referral via imperial.oprestore@nhs.net\n\nSSAFA: 0800 260 6767 - www.ssafa.org.uk - Help with adaptations to your living environment when needed\n\nVeterans Gateway: www.veteransgateway.org.uk - An online directory of support for veterans",
       },
       {
         id: "30ed1sa1ev6k8kgp0ucg1mq24j",
-        title: "New Support Services Available",
+        title: "Veterans for Veterans in Care",
+        type: "Veterans for Veterans in Care",
         description:
-          "We're pleased to announce expanded mental health support services starting this month. Free confidential counselling sessions are now available at all VFVIC locations. Contact us to book an appointment or speak to a coordinator at any event.",
+          "Support visits and wellbeing contact for veterans in care settings. This notice is used for ongoing public awareness and signposting within the diary.\n\nIf you need more details or wish to connect a care setting with the programme, please contact the VFVIC team through the usual diary channels.",
       },
     ];
   }
@@ -1702,32 +1787,33 @@ class EventMap {
     // Check collapsed state from localStorage; default to false if storage is unavailable
     let isCollapsed = false;
     try {
-      isCollapsed = localStorage.getItem("vfvic_announcements_collapsed") === "true";
+      isCollapsed =
+        localStorage.getItem("vfvic_announcements_collapsed") === "true";
     } catch (e) {
       // localStorage unavailable (e.g., private browsing, blocked storage)
       isCollapsed = false;
     }
 
-    const banner = document.createElement("div");
+    const banner = document.createElement("section");
     banner.id = "vfvic-announcements-banner";
-    banner.className = "bg-blue-50 border-l-4 border-blue-500 text-blue-800 p-4 mb-5 rounded shadow-sm";
+    banner.className =
+      "mb-5 rounded-xl border border-blue-100 bg-gradient-to-r from-blue-50 to-indigo-50 p-4 shadow-sm";
 
     // Build static banner shell (no user data in innerHTML)
     banner.innerHTML = `
-      <div class="flex items-start justify-between">
+      <div class="flex items-start justify-between gap-3">
         <div class="flex items-start gap-3 flex-1">
-          <div class="flex-shrink-0 mt-0.5">
-            <svg class="h-5 w-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+          <div class="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M18 3a1 1 0 00-1.447-.894L8.763 6H5a3 3 0 000 6h.28l1.771 5.316A1 1 0 008 18h1a1 1 0 001-1v-4.382l6.553 3.276A1 1 0 0018 15V3z" clip-rule="evenodd" />
             </svg>
           </div>
           <div class="flex-1">
-            <div class="flex items-center gap-2 mb-1">
-              <span class="font-semibold text-blue-900">Public Announcements</span>
-              <span class="text-xs bg-blue-200 text-blue-800 px-2 py-0.5 rounded-full"></span>
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="text-base font-semibold text-slate-900">Public Announcements</span>
+              <span id="vfvic-announcements-count" class="rounded-full bg-blue-600/10 px-2.5 py-0.5 text-xs font-semibold text-blue-800"></span>
             </div>
-            <div id="vfvic-announcements-content" class="${isCollapsed ? "hidden" : ""}">
-            </div>
+            <p class="mt-1 text-sm text-slate-600">Useful information and ongoing notices are collected here for quick reference.</p>
           </div>
         </div>
         <button
@@ -1742,28 +1828,55 @@ class EventMap {
           </svg>
         </button>
       </div>
+      <div id="vfvic-announcements-content" class="${isCollapsed ? "hidden " : ""}mt-4 grid gap-3 md:grid-cols-2"></div>
     `;
 
     // Set count badge using textContent (safe)
-    banner.querySelector(".rounded-full").textContent = String(this.announcements.length);
+    const countBadge = banner.querySelector("#vfvic-announcements-count");
+    if (countBadge) {
+      countBadge.textContent = `${this.announcements.length} item${this.announcements.length === 1 ? "" : "s"}`;
+    }
 
     // Build announcement cards using DOM nodes to avoid XSS via user-supplied content
     const contentEl = banner.querySelector("#vfvic-announcements-content");
     this.announcements.forEach((a) => {
-      const card = document.createElement("div");
-      card.className = `py-2 ${this.announcements.length > 1 ? "border-b border-blue-200 last:border-b-0" : ""}`;
+      const card = document.createElement("article");
+      card.className =
+        "rounded-lg border border-slate-200 bg-white/90 p-4 shadow-sm";
+
+      const cardHeader = document.createElement("div");
+      cardHeader.className =
+        "mb-3 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between";
+
+      const titleWrap = document.createElement("div");
+
+      if (a.type) {
+        const typeBadge = document.createElement("span");
+        typeBadge.className =
+          "mb-2 inline-flex rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-700";
+        typeBadge.textContent = a.type;
+        titleWrap.appendChild(typeBadge);
+      }
 
       const titleEl = document.createElement("h4");
-      titleEl.className = "font-semibold text-blue-900";
+      titleEl.className = "text-base font-semibold text-slate-900";
       titleEl.textContent = a.title;
-      card.appendChild(titleEl);
+      titleWrap.appendChild(titleEl);
 
-      if (a.description) {
-        const descEl = document.createElement("p");
-        descEl.className = "text-sm text-blue-700 mt-1";
-        descEl.textContent = this._truncateText(a.description, 200);
-        card.appendChild(descEl);
+      if (a.date) {
+        const metaEl = document.createElement("p");
+        metaEl.className = "mt-1 text-xs text-slate-500";
+        metaEl.textContent = `Updated ${this.formatDate(a.date)}`;
+        titleWrap.appendChild(metaEl);
       }
+
+      cardHeader.appendChild(titleWrap);
+      card.appendChild(cardHeader);
+
+      const bodyEl = document.createElement("div");
+      bodyEl.className = "space-y-2 text-sm leading-6 text-slate-700";
+      this._renderAnnouncementRichText(bodyEl, a.description);
+      card.appendChild(bodyEl);
 
       contentEl.appendChild(card);
     });
@@ -1782,16 +1895,124 @@ class EventMap {
         content.classList.toggle("hidden");
         toggleBtn.querySelector("svg").classList.toggle("rotate-180");
         const isNowCollapsed = content.classList.contains("hidden");
-        const label = isNowCollapsed ? "Expand announcements" : "Collapse announcements";
+        const label = isNowCollapsed
+          ? "Expand announcements"
+          : "Collapse announcements";
         toggleBtn.title = label;
         toggleBtn.setAttribute("aria-label", label);
-        toggleBtn.setAttribute("aria-expanded", isNowCollapsed ? "false" : "true");
+        toggleBtn.setAttribute(
+          "aria-expanded",
+          isNowCollapsed ? "false" : "true",
+        );
         try {
           localStorage.setItem("vfvic_announcements_collapsed", isNowCollapsed);
         } catch (e) {
           // localStorage unavailable (private browsing)
         }
       });
+    }
+  }
+
+  _renderAnnouncementRichText(container, text) {
+    const normalisedText = String(text || "")
+      .replace(/\r\n/g, "\n")
+      .replace(/\n{3,}/g, "\n\n")
+      .trim();
+
+    if (!normalisedText) {
+      const emptyState = document.createElement("p");
+      emptyState.className = "text-sm text-slate-600";
+      emptyState.textContent = "More information will be shared soon.";
+      container.appendChild(emptyState);
+      return;
+    }
+
+    const blocks = normalisedText
+      .split(/\n{2,}/)
+      .map((block) => block.trim())
+      .filter(Boolean);
+
+    blocks.forEach((block, blockIndex) => {
+      const lines = block
+        .split(/\n+/)
+        .map((line) => line.trim())
+        .filter(Boolean);
+
+      lines.forEach((line, lineIndex) => {
+        this._appendAnnouncementLine(
+          container,
+          line,
+          blockIndex === 0 && lineIndex === 0,
+        );
+      });
+    });
+  }
+
+  _appendAnnouncementLine(container, line, isIntro = false) {
+    const paragraph = document.createElement("p");
+    paragraph.className = isIntro && !line.includes(":")
+      ? "text-sm font-medium text-slate-800"
+      : "text-sm text-slate-700";
+
+    const cleanedLine = line.replace(/^[•\-]\s*/, "");
+    const labelMatch = /^(?:https?:\/\/|www\.)/i.test(cleanedLine)
+      ? null
+      : cleanedLine.match(/^([A-Za-z][^:]{1,50}:)\s*(.*)$/s);
+
+    if (labelMatch) {
+      const label = document.createElement("strong");
+      label.className = "font-semibold text-slate-900";
+      label.textContent = `${labelMatch[1]} `;
+      paragraph.appendChild(label);
+      this._appendLinkedText(paragraph, labelMatch[2] || "");
+    } else {
+      this._appendLinkedText(paragraph, cleanedLine);
+    }
+
+    container.appendChild(paragraph);
+  }
+
+  _appendLinkedText(container, text) {
+    const value = String(text || "");
+    if (!value) return;
+
+    const pattern =
+      /(https?:\/\/[^\s<]+|www\.[^\s<]+|[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}|(?:\+?44\s?|\(?0\d{2,4}\)?\s?)[\d\s\-()]{6,}\d)/gi;
+    let lastIndex = 0;
+    let match;
+
+    while ((match = pattern.exec(value)) !== null) {
+      const matchedText = match[0];
+
+      if (match.index > lastIndex) {
+        container.appendChild(
+          document.createTextNode(value.slice(lastIndex, match.index)),
+        );
+      }
+
+      const link = document.createElement("a");
+      link.className =
+        "break-all font-medium text-blue-700 underline decoration-blue-200 underline-offset-2 hover:text-blue-900";
+      link.textContent = matchedText;
+
+      if (matchedText.includes("@")) {
+        link.href = `mailto:${matchedText}`;
+      } else if (/^(?:\+?44|\(?0\d)/.test(matchedText.trim())) {
+        link.href = `tel:${matchedText.replace(/[^\d+]/g, "")}`;
+      } else {
+        link.href = matchedText.startsWith("http")
+          ? matchedText
+          : `https://${matchedText}`;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      }
+
+      container.appendChild(link);
+      lastIndex = pattern.lastIndex;
+    }
+
+    if (lastIndex < value.length) {
+      container.appendChild(document.createTextNode(value.slice(lastIndex)));
     }
   }
 
