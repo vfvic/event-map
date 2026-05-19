@@ -226,7 +226,7 @@ final class VFVIC_Event_Map_Server {
         );
 
         if (!$isAnnouncement) {
-            $coords = $this->get_coordinates_for_location($location, $title, $settings);
+            $coords = $this->get_coordinates_for_location($location);
             if (!empty($coords['lat']) && !empty($coords['lng'])) {
                 $event['lat'] = (float) $coords['lat'];
                 $event['lng'] = (float) $coords['lng'];
@@ -252,10 +252,10 @@ final class VFVIC_Event_Map_Server {
         return false;
     }
 
-    private function get_coordinates_for_location($location, $title, $settings) {
+    private function get_coordinates_for_location($location) {
         $normalised = strtolower(trim((string) $location));
         if ($normalised === '') {
-            return $this->fallback_coordinates_for_location($title);
+            return array();
         }
 
         $transientKey = self::GEOCODE_PREFIX . md5($normalised);
@@ -264,14 +264,7 @@ final class VFVIC_Event_Map_Server {
             return $cached;
         }
 
-        $coords = null;
-        if (!empty($settings['geocoding_api_key'])) {
-            $coords = $this->geocode_with_google($location, $settings['geocoding_api_key']);
-        }
-
-        if (empty($coords)) {
-            $coords = $this->fallback_coordinates_for_location($location);
-        }
+        $coords = $this->geocode_with_nominatim($location);
 
         if (!empty($coords['lat']) && !empty($coords['lng'])) {
             set_transient($transientKey, $coords, 30 * DAY_IN_SECONDS);
@@ -280,100 +273,108 @@ final class VFVIC_Event_Map_Server {
         return $coords;
     }
 
-    private function geocode_with_google($address, $apiKey) {
-        $response = wp_remote_get(
-            add_query_arg(
-                array(
-                    'address' => $address . ', Northeast England, UK',
-                    'key'     => $apiKey,
+    private function extract_uk_postcode($text) {
+        $text = strtoupper((string) $text);
+        if (preg_match('/\b([A-Z]{1,2}\d{1,2}[A-Z]?\s*\d[A-Z]{2})\b/', $text, $matches)) {
+            return trim($matches[1]);
+        }
+
+        return '';
+    }
+
+    private function geocode_with_nominatim($location) {
+        $queries = array();
+        $postcode = $this->extract_uk_postcode($location);
+        if ($postcode !== '') {
+            $queries[] = $postcode;
+        }
+        $queries[] = (string) $location;
+
+        foreach ($queries as $query) {
+            $response = wp_remote_get(
+                add_query_arg(
+                    array(
+                        'q' => $query,
+                        'countrycodes' => 'gb',
+                        'format' => 'json',
+                        'limit' => 1,
+                    ),
+                    'https://nominatim.openstreetmap.org/search'
                 ),
-                'https://maps.googleapis.com/maps/api/geocode/json'
-            ),
-            array(
-                'timeout' => 15,
-                'headers' => array('Accept' => 'application/json'),
-            )
-        );
+                array(
+                    'timeout' => 15,
+                    'headers' => array(
+                        'Accept' => 'application/json',
+                        'User-Agent' => 'vfvic-event-map-wp/1.0 (+https://vfvic.co.uk)',
+                    ),
+                )
+            );
 
-        if (is_wp_error($response)) {
-            return null;
-        }
-
-        $data = json_decode(wp_remote_retrieve_body($response), true);
-        if (!is_array($data) || empty($data['results'][0]['geometry']['location'])) {
-            return null;
-        }
-
-        $location = $data['results'][0]['geometry']['location'];
-        return array(
-            'lat' => (float) $location['lat'],
-            'lng' => (float) $location['lng'],
-        );
-    }
-
-    private function fallback_coordinates_for_location($location) {
-        $map = array(
-            'newcastle upon tyne' => array('lat' => 54.9783, 'lng' => -1.6178),
-            'newcastle' => array('lat' => 54.9783, 'lng' => -1.6178),
-            'sunderland' => array('lat' => 54.9069, 'lng' => -1.3838),
-            'durham' => array('lat' => 54.7753, 'lng' => -1.5849),
-            'middlesbrough' => array('lat' => 54.5742, 'lng' => -1.2349),
-            'gateshead' => array('lat' => 54.9537, 'lng' => -1.6103),
-            'south shields' => array('lat' => 54.9986, 'lng' => -1.4323),
-            'north shields' => array('lat' => 55.0176, 'lng' => -1.4486),
-            'tynemouth' => array('lat' => 55.0179, 'lng' => -1.4217),
-            'whitley bay' => array('lat' => 55.0390, 'lng' => -1.4465),
-            'blyth' => array('lat' => 55.1278, 'lng' => -1.5085),
-            'ashington' => array('lat' => 55.1883, 'lng' => -1.5686),
-            'hexham' => array('lat' => 54.9719, 'lng' => -2.1019),
-        );
-
-        $location = strtolower((string) $location);
-        foreach ($map as $needle => $coords) {
-            if (strpos($location, $needle) !== false) {
-                $offset = $this->hash_offset($location);
-                return array(
-                    'lat' => $coords['lat'] + $offset['lat'],
-                    'lng' => $coords['lng'] + $offset['lng'],
-                );
+            if (is_wp_error($response)) {
+                continue;
             }
+
+            $data = json_decode(wp_remote_retrieve_body($response), true);
+            if (!is_array($data) || empty($data[0]['lat']) || empty($data[0]['lon'])) {
+                continue;
+            }
+
+            return array(
+                'lat' => (float) $data[0]['lat'],
+                'lng' => (float) $data[0]['lon'],
+            );
         }
 
-        return array(
-            'lat' => 54.9783,
-            'lng' => -1.6178,
-        );
-    }
-
-    private function hash_offset($value) {
-        $hash = crc32((string) $value);
-        $lat = (($hash % 1000) / 1000 - 0.5) * 0.008;
-        $lng = (((int) ($hash / 1000) % 1000) / 1000 - 0.5) * 0.008;
-
-        return array('lat' => $lat, 'lng' => $lng);
+        return array();
     }
 
     private function categorise_event($title, $description) {
         $combined = strtolower($title . ' ' . $description);
+        $title_lower = strtolower($title);
+        $desc_lower = strtolower($description);
         $tags = array();
 
-        if (strpos($combined, 'breakfast') !== false) {
-            $tags[] = 'breakfast-club';
-        }
+        // Drop-in
         if (strpos($combined, 'drop in') !== false || strpos($combined, 'drop-in') !== false) {
             $tags[] = 'drop-in';
         }
-        if (strpos($combined, 'support') !== false || strpos($combined, 'wellbeing') !== false || strpos($combined, 'mental health') !== false) {
+        // Support
+        if (strpos($combined, 'support') !== false || strpos($combined, 'counselling') !== false ||
+            strpos($combined, 'therapy') !== false || strpos($combined, 'help') !== false ||
+            strpos($combined, 'advice') !== false || strpos($combined, 'welfare') !== false) {
             $tags[] = 'support';
         }
-        if (strpos($combined, 'meeting') !== false) {
+        // Breakfast Club
+        if (strpos($combined, 'breakfast club') !== false ||
+            (strpos($combined, 'breakfast') !== false && strpos($combined, 'clay pigeon') === false) ||
+            (strpos($combined, 'naafi break') !== false && strpos($desc_lower, 'drop in') === false)) {
+            $tags[] = 'breakfast-club';
+        }
+        // Meeting
+        if (strpos($combined, 'meeting') !== false || strpos($combined, 'branch meeting') !== false ||
+            strpos($combined, 'association') !== false || strpos($combined, 'rbl') !== false ||
+            strpos($combined, 'royal british legion') !== false || strpos($combined, 'dli') !== false) {
             $tags[] = 'meeting';
         }
-        if (strpos($combined, 'walk') !== false || strpos($combined, 'sport') !== false || strpos($combined, 'surf') !== false) {
-            $tags[] = 'sport';
+        // Workshop
+        if (strpos($combined, 'workshop') !== false || strpos($combined, 'training') !== false ||
+            strpos($combined, 'course') !== false || strpos($combined, 'seminar') !== false) {
+            $tags[] = 'workshop';
         }
-        if (strpos($combined, 'social') !== false || strpos($combined, 'coffee') !== false || strpos($combined, 'breakfast') !== false) {
+        // Social
+        if (strpos($combined, 'social') !== false || strpos($combined, 'mixer') !== false ||
+            strpos($combined, 'party') !== false || strpos($combined, 'celebration') !== false) {
             $tags[] = 'social';
+        }
+        // Sport
+        if (strpos($combined, 'clay pigeon') !== false || strpos($combined, 'shooting') !== false ||
+            strpos($title_lower, 'sport') !== false || strpos($combined, 'football') !== false ||
+            strpos($combined, 'rugby') !== false || strpos($combined, 'sailing') !== false ||
+            strpos($combined, 'fishing') !== false || strpos($combined, 'golf') !== false ||
+            strpos($combined, 'cycling') !== false || strpos($combined, 'walking') !== false ||
+            strpos($combined, 'hiking') !== false || strpos($combined, 'swimming') !== false ||
+            strpos($combined, 'offshore sailing') !== false) {
+            $tags[] = 'sport';
         }
 
         if (empty($tags)) {
@@ -506,7 +507,6 @@ final class VFVIC_Event_Map_Server {
         $fields = array(
             'google_api_key' => array('label' => 'Google Calendar API Key', 'type' => 'password'),
             'calendar_id' => array('label' => 'Google Calendar ID', 'type' => 'text'),
-            'geocoding_api_key' => array('label' => 'Google Geocoding API Key (optional)', 'type' => 'password'),
             'map_url' => array('label' => 'Uploaded map URL', 'type' => 'url'),
             'cache_ttl' => array('label' => 'Cache TTL (seconds)', 'type' => 'number'),
             'allowed_origin' => array('label' => 'Allowed origin for CORS (optional)', 'type' => 'url'),
@@ -533,7 +533,6 @@ final class VFVIC_Event_Map_Server {
         return array(
             'google_api_key'     => sanitize_text_field($this->array_get($input, array('google_api_key'), '')),
             'calendar_id'        => sanitize_text_field($this->array_get($input, array('calendar_id'), '')),
-            'geocoding_api_key'  => sanitize_text_field($this->array_get($input, array('geocoding_api_key'), '')),
             'map_url'            => esc_url_raw($this->array_get($input, array('map_url'), '')),
             'cache_ttl'          => max(300, (int) $this->array_get($input, array('cache_ttl'), 900)),
             'allowed_origin'     => esc_url_raw($this->array_get($input, array('allowed_origin'), '')),
@@ -612,7 +611,6 @@ final class VFVIC_Event_Map_Server {
         $defaults = array(
             'google_api_key'    => defined('VFVIC_GOOGLE_CALENDAR_API_KEY') ? VFVIC_GOOGLE_CALENDAR_API_KEY : '',
             'calendar_id'       => defined('VFVIC_GOOGLE_CALENDAR_ID') ? VFVIC_GOOGLE_CALENDAR_ID : '',
-            'geocoding_api_key' => defined('VFVIC_GOOGLE_GEOCODING_API_KEY') ? VFVIC_GOOGLE_GEOCODING_API_KEY : '',
             'map_url'           => '',
             'cache_ttl'         => 900,
             'allowed_origin'    => '',

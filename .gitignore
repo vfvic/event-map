@@ -1,3 +1,5 @@
+# Local config containing secret API key — never commit
+config.js
 # Dependencies
 node_modules/
 
