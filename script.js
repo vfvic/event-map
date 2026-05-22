@@ -45,6 +45,8 @@ class EventMap {
     // WordPress / external data source URL (set by embedder or config)
     this.dataSourceUrl =
       window.VFVIC_MAP_DATA_URL ||
+      (typeof window !== "undefined" && window.location &&
+        new URLSearchParams(window.location.search).get("dataSource")) ||
       (typeof document !== "undefined" &&
         document.getElementById("vfvic-event-map-container")?.dataset
           ?.dataSource) ||
@@ -1241,7 +1243,7 @@ class EventMap {
 
         return `
                 <div style="padding: 10px 0; cursor: pointer; ${index !== events.length - 1 ? "border-bottom: 1px solid #e5e7eb;" : ""}"
-                     onclick="eventMap.highlightEvent(${event.id}); eventMap.map.closePopup();">
+                     onclick="eventMap.highlightEvent('${event.id}'); eventMap.map.closePopup();">
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
                         <h5 style="margin: 0; font-size: 15px; ${titleStyle} font-weight: 600; line-height: 1.4; flex: 1;">${event.title}${elapsedLabel}</h5>
                     </div>
@@ -1610,7 +1612,7 @@ class EventMap {
 
             return `
                     <div class="${elapsedClass} rounded-lg p-4 cursor-pointer transition-all duration-300 border-l-4 ${borderClass} ${hoverClass} hover:shadow-md hover:-translate-y-1 mb-5"
-                         data-event-id="${event.id}" onclick="eventMap.focusEvent(${event.id})">
+                         data-event-id="${event.id}" onclick="eventMap.focusEvent('${event.id}')">
                         <div class="flex items-start justify-between mb-3">
                             <h4 class="text-gray-800 text-lg font-semibold flex-1 leading-snug">${event.title}</h4>
                             ${elapsedLabel}
@@ -1636,22 +1638,24 @@ class EventMap {
   }
 
   focusEvent(eventId) {
-    const event = this.events.find((e) => e.id === eventId);
-    if (event) {
-      // Center map on event location
-      this.map.setView([event.lat, event.lng], 10);
+    // eslint-disable-next-line eqeqeq
+    const event = this.filteredEvents.find((e) => e.id == eventId);
+    if (!event) return;
 
-      // Open popup for the marker
-      const marker = this.markers.find(
-        (m) =>
-          m.getLatLng().lat === event.lat && m.getLatLng().lng === event.lng,
-      );
-      if (marker) {
-        marker.openPopup();
-      }
-
-      this.highlightEvent(eventId);
+    // Close mobile modal if open
+    const mobileEventModal = document.getElementById("mobileEventModal");
+    if (mobileEventModal) {
+      mobileEventModal.classList.add("hidden");
+      document.body.style.overflow = "";
     }
+
+    this.map.setView([event.lat, event.lng], 15);
+
+    if (event._marker) {
+      event._marker.openPopup();
+    }
+
+    this.highlightEvent(eventId);
   }
 
   highlightEvent(eventId) {

@@ -147,15 +147,19 @@ final class VFVIC_Event_Map_Server {
     }
 
     private function fetch_calendar_items($settings) {
+        // Use Z-suffix UTC format to avoid + encoding issues with add_query_arg
+        $timeMin = gmdate('Y-m-d\TH:i:s\Z');
+        $calendarPath = 'https://www.googleapis.com/calendar/v3/calendars/'
+            . rawurlencode($settings['calendar_id']) . '/events';
         $url = add_query_arg(
             array(
                 'key'          => $settings['google_api_key'],
-                'timeMin'      => gmdate('c'),
+                'timeMin'      => $timeMin,
                 'singleEvents' => 'true',
                 'orderBy'      => 'startTime',
-                'maxResults'   => 250,
+                'maxResults'   => 50,
             ),
-            'https://www.googleapis.com/calendar/v3/calendars/' . rawurlencode($settings['calendar_id']) . '/events'
+            $calendarPath
         );
 
         $response = wp_remote_get(
@@ -174,10 +178,12 @@ final class VFVIC_Event_Map_Server {
         $body = wp_remote_retrieve_body($response);
 
         if ($status !== 200) {
+            // Strip key from URL before including in error data
+            $safeUrl = remove_query_arg('key', $url);
             return new \WP_Error(
                 'vfvic_calendar_error',
                 'Google Calendar request failed: ' . $status,
-                array('status' => 502, 'body' => $body)
+                array('status' => 502, 'body' => $body, 'request_url' => $safeUrl)
             );
         }
 
