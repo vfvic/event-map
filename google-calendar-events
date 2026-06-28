@@ -1,0 +1,2073 @@
+ "items": [
+ {
+  "kind": "calendar#event",
+  "etag": "\"3434179302806000\"",
+  "id": "2scpgqhjtjh5tc33cg3jm3ik5c_20260518",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=MnNjcGdxaGp0amg1dGMzM2NnM2ptM2lrNWNfMjAyNjA1MTggdmV0ZXJhbnNkaWFyeW5vcnRoZWFzdEBt",
+  "created": "2024-05-30T17:16:34.000Z",
+  "updated": "2024-05-30T17:20:51.403Z",
+  "summary": "Useful Information",
+  "description": "<b>Some organisations that could be of help</b><br><br><b>Combat Stress</b>: 0800 138 1619 - Text 07537 173 683 - <a href=\"mailto:helpline@combatstress.org.uk\" target=\"_blank\">helpline@combatstress.org.uk</a> - Veterans Mental Health Organisation <b>24/7 contact</b><br><br><b>Op Courage</b>: 0300 373 3332 - <a href=\"mailto:opcouragenorth@cntw.nhs.uk\" target=\"_blank\">opcouragenorth@cntw.nhs.uk</a> - Veterans Mental Health and Wellbeing Service.<br><br><b>Op Restore</b>: Veterans Physical Health &amp; Wellbeing Service, for veterans with significant physical injuries caused by time in the Armed Forces. Your GP can get a referral by sending an email to <a href=\"mailto:imperial.oprestore@nhs.net\" target=\"_blank\"><u>imperial.oprestore@nhs.net</u></a><br><br><b>SSAFA</b>: 0800 260 6767 - <a href=\"http://www.ssafa.org.uk\" target=\"_blank\">www.ssafa.org.uk</a> - Help with adaptations to your living environment when needed.<br><br><b>Veterans Gateway</b>: <a href=\"http://www.veteransgateway.org.uk\" target=\"_blank\">www.veteransgateway.org.uk</a> - An online directory of support for veterans",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "date": "2026-05-18"
+  },
+  "end": {
+   "date": "2026-05-19"
+  },
+  "recurringEventId": "2scpgqhjtjh5tc33cg3jm3ik5c",
+  "originalStartTime": {
+   "date": "2026-05-18"
+  },
+  "transparency": "transparent",
+  "iCalUID": "2scpgqhjtjh5tc33cg3jm3ik5c@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "category": "support",
+  "categories": [
+   "support"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3535747390187166\"",
+  "id": "30ed1sa1ev6k8kgp0ucg1mq24j_20260518",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=MzBlZDFzYTFldjZrOGtncDB1Y2cxbXEyNGpfMjAyNjA1MTggdmV0ZXJhbnNkaWFyeW5vcnRoZWFzdEBt",
+  "created": "2024-07-01T10:56:48.000Z",
+  "updated": "2026-01-08T12:01:35.093Z",
+  "summary": "Veterans for Veterans in Care",
+  "description": "Are you aware of a any Veterans in a South Tyneside Care Home if so can you please let us know by emailing \ndiary@vfvic.co.uk\nWe will then arrange a visit and see if the veteran has any support needs.",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "date": "2026-05-18"
+  },
+  "end": {
+   "date": "2026-05-19"
+  },
+  "recurringEventId": "30ed1sa1ev6k8kgp0ucg1mq24j_R20260105",
+  "originalStartTime": {
+   "date": "2026-05-18"
+  },
+  "transparency": "transparent",
+  "iCalUID": "30ed1sa1ev6k8kgp0ucg1mq24j_R20260105@google.com",
+  "sequence": 1,
+  "eventType": "default",
+  "category": "support",
+  "categories": [
+   "support"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3450014581168000\"",
+  "id": "0qtd4qksetvpd46kp839gepdd5_20260518T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=MHF0ZDRxa3NldHZwZDQ2a3A4MzlnZXBkZDVfMjAyNjA1MThUMDkwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-08-30T08:41:30.000Z",
+  "updated": "2024-08-30T08:41:30.584Z",
+  "summary": "Tyneside Community Woodshed (TCWS)",
+  "description": "We are a group of enthusiastic individuals with an interest in all things wood who meet on a weekly basis in a large fully equipped workshop to share our ideas and skills and also to socialize and build friendships. We are currently open to anyone over the age of 40 and have a membership fee of £6.00 per week to cover our overhead costs.<br><br><br>Mob: 07977646342<br>Email: <a href=\"mailto:tynesidecommunitywoodshed@gmail.com\" target=\"_blank\">tynesidecommunitywoodshed@<u></u>gmail.com</a><br>Web: <a href=\"https://www.google.com/url?q=http://tynesidecommunitywoodshed.org/&amp;sa=D&amp;source=calendar&amp;usd=2&amp;usg=AOvVaw36OI-0hW-RAsTDGm-kR_ew\" target=\"_blank\">tynesidecommunitywoodshed.org</a><br>FB:  Tyneside Community Woodshed",
+  "location": "Perth Green, Inverness Rd, Jarrow NE32 4AQ, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-18T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-18T15:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "0qtd4qksetvpd46kp839gepdd5",
+  "originalStartTime": {
+   "dateTime": "2026-05-18T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "0qtd4qksetvpd46kp839gepdd5@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.9617112,
+  "lng": -1.4688515,
+  "category": "workshop",
+  "categories": [
+   "workshop",
+   "social"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3457799238106000\"",
+  "id": "429ol8m1m5tifga1m4fhikfesk_20260518T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NDI5b2w4bTFtNXRpZmdhMW00Zmhpa2Zlc2tfMjAyNjA1MThUMDkwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-10-02T15:03:13.000Z",
+  "updated": "2024-10-14T09:53:39.053Z",
+  "summary": "Outer West Gateshead Veteran Breakfast Club",
+  "description": "FREE Breakfast every Monday 10 to 12\nContact Winlaton Centre 0191 4144718 for more info.",
+  "location": "The Winlaton Centre, North St, Winlaton, Blaydon, Winlaton, Blaydon-on-Tyne NE21 6BY, UK",
+  "creator": {
+   "email": "j.hambling59@googlemail.com"
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-18T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-18T12:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "429ol8m1m5tifga1m4fhikfesk_R20241014T090000",
+  "originalStartTime": {
+   "dateTime": "2026-05-18T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "429ol8m1m5tifga1m4fhikfesk_R20241014T090000@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.9544698,
+  "lng": -1.7292948,
+  "category": "breakfast-club",
+  "categories": [
+   "breakfast-club"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3557050075567806\"",
+  "id": "59n3p53mm4fh1gigbvla51onerr20240402T090000_20260519T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NTluM3A1M21tNGZoMWdpZ2J2bGE1MW9uZXJyMjAyNDA0MDJUMDkwMDAwXzIwMjYwNTE5VDA5MDAwMFogdmV0ZXJhbnNkaWFyeW5vcnRoZWFzdEBt",
+  "created": "2024-05-28T14:58:41.000Z",
+  "updated": "2026-05-11T18:43:57.783Z",
+  "summary": "VICS Sunderland Gunners Club drop in",
+  "description": "Coffee,Greggs sandwiches, pasties and donuts. Domino handicap, free raffle and good banter.\n\ninfo@veteransincrisis.co.uk\nwww.veteransincrisis.co.uk",
+  "location": "The Gunners, Sunderland, 10-11 Mary St, Sunderland SR1 3NH, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-19T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-19T13:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "59n3p53mm4fh1gigbvla51onerr20240402T090000_R20240702T090000",
+  "originalStartTime": {
+   "dateTime": "2026-05-19T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "59n3p53mm4fh1gigbvla51onerr20240402T090000_R20240702T090000@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.9029436,
+  "lng": -1.388125,
+  "category": "drop-in",
+  "categories": [
+   "drop-in"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3450014625906000\"",
+  "id": "1vbgtn6e41pkto1ese0f50jtlo_20260520T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=MXZiZ3RuNmU0MXBrdG8xZXNlMGY1MGp0bG9fMjAyNjA1MjBUMDkwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-08-30T08:41:52.000Z",
+  "updated": "2024-08-30T08:41:52.953Z",
+  "summary": "Tyneside Community Woodshed (TCWS)",
+  "description": "We are a group of enthusiastic individuals with an interest in all things wood who meet on a weekly basis in a large fully equipped workshop to share our ideas and skills and also to socialize and build friendships. We are currently open to anyone over the age of 40 and have a membership fee of £6.00 per week to cover our overhead costs.<br><br><br>Mob: 07977646342<br>Email: <a href=\"mailto:tynesidecommunitywoodshed@gmail.com\" target=\"_blank\">tynesidecommunitywoodshed@<u></u>gmail.com</a><br>Web: <a href=\"https://www.google.com/url?q=http://tynesidecommunitywoodshed.org/&amp;sa=D&amp;source=calendar&amp;usd=2&amp;usg=AOvVaw36OI-0hW-RAsTDGm-kR_ew\" target=\"_blank\">tynesidecommunitywoodshed.org</a><br>FB:  Tyneside Community Woodshed",
+  "location": "Perth Green, Inverness Rd, Jarrow NE32 4AQ, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-20T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-20T15:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "1vbgtn6e41pkto1ese0f50jtlo",
+  "originalStartTime": {
+   "dateTime": "2026-05-20T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "1vbgtn6e41pkto1ese0f50jtlo@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.9617112,
+  "lng": -1.4688515,
+  "category": "workshop",
+  "categories": [
+   "workshop",
+   "social"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3557050075567806\"",
+  "id": "_8go48hhg6kp3iba16h1j4b9k6krkaba16p230ba38l1jedpi8l0j6cpp6c_20260520T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=XzhnbzQ4aGhnNmtwM2liYTE2aDFqNGI5azZrcmthYmExNnAyMzBiYTM4bDFqZWRwaThsMGo2Y3BwNmNfMjAyNjA1MjBUMDkwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-06-07T08:56:03.000Z",
+  "updated": "2026-05-11T18:43:57.783Z",
+  "summary": "Naafi Break South Tyneside",
+  "description": "A drop in for all veterans\n07850 584 960\n\nhttps://www.facebook.com/NAAFIBreakST",
+  "location": "Action Station South Tyneside, Boldon Ln, South Shields NE34 0LZ, UK",
+  "creator": {
+   "email": "waynerambo13@gmail.com"
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-20T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-20T12:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "_8go48hhg6kp3iba16h1j4b9k6krkaba16p230ba38l1jedpi8l0j6cpp6c",
+  "originalStartTime": {
+   "dateTime": "2026-05-20T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "D0DF0529-A4C2-457E-A6D0-CEC772EA3393",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.9689273,
+  "lng": -1.4380807,
+  "category": "drop-in",
+  "categories": [
+   "drop-in"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3455771660160000\"",
+  "id": "59ctqpujemvk62hie9u4as7cvn_20260521T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NTljdHFwdWplbXZrNjJoaWU5dTRhczdjdm5fMjAyNjA1MjFUMDkwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-08-30T08:48:39.000Z",
+  "updated": "2024-10-02T16:17:10.080Z",
+  "summary": "Military Veterans Cycle and Activities Club - Big Bike Ride",
+  "description": "Military Veterans Cycling Club \n\nEncouraging adults to cycle through fixing bikes, teaching skills and leading bike rides\n\nTo book please call Sean on 07946 538 737",
+  "location": "The Cycle Hub, Quayside, Newcastle upon Tyne NE6 1BU, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-21T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-21T12:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "59ctqpujemvk62hie9u4as7cvn",
+  "originalStartTime": {
+   "dateTime": "2026-05-21T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "59ctqpujemvk62hie9u4as7cvn@google.com",
+  "sequence": 2,
+  "eventType": "default",
+  "lat": 54.9690043,
+  "lng": -1.5844589,
+  "category": "sport",
+  "categories": [
+   "sport"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3450014643572000\"",
+  "id": "5ka97oe9ij2h1pdhpa2lbhh2q1_20260522T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NWthOTdvZTlpajJoMXBkaHBhMmxiaGgycTFfMjAyNjA1MjJUMDkwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-08-30T08:40:54.000Z",
+  "updated": "2024-08-30T08:42:01.786Z",
+  "summary": "Tyneside Community Woodshed (TCWS)",
+  "description": "We are a group of enthusiastic individuals with an interest in all things wood who meet on a weekly basis in a large fully equipped workshop to share our ideas and skills and also to socialize and build friendships. We are currently open to anyone over the age of 40 and have a membership fee of £6.00 per week to cover our overhead costs.<br><br><br>Mob: 07977646342<br>Email: <a href=\"mailto:tynesidecommunitywoodshed@gmail.com\" target=\"_blank\">tynesidecommunitywoodshed@<wbr />gmail.com</a><br>Web: <a href=\"http://tynesidecommunitywoodshed.org/\" target=\"_blank\">tynesidecommunitywoodshed.org</a><br>FB:  Tyneside Community Woodshed",
+  "location": "Perth Green, Inverness Rd, Jarrow NE32 4AQ, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-22T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-22T15:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "5ka97oe9ij2h1pdhpa2lbhh2q1",
+  "originalStartTime": {
+   "dateTime": "2026-05-22T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "5ka97oe9ij2h1pdhpa2lbhh2q1@google.com",
+  "sequence": 2,
+  "eventType": "default",
+  "lat": 54.9617112,
+  "lng": -1.4688515,
+  "category": "workshop",
+  "categories": [
+   "workshop",
+   "social"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3557050075567806\"",
+  "id": "1frbm40m6u1auckv0417jl5mcv_20260522T093000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=MWZyYm00MG02dTFhdWNrdjA0MTdqbDVtY3ZfMjAyNjA1MjJUMDkzMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-05-28T14:58:41.000Z",
+  "updated": "2026-05-11T18:43:57.783Z",
+  "summary": "Anxious Minds Veterans Breakfast",
+  "location": "Anxious Minds - Counselling & Support Services, The Vault, 31 Station Rd, Wallsend NE28 6RL, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-22T10:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-22T12:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "1frbm40m6u1auckv0417jl5mcv_R20240621T093000",
+  "originalStartTime": {
+   "dateTime": "2026-05-22T10:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "1frbm40m6u1auckv0417jl5mcv_R20240621T093000@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.98992,
+  "lng": -1.5339,
+  "category": "breakfast-club",
+  "categories": [
+   "breakfast-club"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3557050075567806\"",
+  "id": "1qt57t7dq80cr783h1n23hjs04_20260522T113000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=MXF0NTd0N2RxODBjcjc4M2gxbjIzaGpzMDRfMjAyNjA1MjJUMTEzMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-05-28T14:58:41.000Z",
+  "updated": "2026-05-11T18:43:57.783Z",
+  "summary": "East Durham Veterans Mates & Bates",
+  "description": "<p>Mates and Bates is a free veterans and families lunch initiative which aims to not only aid our veterans financially during the cost of living crisis but also to allow them the opportunity to socialise and meet new people in a comfortable and friendly environment.Â  We provide this opportunity every Friday from 12:30 pm and each week the menu changes. This is a great way for our veterans and their friends to meet, socialise and enjoy a free lunch cooked up by our very own chef.</p>",
+  "location": "Dawdon Youth and Community Centre, Queen Alexandra Rd, Seaham SR7 7NH, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-22T12:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-22T13:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "1qt57t7dq80cr783h1n23hjs04_R20240621T113000",
+  "originalStartTime": {
+   "dateTime": "2026-05-22T12:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "1qt57t7dq80cr783h1n23hjs04_R20240621T113000@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.8286405,
+  "lng": -1.3338157,
+  "category": "social",
+  "categories": [
+   "social"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3557050075567806\"",
+  "id": "5pkhlh11d541uaqmv55engp5tf_20260522T120000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NXBraGxoMTFkNTQxdWFxbXY1NWVuZ3A1dGZfMjAyNjA1MjJUMTIwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-06-04T11:26:34.000Z",
+  "updated": "2026-05-11T18:43:57.783Z",
+  "summary": "VICS Sunderland Sports Afternoon ",
+  "description": "Sports Afternoon at <a href=\"https://www.facebook.com/LambtonStreetYouthCentre?__cft__[0]=AZWseY3tgbE_CGUkg0jgfT2Re_HHlPSm5gsaXvFvJn26KCKQNHfa04PbK1Ap5oFUW2HPE3ah-FeiC18XqaFTDfxx8db5jUlJVVWk6boomOBevhspRqkOYagHmM3seojeVxXl0SPKUkIfjKKnGHwoRFBx6rWspyzNJLLSonQlMjJY55CcTQDiVKJQRPuwR0cGTa8H3RA9K4ar9dG-YgdNRYNoAGK7xLVC2goFSmqnZVdGAw&amp;__tn__=-]K*F\">Lambton Street Youth and Community Hub</a> from 1300hrs. Where you can train in the gym, play footie, use the boxing facilities, play darts, pool, table tennis and lots more.",
+  "location": "Lambton Street Youth Centre, 25 Falkland Rd, Sunderland SR4 6XA, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-22T13:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-22T15:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "5pkhlh11d541uaqmv55engp5tf_R20240712T120000",
+  "originalStartTime": {
+   "dateTime": "2026-05-22T13:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "5pkhlh11d541uaqmv55engp5tf_R20240712T120000@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.90578,
+  "lng": -1.41776,
+  "category": "sport",
+  "categories": [
+   "sport"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3503258737274846\"",
+  "id": "cgr64ob3c8pj2b9mckq68b9k65gm8b9p6cq66b9k74s64cpgc4rj6chi6o_20260523T064500Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=Y2dyNjRvYjNjOHBqMmI5bWNrcTY4YjlrNjVnbThiOXA2Y3E2NmI5azc0czY0Y3BnYzRyajZjaGk2b18yMDI2MDUyM1QwNjQ1MDBaIHZldGVyYW5zZGlhcnlub3J0aGVhc3RAbQ",
+  "created": "2025-07-04T11:42:48.000Z",
+  "updated": "2025-07-04T11:42:48.637Z",
+  "summary": "Shrimp platoon",
+  "description": "All year round.\nFor more information call Sam on 07825 777116",
+  "location": "Sue's Café, Sue's cafe, Marine Walk, Roker, Sunderland SR6 0PL, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-23T07:45:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-23T09:15:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "cgr64ob3c8pj2b9mckq68b9k65gm8b9p6cq66b9k74s64cpgc4rj6chi6o",
+  "originalStartTime": {
+   "dateTime": "2026-05-23T07:45:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "cgr64ob3c8pj2b9mckq68b9k65gm8b9p6cq66b9k74s64cpgc4rj6chi6o@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.9231967,
+  "lng": -1.3652551,
+  "category": "other",
+  "categories": [
+   "other"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3434174652664000\"",
+  "id": "1pf53c4n6luv8ja291a364q9l8_20260523T080000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=MXBmNTNjNG42bHV2OGphMjkxYTM2NHE5bDhfMjAyNjA1MjNUMDgwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-05-30T16:42:06.000Z",
+  "updated": "2024-05-30T16:42:06.332Z",
+  "summary": "Sunderland North  Armed Forces & Veterans Breakfast Club",
+  "description": "Venue number 0191 567 1155\n<a href=\"mailto:sunderland.north.afvbc@gmail.com\" target=\"_blank\">sunderland.north.afvbc@gmail.com</a>",
+  "location": "Sunderland Royal Naval Association Club, 37 Roker Ave, Roker, Sunderland SR6 0HX, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-23T09:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-23T11:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "1pf53c4n6luv8ja291a364q9l8",
+  "originalStartTime": {
+   "dateTime": "2026-05-23T09:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "1pf53c4n6luv8ja291a364q9l8@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.91636,
+  "lng": -1.37616,
+  "category": "breakfast-club",
+  "categories": [
+   "breakfast-club"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3557050075567806\"",
+  "id": "6ik5ilidcv6tvmslqun71jquun_20260523T083000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NmlrNWlsaWRjdjZ0dm1zbHF1bjcxanF1dW5fMjAyNjA1MjNUMDgzMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-05-30T15:11:30.000Z",
+  "updated": "2026-05-11T18:43:57.783Z",
+  "summary": "Durham (East) Armed Forces & Veterans Breakfast Club",
+  "description": "Venue tel number 0191 518 5880",
+  "location": "The Five Quarter - JD Wetherspoon, 3b/3c, hailsham place, Peterlee SR8 1AB, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-23T09:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-23T11:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "6ik5ilidcv6tvmslqun71jquun_R20240622T083000",
+  "originalStartTime": {
+   "dateTime": "2026-05-23T09:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "6ik5ilidcv6tvmslqun71jquun_R20240622T083000@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.7582818,
+  "lng": -1.3329842,
+  "category": "breakfast-club",
+  "categories": [
+   "breakfast-club"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3458356570066000\"",
+  "id": "56ctddml0kis7cg4c7gpq4vabt_20260523T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NTZjdGRkbWwwa2lzN2NnNGM3Z3BxNHZhYnRfMjAyNjA1MjNUMDkwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-10-17T15:16:22.000Z",
+  "updated": "2024-10-17T15:18:05.033Z",
+  "summary": "Hartlepool Armed Forces & Veterans Breakfast Club",
+  "description": "For any further information please email hartlepoolafvbc@outlook.com",
+  "location": "Jacksons Wharf, The Highlight, Hartlepool TS24 0XN, UK",
+  "creator": {
+   "email": "j.hambling59@googlemail.com"
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-23T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-23T12:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "56ctddml0kis7cg4c7gpq4vabt",
+  "originalStartTime": {
+   "dateTime": "2026-05-23T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "transparency": "transparent",
+  "iCalUID": "56ctddml0kis7cg4c7gpq4vabt@google.com",
+  "sequence": 1,
+  "eventType": "default",
+  "lat": 54.6906894,
+  "lng": -1.2067264,
+  "category": "breakfast-club",
+  "categories": [
+   "breakfast-club"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3557050075567806\"",
+  "id": "6li34ohmcgs3abb4cgq6cb9kcko3ebb264rm2b9nc4o32e1k6sr32p9l6g_20260524T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NmxpMzRvaG1jZ3MzYWJiNGNncTZjYjlrY2tvM2ViYjI2NHJtMmI5bmM0bzMyZTFrNnNyMzJwOWw2Z18yMDI2MDUyNFQwOTAwMDBaIHZldGVyYW5zZGlhcnlub3J0aGVhc3RAbQ",
+  "created": "2024-05-28T14:58:41.000Z",
+  "updated": "2026-05-11T18:43:57.783Z",
+  "summary": "Sea Company surfing",
+  "description": "Time is dependent on tides, add Sea Company on Facebook to see actual times. The location is the Surf School next to the Sand Dancer pub",
+  "location": "Sand Dancer, 2 Sea Rd, South Shields NE33 2LD, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-24T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-24T12:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "6li34ohmcgs3abb4cgq6cb9kcko3ebb264rm2b9nc4o32e1k6sr32p9l6g_R20240616T090000",
+  "originalStartTime": {
+   "dateTime": "2026-05-24T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "6li34ohmcgs3abb4cgq6cb9kcko3ebb264rm2b9nc4o32e1k6sr32p9l6g_R20240616T090000@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.9995719,
+  "lng": -1.4149391,
+  "category": "other",
+  "categories": [
+   "other"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3434179302806000\"",
+  "id": "2scpgqhjtjh5tc33cg3jm3ik5c_20260525",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=MnNjcGdxaGp0amg1dGMzM2NnM2ptM2lrNWNfMjAyNjA1MjUgdmV0ZXJhbnNkaWFyeW5vcnRoZWFzdEBt",
+  "created": "2024-05-30T17:16:34.000Z",
+  "updated": "2024-05-30T17:20:51.403Z",
+  "summary": "Useful Information",
+  "description": "<b>Some organisations that could be of help</b><br><br><b>Combat Stress</b>: 0800 138 1619 - Text 07537 173 683 - <a href=\"mailto:helpline@combatstress.org.uk\" target=\"_blank\">helpline@combatstress.org.uk</a> - Veterans Mental Health Organisation <b>24/7 contact</b><br><br><b>Op Courage</b>: 0300 373 3332 - <a href=\"mailto:opcouragenorth@cntw.nhs.uk\" target=\"_blank\">opcouragenorth@cntw.nhs.uk</a> - Veterans Mental Health and Wellbeing Service.<br><br><b>Op Restore</b>: Veterans Physical Health &amp; Wellbeing Service, for veterans with significant physical injuries caused by time in the Armed Forces. Your GP can get a referral by sending an email to <a href=\"mailto:imperial.oprestore@nhs.net\" target=\"_blank\"><u>imperial.oprestore@nhs.net</u></a><br><br><b>SSAFA</b>: 0800 260 6767 - <a href=\"http://www.ssafa.org.uk\" target=\"_blank\">www.ssafa.org.uk</a> - Help with adaptations to your living environment when needed.<br><br><b>Veterans Gateway</b>: <a href=\"http://www.veteransgateway.org.uk\" target=\"_blank\">www.veteransgateway.org.uk</a> - An online directory of support for veterans",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "date": "2026-05-25"
+  },
+  "end": {
+   "date": "2026-05-26"
+  },
+  "recurringEventId": "2scpgqhjtjh5tc33cg3jm3ik5c",
+  "originalStartTime": {
+   "date": "2026-05-25"
+  },
+  "transparency": "transparent",
+  "iCalUID": "2scpgqhjtjh5tc33cg3jm3ik5c@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "category": "support",
+  "categories": [
+   "support"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3535747390187166\"",
+  "id": "30ed1sa1ev6k8kgp0ucg1mq24j_20260525",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=MzBlZDFzYTFldjZrOGtncDB1Y2cxbXEyNGpfMjAyNjA1MjUgdmV0ZXJhbnNkaWFyeW5vcnRoZWFzdEBt",
+  "created": "2024-07-01T10:56:48.000Z",
+  "updated": "2026-01-08T12:01:35.093Z",
+  "summary": "Veterans for Veterans in Care",
+  "description": "Are you aware of a any Veterans in a South Tyneside Care Home if so can you please let us know by emailing \ndiary@vfvic.co.uk\nWe will then arrange a visit and see if the veteran has any support needs.",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "date": "2026-05-25"
+  },
+  "end": {
+   "date": "2026-05-26"
+  },
+  "recurringEventId": "30ed1sa1ev6k8kgp0ucg1mq24j_R20260105",
+  "originalStartTime": {
+   "date": "2026-05-25"
+  },
+  "transparency": "transparent",
+  "iCalUID": "30ed1sa1ev6k8kgp0ucg1mq24j_R20260105@google.com",
+  "sequence": 1,
+  "eventType": "default",
+  "category": "support",
+  "categories": [
+   "support"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3450014581168000\"",
+  "id": "0qtd4qksetvpd46kp839gepdd5_20260525T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=MHF0ZDRxa3NldHZwZDQ2a3A4MzlnZXBkZDVfMjAyNjA1MjVUMDkwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-08-30T08:41:30.000Z",
+  "updated": "2024-08-30T08:41:30.584Z",
+  "summary": "Tyneside Community Woodshed (TCWS)",
+  "description": "We are a group of enthusiastic individuals with an interest in all things wood who meet on a weekly basis in a large fully equipped workshop to share our ideas and skills and also to socialize and build friendships. We are currently open to anyone over the age of 40 and have a membership fee of £6.00 per week to cover our overhead costs.<br><br><br>Mob: 07977646342<br>Email: <a href=\"mailto:tynesidecommunitywoodshed@gmail.com\" target=\"_blank\">tynesidecommunitywoodshed@<u></u>gmail.com</a><br>Web: <a href=\"https://www.google.com/url?q=http://tynesidecommunitywoodshed.org/&amp;sa=D&amp;source=calendar&amp;usd=2&amp;usg=AOvVaw36OI-0hW-RAsTDGm-kR_ew\" target=\"_blank\">tynesidecommunitywoodshed.org</a><br>FB:  Tyneside Community Woodshed",
+  "location": "Perth Green, Inverness Rd, Jarrow NE32 4AQ, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-25T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-25T15:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "0qtd4qksetvpd46kp839gepdd5",
+  "originalStartTime": {
+   "dateTime": "2026-05-25T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "0qtd4qksetvpd46kp839gepdd5@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.9617112,
+  "lng": -1.4688515,
+  "category": "workshop",
+  "categories": [
+   "workshop",
+   "social"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3457799238106000\"",
+  "id": "429ol8m1m5tifga1m4fhikfesk_20260525T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NDI5b2w4bTFtNXRpZmdhMW00Zmhpa2Zlc2tfMjAyNjA1MjVUMDkwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-10-02T15:03:13.000Z",
+  "updated": "2024-10-14T09:53:39.053Z",
+  "summary": "Outer West Gateshead Veteran Breakfast Club",
+  "description": "FREE Breakfast every Monday 10 to 12\nContact Winlaton Centre 0191 4144718 for more info.",
+  "location": "The Winlaton Centre, North St, Winlaton, Blaydon, Winlaton, Blaydon-on-Tyne NE21 6BY, UK",
+  "creator": {
+   "email": "j.hambling59@googlemail.com"
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-25T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-25T12:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "429ol8m1m5tifga1m4fhikfesk_R20241014T090000",
+  "originalStartTime": {
+   "dateTime": "2026-05-25T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "429ol8m1m5tifga1m4fhikfesk_R20241014T090000@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.9544698,
+  "lng": -1.7292948,
+  "category": "breakfast-club",
+  "categories": [
+   "breakfast-club"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3557050075567806\"",
+  "id": "59n3p53mm4fh1gigbvla51onerr20240402T090000_20260526T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NTluM3A1M21tNGZoMWdpZ2J2bGE1MW9uZXJyMjAyNDA0MDJUMDkwMDAwXzIwMjYwNTI2VDA5MDAwMFogdmV0ZXJhbnNkaWFyeW5vcnRoZWFzdEBt",
+  "created": "2024-05-28T14:58:41.000Z",
+  "updated": "2026-05-11T18:43:57.783Z",
+  "summary": "VICS Sunderland Gunners Club drop in",
+  "description": "Coffee,Greggs sandwiches, pasties and donuts. Domino handicap, free raffle and good banter.\n\ninfo@veteransincrisis.co.uk\nwww.veteransincrisis.co.uk",
+  "location": "The Gunners, Sunderland, 10-11 Mary St, Sunderland SR1 3NH, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-26T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-26T13:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "59n3p53mm4fh1gigbvla51onerr20240402T090000_R20240702T090000",
+  "originalStartTime": {
+   "dateTime": "2026-05-26T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "59n3p53mm4fh1gigbvla51onerr20240402T090000_R20240702T090000@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.9029436,
+  "lng": -1.388125,
+  "category": "drop-in",
+  "categories": [
+   "drop-in"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3433817233780000\"",
+  "id": "3cf3uvhgjckcqhtag92tpku69gr20240430T181500_20260526T181500Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=M2NmM3V2aGdqY2tjcWh0YWc5MnRwa3U2OWdyMjAyNDA0MzBUMTgxNTAwXzIwMjYwNTI2VDE4MTUwMFogdmV0ZXJhbnNkaWFyeW5vcnRoZWFzdEBt",
+  "created": "2024-05-28T14:58:41.000Z",
+  "updated": "2024-05-28T15:03:36.890Z",
+  "summary": "DLI association meeting",
+  "description": "The meeting starts at 20:00hrs in the lounge bar. Members normally attend for 19:00hrs onwards",
+  "location": "The Royal British Legion, 9 Queen St, South Shields NE33 1HL, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-26T19:15:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-26T23:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "3cf3uvhgjckcqhtag92tpku69gr20240430T181500",
+  "originalStartTime": {
+   "dateTime": "2026-05-26T19:15:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "3cf3uvhgjckcqhtag92tpku69gr20240430T181500@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.9987605,
+  "lng": -1.4343154,
+  "category": "meeting",
+  "categories": [
+   "meeting"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3450014625906000\"",
+  "id": "1vbgtn6e41pkto1ese0f50jtlo_20260527T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=MXZiZ3RuNmU0MXBrdG8xZXNlMGY1MGp0bG9fMjAyNjA1MjdUMDkwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-08-30T08:41:52.000Z",
+  "updated": "2024-08-30T08:41:52.953Z",
+  "summary": "Tyneside Community Woodshed (TCWS)",
+  "description": "We are a group of enthusiastic individuals with an interest in all things wood who meet on a weekly basis in a large fully equipped workshop to share our ideas and skills and also to socialize and build friendships. We are currently open to anyone over the age of 40 and have a membership fee of £6.00 per week to cover our overhead costs.<br><br><br>Mob: 07977646342<br>Email: <a href=\"mailto:tynesidecommunitywoodshed@gmail.com\" target=\"_blank\">tynesidecommunitywoodshed@<u></u>gmail.com</a><br>Web: <a href=\"https://www.google.com/url?q=http://tynesidecommunitywoodshed.org/&amp;sa=D&amp;source=calendar&amp;usd=2&amp;usg=AOvVaw36OI-0hW-RAsTDGm-kR_ew\" target=\"_blank\">tynesidecommunitywoodshed.org</a><br>FB:  Tyneside Community Woodshed",
+  "location": "Perth Green, Inverness Rd, Jarrow NE32 4AQ, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-27T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-27T15:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "1vbgtn6e41pkto1ese0f50jtlo",
+  "originalStartTime": {
+   "dateTime": "2026-05-27T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "1vbgtn6e41pkto1ese0f50jtlo@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.9617112,
+  "lng": -1.4688515,
+  "category": "workshop",
+  "categories": [
+   "workshop",
+   "social"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3455771660160000\"",
+  "id": "59ctqpujemvk62hie9u4as7cvn_20260528T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NTljdHFwdWplbXZrNjJoaWU5dTRhczdjdm5fMjAyNjA1MjhUMDkwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-08-30T08:48:39.000Z",
+  "updated": "2024-10-02T16:17:10.080Z",
+  "summary": "Military Veterans Cycle and Activities Club - Big Bike Ride",
+  "description": "Military Veterans Cycling Club \n\nEncouraging adults to cycle through fixing bikes, teaching skills and leading bike rides\n\nTo book please call Sean on 07946 538 737",
+  "location": "The Cycle Hub, Quayside, Newcastle upon Tyne NE6 1BU, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-28T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-28T12:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "59ctqpujemvk62hie9u4as7cvn",
+  "originalStartTime": {
+   "dateTime": "2026-05-28T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "59ctqpujemvk62hie9u4as7cvn@google.com",
+  "sequence": 2,
+  "eventType": "default",
+  "lat": 54.9690043,
+  "lng": -1.5844589,
+  "category": "sport",
+  "categories": [
+   "sport"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3450014643572000\"",
+  "id": "5ka97oe9ij2h1pdhpa2lbhh2q1_20260529T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NWthOTdvZTlpajJoMXBkaHBhMmxiaGgycTFfMjAyNjA1MjlUMDkwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-08-30T08:40:54.000Z",
+  "updated": "2024-08-30T08:42:01.786Z",
+  "summary": "Tyneside Community Woodshed (TCWS)",
+  "description": "We are a group of enthusiastic individuals with an interest in all things wood who meet on a weekly basis in a large fully equipped workshop to share our ideas and skills and also to socialize and build friendships. We are currently open to anyone over the age of 40 and have a membership fee of £6.00 per week to cover our overhead costs.<br><br><br>Mob: 07977646342<br>Email: <a href=\"mailto:tynesidecommunitywoodshed@gmail.com\" target=\"_blank\">tynesidecommunitywoodshed@<wbr />gmail.com</a><br>Web: <a href=\"http://tynesidecommunitywoodshed.org/\" target=\"_blank\">tynesidecommunitywoodshed.org</a><br>FB:  Tyneside Community Woodshed",
+  "location": "Perth Green, Inverness Rd, Jarrow NE32 4AQ, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-29T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-29T15:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "5ka97oe9ij2h1pdhpa2lbhh2q1",
+  "originalStartTime": {
+   "dateTime": "2026-05-29T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "5ka97oe9ij2h1pdhpa2lbhh2q1@google.com",
+  "sequence": 2,
+  "eventType": "default",
+  "lat": 54.9617112,
+  "lng": -1.4688515,
+  "category": "workshop",
+  "categories": [
+   "workshop",
+   "social"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3557050075567806\"",
+  "id": "1frbm40m6u1auckv0417jl5mcv_20260529T093000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=MWZyYm00MG02dTFhdWNrdjA0MTdqbDVtY3ZfMjAyNjA1MjlUMDkzMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-05-28T14:58:41.000Z",
+  "updated": "2026-05-11T18:43:57.783Z",
+  "summary": "Anxious Minds Veterans Breakfast",
+  "location": "Anxious Minds - Counselling & Support Services, The Vault, 31 Station Rd, Wallsend NE28 6RL, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-29T10:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-29T12:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "1frbm40m6u1auckv0417jl5mcv_R20240621T093000",
+  "originalStartTime": {
+   "dateTime": "2026-05-29T10:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "1frbm40m6u1auckv0417jl5mcv_R20240621T093000@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.98992,
+  "lng": -1.5339,
+  "category": "breakfast-club",
+  "categories": [
+   "breakfast-club"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3557050075567806\"",
+  "id": "1qt57t7dq80cr783h1n23hjs04_20260529T113000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=MXF0NTd0N2RxODBjcjc4M2gxbjIzaGpzMDRfMjAyNjA1MjlUMTEzMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-05-28T14:58:41.000Z",
+  "updated": "2026-05-11T18:43:57.783Z",
+  "summary": "East Durham Veterans Mates & Bates",
+  "description": "<p>Mates and Bates is a free veterans and families lunch initiative which aims to not only aid our veterans financially during the cost of living crisis but also to allow them the opportunity to socialise and meet new people in a comfortable and friendly environment.Â  We provide this opportunity every Friday from 12:30 pm and each week the menu changes. This is a great way for our veterans and their friends to meet, socialise and enjoy a free lunch cooked up by our very own chef.</p>",
+  "location": "Dawdon Youth and Community Centre, Queen Alexandra Rd, Seaham SR7 7NH, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-29T12:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-29T13:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "1qt57t7dq80cr783h1n23hjs04_R20240621T113000",
+  "originalStartTime": {
+   "dateTime": "2026-05-29T12:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "1qt57t7dq80cr783h1n23hjs04_R20240621T113000@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.8286405,
+  "lng": -1.3338157,
+  "category": "social",
+  "categories": [
+   "social"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3557050075567806\"",
+  "id": "5pkhlh11d541uaqmv55engp5tf_20260529T120000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NXBraGxoMTFkNTQxdWFxbXY1NWVuZ3A1dGZfMjAyNjA1MjlUMTIwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-06-04T11:26:34.000Z",
+  "updated": "2026-05-11T18:43:57.783Z",
+  "summary": "VICS Sunderland Sports Afternoon ",
+  "description": "Sports Afternoon at <a href=\"https://www.facebook.com/LambtonStreetYouthCentre?__cft__[0]=AZWseY3tgbE_CGUkg0jgfT2Re_HHlPSm5gsaXvFvJn26KCKQNHfa04PbK1Ap5oFUW2HPE3ah-FeiC18XqaFTDfxx8db5jUlJVVWk6boomOBevhspRqkOYagHmM3seojeVxXl0SPKUkIfjKKnGHwoRFBx6rWspyzNJLLSonQlMjJY55CcTQDiVKJQRPuwR0cGTa8H3RA9K4ar9dG-YgdNRYNoAGK7xLVC2goFSmqnZVdGAw&amp;__tn__=-]K*F\">Lambton Street Youth and Community Hub</a> from 1300hrs. Where you can train in the gym, play footie, use the boxing facilities, play darts, pool, table tennis and lots more.",
+  "location": "Lambton Street Youth Centre, 25 Falkland Rd, Sunderland SR4 6XA, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-29T13:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-29T15:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "5pkhlh11d541uaqmv55engp5tf_R20240712T120000",
+  "originalStartTime": {
+   "dateTime": "2026-05-29T13:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "5pkhlh11d541uaqmv55engp5tf_R20240712T120000@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.90578,
+  "lng": -1.41776,
+  "category": "sport",
+  "categories": [
+   "sport"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3503258737274846\"",
+  "id": "cgr64ob3c8pj2b9mckq68b9k65gm8b9p6cq66b9k74s64cpgc4rj6chi6o_20260530T064500Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=Y2dyNjRvYjNjOHBqMmI5bWNrcTY4YjlrNjVnbThiOXA2Y3E2NmI5azc0czY0Y3BnYzRyajZjaGk2b18yMDI2MDUzMFQwNjQ1MDBaIHZldGVyYW5zZGlhcnlub3J0aGVhc3RAbQ",
+  "created": "2025-07-04T11:42:48.000Z",
+  "updated": "2025-07-04T11:42:48.637Z",
+  "summary": "Shrimp platoon",
+  "description": "All year round.\nFor more information call Sam on 07825 777116",
+  "location": "Sue's Café, Sue's cafe, Marine Walk, Roker, Sunderland SR6 0PL, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-30T07:45:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-30T09:15:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "cgr64ob3c8pj2b9mckq68b9k65gm8b9p6cq66b9k74s64cpgc4rj6chi6o",
+  "originalStartTime": {
+   "dateTime": "2026-05-30T07:45:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "cgr64ob3c8pj2b9mckq68b9k65gm8b9p6cq66b9k74s64cpgc4rj6chi6o@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.9231967,
+  "lng": -1.3652551,
+  "category": "other",
+  "categories": [
+   "other"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3557050075567806\"",
+  "id": "6ik5ilidcv6tvmslqun71jquun_20260530T083000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NmlrNWlsaWRjdjZ0dm1zbHF1bjcxanF1dW5fMjAyNjA1MzBUMDgzMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-05-30T15:11:30.000Z",
+  "updated": "2026-05-11T18:43:57.783Z",
+  "summary": "Durham (East) Armed Forces & Veterans Breakfast Club",
+  "description": "Venue tel number 0191 518 5880",
+  "location": "The Five Quarter - JD Wetherspoon, 3b/3c, hailsham place, Peterlee SR8 1AB, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-30T09:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-30T11:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "6ik5ilidcv6tvmslqun71jquun_R20240622T083000",
+  "originalStartTime": {
+   "dateTime": "2026-05-30T09:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "6ik5ilidcv6tvmslqun71jquun_R20240622T083000@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.7582818,
+  "lng": -1.3329842,
+  "category": "breakfast-club",
+  "categories": [
+   "breakfast-club"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3557050075567806\"",
+  "id": "32t1efd2bv835t17t82kgrr8pf_20260530T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=MzJ0MWVmZDJidjgzNXQxN3Q4MmtncnI4cGZfMjAyNjA1MzBUMDkwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-05-28T14:58:41.000Z",
+  "updated": "2026-05-11T18:43:57.783Z",
+  "summary": "Hebburn Armed Forces & Veterans Breakfast Club",
+  "location": "Longship, Ushaw Road, Hebburn NE31 2YA, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-30T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-30T12:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "32t1efd2bv835t17t82kgrr8pf_R20240727T090000",
+  "originalStartTime": {
+   "dateTime": "2026-05-30T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "32t1efd2bv835t17t82kgrr8pf_R20240727T090000@google.com",
+  "sequence": 1,
+  "eventType": "default",
+  "lat": 54.974,
+  "lng": -1.50523,
+  "category": "breakfast-club",
+  "categories": [
+   "breakfast-club"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3524516280754046\"",
+  "id": "4u2n8pnoa7vqg6fso3s3tmpj0i_20260530T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NHUybjhwbm9hN3ZxZzZmc28zczN0bXBqMGlfMjAyNjA1MzBUMDkwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2025-11-04T11:58:03.000Z",
+  "updated": "2025-11-04T12:09:00.377Z",
+  "summary": "Newcastle Veterans Hub",
+  "description": "This event is held in the church hall NOT the church\nwww.newcastleveteranshub.co.uk\n\nhello@necastleveteranshub.co.uk",
+  "location": "St Andrew's URC Church, Wyndham Ave, Kenton, Newcastle upon Tyne NE3 4QJ, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-30T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-30T12:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "4u2n8pnoa7vqg6fso3s3tmpj0i",
+  "originalStartTime": {
+   "dateTime": "2026-05-30T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "4u2n8pnoa7vqg6fso3s3tmpj0i@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 55.0009588,
+  "lng": -1.6408642,
+  "category": "other",
+  "categories": [
+   "other"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3458356570066000\"",
+  "id": "56ctddml0kis7cg4c7gpq4vabt_20260530T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NTZjdGRkbWwwa2lzN2NnNGM3Z3BxNHZhYnRfMjAyNjA1MzBUMDkwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-10-17T15:16:22.000Z",
+  "updated": "2024-10-17T15:18:05.033Z",
+  "summary": "Hartlepool Armed Forces & Veterans Breakfast Club",
+  "description": "For any further information please email hartlepoolafvbc@outlook.com",
+  "location": "Jacksons Wharf, The Highlight, Hartlepool TS24 0XN, UK",
+  "creator": {
+   "email": "j.hambling59@googlemail.com"
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-30T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-30T12:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "56ctddml0kis7cg4c7gpq4vabt",
+  "originalStartTime": {
+   "dateTime": "2026-05-30T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "transparency": "transparent",
+  "iCalUID": "56ctddml0kis7cg4c7gpq4vabt@google.com",
+  "sequence": 1,
+  "eventType": "default",
+  "lat": 54.6906894,
+  "lng": -1.2067264,
+  "category": "breakfast-club",
+  "categories": [
+   "breakfast-club"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3557050075567806\"",
+  "id": "6li34ohmcgs3abb4cgq6cb9kcko3ebb264rm2b9nc4o32e1k6sr32p9l6g_20260531T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NmxpMzRvaG1jZ3MzYWJiNGNncTZjYjlrY2tvM2ViYjI2NHJtMmI5bmM0bzMyZTFrNnNyMzJwOWw2Z18yMDI2MDUzMVQwOTAwMDBaIHZldGVyYW5zZGlhcnlub3J0aGVhc3RAbQ",
+  "created": "2024-05-28T14:58:41.000Z",
+  "updated": "2026-05-11T18:43:57.783Z",
+  "summary": "Sea Company surfing",
+  "description": "Time is dependent on tides, add Sea Company on Facebook to see actual times. The location is the Surf School next to the Sand Dancer pub",
+  "location": "Sand Dancer, 2 Sea Rd, South Shields NE33 2LD, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-05-31T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-05-31T12:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "6li34ohmcgs3abb4cgq6cb9kcko3ebb264rm2b9nc4o32e1k6sr32p9l6g_R20240616T090000",
+  "originalStartTime": {
+   "dateTime": "2026-05-31T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "6li34ohmcgs3abb4cgq6cb9kcko3ebb264rm2b9nc4o32e1k6sr32p9l6g_R20240616T090000@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.9995719,
+  "lng": -1.4149391,
+  "category": "other",
+  "categories": [
+   "other"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3434179302806000\"",
+  "id": "2scpgqhjtjh5tc33cg3jm3ik5c_20260601",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=MnNjcGdxaGp0amg1dGMzM2NnM2ptM2lrNWNfMjAyNjA2MDEgdmV0ZXJhbnNkaWFyeW5vcnRoZWFzdEBt",
+  "created": "2024-05-30T17:16:34.000Z",
+  "updated": "2024-05-30T17:20:51.403Z",
+  "summary": "Useful Information",
+  "description": "<b>Some organisations that could be of help</b><br><br><b>Combat Stress</b>: 0800 138 1619 - Text 07537 173 683 - <a href=\"mailto:helpline@combatstress.org.uk\" target=\"_blank\">helpline@combatstress.org.uk</a> - Veterans Mental Health Organisation <b>24/7 contact</b><br><br><b>Op Courage</b>: 0300 373 3332 - <a href=\"mailto:opcouragenorth@cntw.nhs.uk\" target=\"_blank\">opcouragenorth@cntw.nhs.uk</a> - Veterans Mental Health and Wellbeing Service.<br><br><b>Op Restore</b>: Veterans Physical Health &amp; Wellbeing Service, for veterans with significant physical injuries caused by time in the Armed Forces. Your GP can get a referral by sending an email to <a href=\"mailto:imperial.oprestore@nhs.net\" target=\"_blank\"><u>imperial.oprestore@nhs.net</u></a><br><br><b>SSAFA</b>: 0800 260 6767 - <a href=\"http://www.ssafa.org.uk\" target=\"_blank\">www.ssafa.org.uk</a> - Help with adaptations to your living environment when needed.<br><br><b>Veterans Gateway</b>: <a href=\"http://www.veteransgateway.org.uk\" target=\"_blank\">www.veteransgateway.org.uk</a> - An online directory of support for veterans",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "date": "2026-06-01"
+  },
+  "end": {
+   "date": "2026-06-02"
+  },
+  "recurringEventId": "2scpgqhjtjh5tc33cg3jm3ik5c",
+  "originalStartTime": {
+   "date": "2026-06-01"
+  },
+  "transparency": "transparent",
+  "iCalUID": "2scpgqhjtjh5tc33cg3jm3ik5c@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "category": "support",
+  "categories": [
+   "support"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3535747390187166\"",
+  "id": "30ed1sa1ev6k8kgp0ucg1mq24j_20260601",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=MzBlZDFzYTFldjZrOGtncDB1Y2cxbXEyNGpfMjAyNjA2MDEgdmV0ZXJhbnNkaWFyeW5vcnRoZWFzdEBt",
+  "created": "2024-07-01T10:56:48.000Z",
+  "updated": "2026-01-08T12:01:35.093Z",
+  "summary": "Veterans for Veterans in Care",
+  "description": "Are you aware of a any Veterans in a South Tyneside Care Home if so can you please let us know by emailing \ndiary@vfvic.co.uk\nWe will then arrange a visit and see if the veteran has any support needs.",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "date": "2026-06-01"
+  },
+  "end": {
+   "date": "2026-06-02"
+  },
+  "recurringEventId": "30ed1sa1ev6k8kgp0ucg1mq24j_R20260105",
+  "originalStartTime": {
+   "date": "2026-06-01"
+  },
+  "transparency": "transparent",
+  "iCalUID": "30ed1sa1ev6k8kgp0ucg1mq24j_R20260105@google.com",
+  "sequence": 1,
+  "eventType": "default",
+  "category": "support",
+  "categories": [
+   "support"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3450014581168000\"",
+  "id": "0qtd4qksetvpd46kp839gepdd5_20260601T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=MHF0ZDRxa3NldHZwZDQ2a3A4MzlnZXBkZDVfMjAyNjA2MDFUMDkwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-08-30T08:41:30.000Z",
+  "updated": "2024-08-30T08:41:30.584Z",
+  "summary": "Tyneside Community Woodshed (TCWS)",
+  "description": "We are a group of enthusiastic individuals with an interest in all things wood who meet on a weekly basis in a large fully equipped workshop to share our ideas and skills and also to socialize and build friendships. We are currently open to anyone over the age of 40 and have a membership fee of £6.00 per week to cover our overhead costs.<br><br><br>Mob: 07977646342<br>Email: <a href=\"mailto:tynesidecommunitywoodshed@gmail.com\" target=\"_blank\">tynesidecommunitywoodshed@<u></u>gmail.com</a><br>Web: <a href=\"https://www.google.com/url?q=http://tynesidecommunitywoodshed.org/&amp;sa=D&amp;source=calendar&amp;usd=2&amp;usg=AOvVaw36OI-0hW-RAsTDGm-kR_ew\" target=\"_blank\">tynesidecommunitywoodshed.org</a><br>FB:  Tyneside Community Woodshed",
+  "location": "Perth Green, Inverness Rd, Jarrow NE32 4AQ, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-06-01T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-06-01T15:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "0qtd4qksetvpd46kp839gepdd5",
+  "originalStartTime": {
+   "dateTime": "2026-06-01T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "0qtd4qksetvpd46kp839gepdd5@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.9617112,
+  "lng": -1.4688515,
+  "category": "workshop",
+  "categories": [
+   "workshop",
+   "social"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3457799238106000\"",
+  "id": "429ol8m1m5tifga1m4fhikfesk_20260601T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NDI5b2w4bTFtNXRpZmdhMW00Zmhpa2Zlc2tfMjAyNjA2MDFUMDkwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-10-02T15:03:13.000Z",
+  "updated": "2024-10-14T09:53:39.053Z",
+  "summary": "Outer West Gateshead Veteran Breakfast Club",
+  "description": "FREE Breakfast every Monday 10 to 12\nContact Winlaton Centre 0191 4144718 for more info.",
+  "location": "The Winlaton Centre, North St, Winlaton, Blaydon, Winlaton, Blaydon-on-Tyne NE21 6BY, UK",
+  "creator": {
+   "email": "j.hambling59@googlemail.com"
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-06-01T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-06-01T12:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "429ol8m1m5tifga1m4fhikfesk_R20241014T090000",
+  "originalStartTime": {
+   "dateTime": "2026-06-01T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "429ol8m1m5tifga1m4fhikfesk_R20241014T090000@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.9544698,
+  "lng": -1.7292948,
+  "category": "breakfast-club",
+  "categories": [
+   "breakfast-club"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3557050075567806\"",
+  "id": "59n3p53mm4fh1gigbvla51onerr20240402T090000_20260602T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NTluM3A1M21tNGZoMWdpZ2J2bGE1MW9uZXJyMjAyNDA0MDJUMDkwMDAwXzIwMjYwNjAyVDA5MDAwMFogdmV0ZXJhbnNkaWFyeW5vcnRoZWFzdEBt",
+  "created": "2024-05-28T14:58:41.000Z",
+  "updated": "2026-05-11T18:43:57.783Z",
+  "summary": "VICS Sunderland Gunners Club drop in",
+  "description": "Coffee,Greggs sandwiches, pasties and donuts. Domino handicap, free raffle and good banter.\n\ninfo@veteransincrisis.co.uk\nwww.veteransincrisis.co.uk",
+  "location": "The Gunners, Sunderland, 10-11 Mary St, Sunderland SR1 3NH, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-06-02T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-06-02T13:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "59n3p53mm4fh1gigbvla51onerr20240402T090000_R20240702T090000",
+  "originalStartTime": {
+   "dateTime": "2026-06-02T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "59n3p53mm4fh1gigbvla51onerr20240402T090000_R20240702T090000@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.9029436,
+  "lng": -1.388125,
+  "category": "drop-in",
+  "categories": [
+   "drop-in"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3451805413648000\"",
+  "id": "5l5bmbnn1it7nmkqr95gntv8ct_20260602T183000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NWw1Ym1ibm4xaXQ3bm1rcXI5NWdudHY4Y3RfMjAyNjA2MDJUMTgzMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-09-09T17:25:06.000Z",
+  "updated": "2024-09-09T17:25:06.824Z",
+  "summary": "DLI Association Sunderland Branch Meeting",
+  "description": "Meeting starts at 20:00 Hrs",
+  "location": "Sunderland Royal Naval Association Club, 37 Roker Ave, Roker, Sunderland SR6 0HX",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-06-02T19:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-06-02T21:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "5l5bmbnn1it7nmkqr95gntv8ct",
+  "originalStartTime": {
+   "dateTime": "2026-06-02T19:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "5l5bmbnn1it7nmkqr95gntv8ct@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.91636,
+  "lng": -1.37616,
+  "category": "meeting",
+  "categories": [
+   "meeting"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3450014625906000\"",
+  "id": "1vbgtn6e41pkto1ese0f50jtlo_20260603T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=MXZiZ3RuNmU0MXBrdG8xZXNlMGY1MGp0bG9fMjAyNjA2MDNUMDkwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-08-30T08:41:52.000Z",
+  "updated": "2024-08-30T08:41:52.953Z",
+  "summary": "Tyneside Community Woodshed (TCWS)",
+  "description": "We are a group of enthusiastic individuals with an interest in all things wood who meet on a weekly basis in a large fully equipped workshop to share our ideas and skills and also to socialize and build friendships. We are currently open to anyone over the age of 40 and have a membership fee of £6.00 per week to cover our overhead costs.<br><br><br>Mob: 07977646342<br>Email: <a href=\"mailto:tynesidecommunitywoodshed@gmail.com\" target=\"_blank\">tynesidecommunitywoodshed@<u></u>gmail.com</a><br>Web: <a href=\"https://www.google.com/url?q=http://tynesidecommunitywoodshed.org/&amp;sa=D&amp;source=calendar&amp;usd=2&amp;usg=AOvVaw36OI-0hW-RAsTDGm-kR_ew\" target=\"_blank\">tynesidecommunitywoodshed.org</a><br>FB:  Tyneside Community Woodshed",
+  "location": "Perth Green, Inverness Rd, Jarrow NE32 4AQ, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-06-03T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-06-03T15:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "1vbgtn6e41pkto1ese0f50jtlo",
+  "originalStartTime": {
+   "dateTime": "2026-06-03T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "1vbgtn6e41pkto1ese0f50jtlo@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.9617112,
+  "lng": -1.4688515,
+  "category": "workshop",
+  "categories": [
+   "workshop",
+   "social"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3434174824904000\"",
+  "id": "2npsg7lcjipmmc4ttuh74jcsfjr20240403T090000_20260603T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=Mm5wc2c3bGNqaXBtbWM0dHR1aDc0amNzZmpyMjAyNDA0MDNUMDkwMDAwXzIwMjYwNjAzVDA5MDAwMFogdmV0ZXJhbnNkaWFyeW5vcnRoZWFzdEBt",
+  "created": "2024-05-28T14:58:41.000Z",
+  "updated": "2024-05-30T16:43:32.452Z",
+  "summary": "Naafi Break South Tyneside",
+  "description": "A drop in for all veterans\n07850 584 960",
+  "location": "Action Station South Tyneside, Boldon Ln, South Shields NE34 0LZ, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-06-03T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-06-03T12:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "2npsg7lcjipmmc4ttuh74jcsfjr20240403T090000_R20240605T090000",
+  "originalStartTime": {
+   "dateTime": "2026-06-03T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "2npsg7lcjipmmc4ttuh74jcsfjr20240403T090000_R20240605T090000@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.9689273,
+  "lng": -1.4380807,
+  "category": "drop-in",
+  "categories": [
+   "drop-in"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3455771660160000\"",
+  "id": "59ctqpujemvk62hie9u4as7cvn_20260604T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NTljdHFwdWplbXZrNjJoaWU5dTRhczdjdm5fMjAyNjA2MDRUMDkwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-08-30T08:48:39.000Z",
+  "updated": "2024-10-02T16:17:10.080Z",
+  "summary": "Military Veterans Cycle and Activities Club - Big Bike Ride",
+  "description": "Military Veterans Cycling Club \n\nEncouraging adults to cycle through fixing bikes, teaching skills and leading bike rides\n\nTo book please call Sean on 07946 538 737",
+  "location": "The Cycle Hub, Quayside, Newcastle upon Tyne NE6 1BU, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-06-04T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-06-04T12:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "59ctqpujemvk62hie9u4as7cvn",
+  "originalStartTime": {
+   "dateTime": "2026-06-04T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "59ctqpujemvk62hie9u4as7cvn@google.com",
+  "sequence": 2,
+  "eventType": "default",
+  "lat": 54.9690043,
+  "lng": -1.5844589,
+  "category": "sport",
+  "categories": [
+   "sport"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3450014643572000\"",
+  "id": "5ka97oe9ij2h1pdhpa2lbhh2q1_20260605T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NWthOTdvZTlpajJoMXBkaHBhMmxiaGgycTFfMjAyNjA2MDVUMDkwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-08-30T08:40:54.000Z",
+  "updated": "2024-08-30T08:42:01.786Z",
+  "summary": "Tyneside Community Woodshed (TCWS)",
+  "description": "We are a group of enthusiastic individuals with an interest in all things wood who meet on a weekly basis in a large fully equipped workshop to share our ideas and skills and also to socialize and build friendships. We are currently open to anyone over the age of 40 and have a membership fee of £6.00 per week to cover our overhead costs.<br><br><br>Mob: 07977646342<br>Email: <a href=\"mailto:tynesidecommunitywoodshed@gmail.com\" target=\"_blank\">tynesidecommunitywoodshed@<wbr />gmail.com</a><br>Web: <a href=\"http://tynesidecommunitywoodshed.org/\" target=\"_blank\">tynesidecommunitywoodshed.org</a><br>FB:  Tyneside Community Woodshed",
+  "location": "Perth Green, Inverness Rd, Jarrow NE32 4AQ, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-06-05T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-06-05T15:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "5ka97oe9ij2h1pdhpa2lbhh2q1",
+  "originalStartTime": {
+   "dateTime": "2026-06-05T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "5ka97oe9ij2h1pdhpa2lbhh2q1@google.com",
+  "sequence": 2,
+  "eventType": "default",
+  "lat": 54.9617112,
+  "lng": -1.4688515,
+  "category": "workshop",
+  "categories": [
+   "workshop",
+   "social"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3459867705824000\"",
+  "id": "64oj6e366hi62b9h74s64b9k60pj4b9p70qm8b9k70qjao9m6hgm6c36c8_20260605T090000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NjRvajZlMzY2aGk2MmI5aDc0czY0YjlrNjBwajRiOXA3MHFtOGI5azcwcWphbzltNmhnbTZjMzZjOF8yMDI2MDYwNVQwOTAwMDBaIHZldGVyYW5zZGlhcnlub3J0aGVhc3RAbQ",
+  "created": "2024-10-25T09:33:40.000Z",
+  "updated": "2024-10-26T09:10:52.912Z",
+  "summary": "Dli breakfast club",
+  "description": "The owner is offering 10% discount to anyone with a bluelight card or forces ID card when attending the Dli breakfast club. This event is open to all services, veterans, reservists, cadets and serving members",
+  "location": "Michael's Cafe, 2 Market Pl, South Shields NE33 1BH, UK",
+  "creator": {
+   "email": "j.hambling59@googlemail.com"
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-06-05T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-06-05T11:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "64oj6e366hi62b9h74s64b9k60pj4b9p70qm8b9k70qjao9m6hgm6c36c8",
+  "originalStartTime": {
+   "dateTime": "2026-06-05T10:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "64oj6e366hi62b9h74s64b9k60pj4b9p70qm8b9k70qjao9m6hgm6c36c8@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.997397,
+  "lng": -1.4371416,
+  "category": "breakfast-club",
+  "categories": [
+   "breakfast-club",
+   "meeting"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3557050075567806\"",
+  "id": "1frbm40m6u1auckv0417jl5mcv_20260605T093000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=MWZyYm00MG02dTFhdWNrdjA0MTdqbDVtY3ZfMjAyNjA2MDVUMDkzMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-05-28T14:58:41.000Z",
+  "updated": "2026-05-11T18:43:57.783Z",
+  "summary": "Anxious Minds Veterans Breakfast",
+  "location": "Anxious Minds - Counselling & Support Services, The Vault, 31 Station Rd, Wallsend NE28 6RL, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-06-05T10:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-06-05T12:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "1frbm40m6u1auckv0417jl5mcv_R20240621T093000",
+  "originalStartTime": {
+   "dateTime": "2026-06-05T10:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "1frbm40m6u1auckv0417jl5mcv_R20240621T093000@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.98992,
+  "lng": -1.5339,
+  "category": "breakfast-club",
+  "categories": [
+   "breakfast-club"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3557050075567806\"",
+  "id": "1qt57t7dq80cr783h1n23hjs04_20260605T113000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=MXF0NTd0N2RxODBjcjc4M2gxbjIzaGpzMDRfMjAyNjA2MDVUMTEzMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-05-28T14:58:41.000Z",
+  "updated": "2026-05-11T18:43:57.783Z",
+  "summary": "East Durham Veterans Mates & Bates",
+  "description": "<p>Mates and Bates is a free veterans and families lunch initiative which aims to not only aid our veterans financially during the cost of living crisis but also to allow them the opportunity to socialise and meet new people in a comfortable and friendly environment.Â  We provide this opportunity every Friday from 12:30 pm and each week the menu changes. This is a great way for our veterans and their friends to meet, socialise and enjoy a free lunch cooked up by our very own chef.</p>",
+  "location": "Dawdon Youth and Community Centre, Queen Alexandra Rd, Seaham SR7 7NH, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-06-05T12:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-06-05T13:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "1qt57t7dq80cr783h1n23hjs04_R20240621T113000",
+  "originalStartTime": {
+   "dateTime": "2026-06-05T12:30:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "1qt57t7dq80cr783h1n23hjs04_R20240621T113000@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.8286405,
+  "lng": -1.3338157,
+  "category": "social",
+  "categories": [
+   "social"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3557050075567806\"",
+  "id": "5pkhlh11d541uaqmv55engp5tf_20260605T120000Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=NXBraGxoMTFkNTQxdWFxbXY1NWVuZ3A1dGZfMjAyNjA2MDVUMTIwMDAwWiB2ZXRlcmFuc2RpYXJ5bm9ydGhlYXN0QG0",
+  "created": "2024-06-04T11:26:34.000Z",
+  "updated": "2026-05-11T18:43:57.783Z",
+  "summary": "VICS Sunderland Sports Afternoon ",
+  "description": "Sports Afternoon at <a href=\"https://www.facebook.com/LambtonStreetYouthCentre?__cft__[0]=AZWseY3tgbE_CGUkg0jgfT2Re_HHlPSm5gsaXvFvJn26KCKQNHfa04PbK1Ap5oFUW2HPE3ah-FeiC18XqaFTDfxx8db5jUlJVVWk6boomOBevhspRqkOYagHmM3seojeVxXl0SPKUkIfjKKnGHwoRFBx6rWspyzNJLLSonQlMjJY55CcTQDiVKJQRPuwR0cGTa8H3RA9K4ar9dG-YgdNRYNoAGK7xLVC2goFSmqnZVdGAw&amp;__tn__=-]K*F\">Lambton Street Youth and Community Hub</a> from 1300hrs. Where you can train in the gym, play footie, use the boxing facilities, play darts, pool, table tennis and lots more.",
+  "location": "Lambton Street Youth Centre, 25 Falkland Rd, Sunderland SR4 6XA, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-06-05T13:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-06-05T15:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "5pkhlh11d541uaqmv55engp5tf_R20240712T120000",
+  "originalStartTime": {
+   "dateTime": "2026-06-05T13:00:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "5pkhlh11d541uaqmv55engp5tf_R20240712T120000@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.90578,
+  "lng": -1.41776,
+  "category": "sport",
+  "categories": [
+   "sport"
+  ]
+ },
+ {
+  "kind": "calendar#event",
+  "etag": "\"3503258737274846\"",
+  "id": "cgr64ob3c8pj2b9mckq68b9k65gm8b9p6cq66b9k74s64cpgc4rj6chi6o_20260606T064500Z",
+  "status": "confirmed",
+  "htmlLink": "https://www.google.com/calendar/event?eid=Y2dyNjRvYjNjOHBqMmI5bWNrcTY4YjlrNjVnbThiOXA2Y3E2NmI5azc0czY0Y3BnYzRyajZjaGk2b18yMDI2MDYwNlQwNjQ1MDBaIHZldGVyYW5zZGlhcnlub3J0aGVhc3RAbQ",
+  "created": "2025-07-04T11:42:48.000Z",
+  "updated": "2025-07-04T11:42:48.637Z",
+  "summary": "Shrimp platoon",
+  "description": "All year round.\nFor more information call Sam on 07825 777116",
+  "location": "Sue's Café, Sue's cafe, Marine Walk, Roker, Sunderland SR6 0PL, UK",
+  "creator": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "organizer": {
+   "email": "veteransdiarynortheast@gmail.com",
+   "self": true
+  },
+  "start": {
+   "dateTime": "2026-06-06T07:45:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "end": {
+   "dateTime": "2026-06-06T09:15:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "recurringEventId": "cgr64ob3c8pj2b9mckq68b9k65gm8b9p6cq66b9k74s64cpgc4rj6chi6o",
+  "originalStartTime": {
+   "dateTime": "2026-06-06T07:45:00+01:00",
+   "timeZone": "Europe/London"
+  },
+  "iCalUID": "cgr64ob3c8pj2b9mckq68b9k65gm8b9p6cq66b9k74s64cpgc4rj6chi6o@google.com",
+  "sequence": 0,
+  "eventType": "default",
+  "lat": 54.9231967,
+  "lng": -1.3652551,
+  "category": "other",
+  "categories": [
+   "other"
+  ]
+ }
+]

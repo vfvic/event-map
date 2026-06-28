@@ -1,8 +1,11 @@
+# Local config containing secret API key — never commit
+config.js
 # Dependencies
 node_modules/
 
 # Config (contains API keys)
 config.js
+config.local.js
 
 # Build output (regenerated via npm run build)
 dist/
