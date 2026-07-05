@@ -1,9 +1,10 @@
 ---
-mode: agent
+agent: agent
+model: Auto (copilot)
 description: Plan a fix for a vfvic/event-map GitHub issue. Provide the issue number as input.
 tools:
   - github
-  - codebase
+  - search/codebase
 ---
 
 You are operating in **PLAN MODE**. Do not write or modify any code yet.
