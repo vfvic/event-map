@@ -1186,7 +1186,7 @@ class EventMap {
     }
 
     return `
-            <div style="max-width: 360px; line-height: 1.5; padding: 6px;">
+            <div class="vfvic-event-popup" style="max-width: 360px; line-height: 1.5; padding: 6px;">
                 <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; line-height: 1.4; ${titleStyle}">${
                   event.title
                 }${elapsedLabel}</h4>
