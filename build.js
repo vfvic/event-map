@@ -43,7 +43,7 @@ async function run() {
   indexHtml = indexHtml
     .replace(/script\.js/g, "script.min.js")
     .replace(/styles\.css\?v=[^"]+"/g, "styles.min.css?v=1.0\"")
-    .replace(/styles\.css/g, "styles.min.css")
+    .replace(/href="styles\.css"/g, 'href="styles.min.css"')
     .replace(/css\/loading-states\.css\?v=[^"]+"/g, "css/loading-states.min.css?v=1.0\"")
     .replace(/css\/loading-states\.css/g, "css/loading-states.min.css");
   fs.writeFileSync(path.join(dist, "index.html"), indexHtml);

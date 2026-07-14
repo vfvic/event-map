@@ -1049,7 +1049,7 @@ class EventMap {
         const event = eventsAtLocationDate[0];
         const marker = L.marker([lat, lng])
           .addTo(this.map)
-          .bindPopup(this.createPopupContent(event));
+          .bindPopup(this.createPopupContent(event), this.getPopupOptions());
 
         // Store marker reference on the event for mobile focus functionality
         event._marker = marker;
@@ -1071,7 +1071,10 @@ class EventMap {
 
         const marker = L.marker([lat, lng])
           .addTo(this.map)
-          .bindPopup(this.createMultiEventPopupContent(sortedEvents, date));
+          .bindPopup(
+            this.createMultiEventPopupContent(sortedEvents, date),
+            this.getPopupOptions(),
+          );
 
         // Store marker reference on the first event for mobile focus functionality
         sortedEvents[0]._marker = marker;
@@ -1091,6 +1094,21 @@ class EventMap {
       const group = new L.featureGroup(this.markers);
       this.map.fitBounds(group.getBounds().pad(0.1));
     }
+  }
+
+  getPopupOptions() {
+    const mapContainer = this.map?.getContainer?.();
+    const containerWidth = mapContainer?.clientWidth || window.innerWidth || 360;
+    const popupWidth = Math.max(200, containerWidth - 40);
+
+    return {
+      maxWidth: Math.min(340, popupWidth),
+      minWidth: 0,
+      autoPan: true,
+      keepInView: true,
+      autoPanPaddingTopLeft: L.point(10, 10),
+      autoPanPaddingBottomRight: L.point(10, 10),
+    };
   }
 
   createPopupContent(event) {
@@ -1186,7 +1204,7 @@ class EventMap {
     }
 
     return `
-            <div style="max-width: 360px; line-height: 1.5; padding: 6px;">
+            <div class="vfvic-event-popup" style="max-width: 360px; line-height: 1.5; padding: 6px;">
                 <h4 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 600; line-height: 1.4; ${titleStyle}">${
                   event.title
                 }${elapsedLabel}</h4>
