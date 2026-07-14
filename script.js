@@ -683,7 +683,7 @@ class EventMap {
           </svg>
         </button>
       </div>
-      <div id="vfvic-announcements-content" class="${isCollapsed ? "hidden " : ""}mt-4 grid gap-3 md:grid-cols-2"></div>
+      <div id="vfvic-announcements-content" class="${isCollapsed ? "hidden " : ""}mt-4 grid gap-3 md:grid-cols-2 max-h-[55vh] overflow-y-auto md:max-h-none md:overflow-visible"></div>
     `;
 
     // Set count badge using textContent (safe)
@@ -752,6 +752,10 @@ class EventMap {
           "aria-expanded",
           isNowCollapsed ? "false" : "true",
         );
+        if (!isNowCollapsed) {
+          // Defensive reset in case another UI path left body scrolling locked.
+          document.body.style.overflow = "";
+        }
         try {
           localStorage.setItem("vfvic_announcements_collapsed", isNowCollapsed);
         } catch (e) {
