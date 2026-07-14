@@ -71,12 +71,12 @@
         overflow-wrap: break-word;
         word-break: break-word;
     }
-    
+
     .leaflet-popup-content h4 {
         font-size: 16px !important;
         margin-bottom: 6px !important;
     }
-    
+
     .leaflet-popup-content p {
         font-size: 13px !important;
         margin-bottom: 4px !important;
@@ -108,7 +108,7 @@
     button, select, input {
         min-height: 44px !important;
     }
-    
+
     /* Ensure adequate spacing for touch */
     .space-y-3 > * + * {
         margin-top: 12px !important;
@@ -142,13 +142,13 @@
         padding: 12px;
         margin-bottom: 8px;
     }
-    
+
     /* Make sure mobile list is properly scrollable */
     #mobileEventItems {
         overflow: auto;
         scroll-behavior: smooth;
     }
-    
+
     /* Mobile event scroll area height */
     .mobile-event-scroll {
         max-height: calc(85vh - 80px);
