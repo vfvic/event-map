@@ -640,7 +640,7 @@ class EventMap {
     if (document.getElementById("vfvic-announcements-banner")) return;
 
     // Always start collapsed on page load.
-    let isCollapsed = true;
+    const isCollapsed = true;
 
     const banner = document.createElement("section");
     banner.id = "vfvic-announcements-banner";
