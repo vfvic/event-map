@@ -631,7 +631,7 @@ class EventMap {
 
   /**
    * Display public announcements in a banner after the header.
-   * Users can collapse/expand, with state persisted to localStorage.
+   * Starts collapsed on every page load; users can expand via toggle.
    */
   displayAnnouncements() {
     if (this.announcements.length === 0) return;
@@ -639,15 +639,8 @@ class EventMap {
     // Check if already rendered
     if (document.getElementById("vfvic-announcements-banner")) return;
 
-    // Check collapsed state from localStorage; default to false if storage is unavailable
-    let isCollapsed = false;
-    try {
-      isCollapsed =
-        localStorage.getItem("vfvic_announcements_collapsed") === "true";
-    } catch (e) {
-      // localStorage unavailable (e.g., private browsing, blocked storage)
-      isCollapsed = false;
-    }
+    // Always start collapsed on page load.
+    const isCollapsed = true;
 
     const banner = document.createElement("section");
     banner.id = "vfvic-announcements-banner";
@@ -756,11 +749,8 @@ class EventMap {
           // Defensive reset in case another UI path left body scrolling locked.
           document.body.style.overflow = "";
         }
-        try {
-          localStorage.setItem("vfvic_announcements_collapsed", isNowCollapsed);
-        } catch (e) {
-          // localStorage unavailable (private browsing)
-        }
+        // Intentionally do not persist expanded/collapsed preference.
+        // Announcements should be collapsed by default on every page load.
       });
     }
   }
