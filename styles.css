@@ -8,6 +8,30 @@
     font-weight: 600 !important;
 }
 
+.vfvic-grouped-marker-wrapper {
+    background: transparent;
+    border: none;
+}
+
+.vfvic-grouped-marker {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: #dc2626;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    border: 2px solid #ffffff;
+}
+
+.vfvic-grouped-marker__count {
+    line-height: 1;
+}
+
 .leaflet-popup-content p {
     margin-bottom: 5px !important;
     color: #6b7280 !important;

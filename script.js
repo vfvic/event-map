@@ -1004,6 +1004,20 @@ class EventMap {
     this.addMarkers();
   }
 
+  createGroupedMarkerIcon(eventCount) {
+    return L.divIcon({
+      html: `
+        <div class="vfvic-grouped-marker" aria-label="${eventCount} events at this location">
+          <span class="vfvic-grouped-marker__count">${eventCount}</span>
+        </div>
+      `,
+      className: "vfvic-grouped-marker-wrapper",
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+      popupAnchor: [0, -16],
+    });
+  }
+
   addMarkers() {
     // Clear existing markers
     this.markers.forEach((marker) => this.map.removeLayer(marker));
@@ -1063,16 +1077,20 @@ class EventMap {
           return timeA.localeCompare(timeB);
         });
 
-        const marker = L.marker([lat, lng])
+        const marker = L.marker([lat, lng], {
+          icon: this.createGroupedMarkerIcon(sortedEvents.length),
+        })
           .addTo(this.map)
           .bindPopup(
             this.createMultiEventPopupContent(sortedEvents, date),
             this.getPopupOptions(),
           );
 
-        // Store marker reference on the first event for mobile focus functionality
-        sortedEvents[0]._marker = marker;
-        sortedEvents[0]._originalIcon = marker.getIcon();
+        // Store marker reference on every event in the group so mobile list items can focus the shared marker
+        sortedEvents.forEach((event) => {
+          event._marker = marker;
+          event._originalIcon = marker.getIcon();
+        });
 
         // When marker is clicked, highlight the first (earliest) event
         marker.on("click", () => {
