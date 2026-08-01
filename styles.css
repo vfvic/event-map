@@ -46,6 +46,16 @@
     min-height: 250px !important;
 }
 
+/* Map loading and empty states */
+#mapStateOverlay {
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+}
+
+#mapStateOverlay .text-3xl {
+    line-height: 1;
+}
+
 /* Mobile-optimized popup content */
 @media (max-width: 768px) {
     .leaflet-popup {
