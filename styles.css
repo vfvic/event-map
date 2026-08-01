@@ -46,12 +46,18 @@
     min-height: 250px !important;
 }
 
-/* Touch target utility (mobile/coarse pointers) */
-@media (max-width: 768px) {
-    .touch-target {
-        min-width: 44px !important;
-        min-height: 44px !important;
-    }
+/* Touch target utility (mobile/coarse pointers) */
+
+@media (max-width: 768px) {
+
+    .touch-target {
+
+        min-width: 44px !important;
+
+        min-height: 44px !important;
+
+    }
+
 }
 
 @media (max-width: 768px) {
@@ -166,7 +172,7 @@
 
 /* Mobile touch improvements */
 @media (max-width: 768px) {
-    /* Increase touch target sizes */
+    button {
     button, select, input, .leaflet-popup-close-button, .leaflet-control-zoom a {
         min-height: 44px !important;
         min-width: 44px !important;
