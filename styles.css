@@ -46,20 +46,17 @@
     min-height: 250px !important;
 }
 
-/* Touch target utility (mobile/coarse pointers) */
-
-@media (max-width: 768px) {
-
-    .touch-target {
-
-        min-width: 44px !important;
-
-        min-height: 44px !important;
-
-    }
-
+/* Map loading and empty states */
+#mapStateOverlay {
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
 }
 
+#mapStateOverlay .text-3xl {
+    line-height: 1;
+}
+
+/* Mobile-optimized popup content */
 @media (max-width: 768px) {
     .leaflet-popup {
         max-width: calc(100vw - 16px) !important;
@@ -172,7 +169,8 @@
 
 /* Mobile touch improvements */
 @media (max-width: 768px) {
-    button {
+    button {
+
     button, select, input, .leaflet-popup-close-button, .leaflet-control-zoom a {
         min-height: 44px !important;
         min-width: 44px !important;

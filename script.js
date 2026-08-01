@@ -68,6 +68,8 @@ class EventMap {
       this.utils.showLoadingSpinner("Loading...");
     }
 
+    this.setMapState("loading", "Loading map…", "Preparing events and markers");
+
     // Load announcements independently without blocking event/map rendering
     (async () => {
       try {
@@ -131,6 +133,31 @@ class EventMap {
 
     if (this.utils) {
       this.utils.hideLoadingSpinner();
+    }
+  }
+
+  setMapState(type = "loading", title = "Loading map…", message = "Preparing events and markers") {
+    const overlay = document.getElementById("mapStateOverlay");
+    const spinnerEl = document.getElementById("mapStateSpinner");
+    const iconEl = document.getElementById("mapStateIcon");
+    const titleEl = document.getElementById("mapStateTitle");
+    const messageEl = document.getElementById("mapStateMessage");
+
+    if (!overlay || !spinnerEl || !iconEl || !titleEl || !messageEl) {
+      return;
+    }
+
+    overlay.classList.remove("hidden");
+    spinnerEl.classList.toggle("hidden", type !== "loading");
+    iconEl.classList.toggle("hidden", type === "loading");
+    titleEl.textContent = title;
+    messageEl.textContent = message;
+  }
+
+  hideMapState() {
+    const overlay = document.getElementById("mapStateOverlay");
+    if (overlay) {
+      overlay.classList.add("hidden");
     }
   }
 
@@ -983,6 +1010,8 @@ class EventMap {
   }
 
   initMap() {
+    this.setMapState("loading", "Loading map…", "Preparing events and markers");
+
     // Initialize Leaflet map centered on Northeast England
     this.map = L.map("map").setView([54.9783, -1.6178], 8);
 
@@ -1118,6 +1147,8 @@ class EventMap {
       const group = new L.featureGroup(this.markers);
       this.map.fitBounds(group.getBounds().pad(0.1));
     }
+
+    this.hideMapState();
   }
 
   getPopupOptions() {
@@ -1319,6 +1350,12 @@ class EventMap {
     const eventItems = document.getElementById("eventItems");
 
     if (this.filteredEvents.length === 0) {
+      this.setMapState(
+        "empty",
+        "No events found",
+        "Try adjusting your search or filters to see more events on the map.",
+      );
+
       const searchQuery = document.getElementById("searchInput").value.trim();
       const isPostcodeSearch = this.isPostcode(searchQuery);
       const isPlaceSearch = this.isKnownPlace(searchQuery);
@@ -1379,6 +1416,8 @@ class EventMap {
                 </div>
             `;
     }
+
+    this.hideMapState();
 
     if (eventItems) {
       eventItems.innerHTML =
