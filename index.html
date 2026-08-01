@@ -46,7 +46,7 @@
                     <input type="text" id="searchInput" placeholder="Search events..."
                         class="flex-1 px-3 py-3 border-2 border-gray-300 rounded-md text-base focus:outline-none focus:border-blue-500 transition-colors">
                     <button id="searchBtn"
-                        class="px-5 py-3 bg-blue-500 text-white border-none rounded-md cursor-pointer text-sm font-medium hover:bg-blue-600 transition-colors whitespace-nowrap">
+                        class="touch-target px-5 py-3 bg-blue-500 text-white border-none rounded-md cursor-pointer text-sm font-medium hover:bg-blue-600 transition-colors whitespace-nowrap">
                         Search
                     </button>
                 </div>
@@ -54,34 +54,34 @@
                 <!-- Quick Date Filters -->
                 <div class="flex flex-wrap gap-2 mb-4">
                     <button id="filterToday"
-                        class="px-3 py-2 bg-green-100 text-green-800 rounded-md text-sm hover:bg-green-200 transition-colors">
+                        class="touch-target px-3 py-2 bg-green-100 text-green-800 rounded-md text-sm hover:bg-green-200 transition-colors">
                         Today
                     </button>
                     <button id="filterWeek"
-                        class="px-3 py-2 bg-blue-100 text-blue-800 rounded-md text-sm hover:bg-blue-200 transition-colors">
+                        class="touch-target px-3 py-2 bg-blue-100 text-blue-800 rounded-md text-sm hover:bg-blue-200 transition-colors">
                         This Week
                     </button>
                     <button id="filterMonth"
-                        class="px-3 py-2 bg-purple-100 text-purple-800 rounded-md text-sm hover:bg-purple-200 transition-colors">
+                        class="touch-target px-3 py-2 bg-purple-100 text-purple-800 rounded-md text-sm hover:bg-purple-200 transition-colors">
                         This Month
                     </button>
                     <button id="filterAll"
-                        class="px-3 py-2 bg-gray-100 text-gray-800 rounded-md text-sm hover:bg-gray-200 transition-colors">
+                        class="touch-target px-3 py-2 bg-gray-100 text-gray-800 rounded-md text-sm hover:bg-gray-200 transition-colors">
                         All Events
                     </button>
                 </div>
 
                 <div class="flex flex-col sm:flex-row gap-3 flex-wrap">
                     <select id="categoryFilter" title="Filter by event category"
-                        class="px-3 py-2 border-2 border-gray-300 rounded-md text-sm focus:outline-none focus:border-blue-500 min-w-0 flex-1 sm:flex-none sm:min-w-[150px]">
+                        class="touch-target px-3 py-2 border-2 border-gray-300 rounded-md text-sm focus:outline-none focus:border-blue-500 min-w-0 flex-1 sm:flex-none sm:min-w-[150px]">
                         <option value="">All Categories</option>
                         <!-- Categories will be populated dynamically based on available events -->
                     </select>
 
                     <input type="date" id="dateFilter" title="Filter events by date"
-                        class="px-3 py-2 border-2 border-gray-300 rounded-md text-sm focus:outline-none focus:border-blue-500 min-w-0 flex-1 sm:flex-none">
+                        class="touch-target px-3 py-2 border-2 border-gray-300 rounded-md text-sm focus:outline-none focus:border-blue-500 min-w-0 flex-1 sm:flex-none">
                     <button id="clearFilters"
-                        class="px-5 py-2 bg-gray-500 text-white border-none rounded-md cursor-pointer text-sm hover:bg-gray-600 transition-colors whitespace-nowrap">
+                        class="touch-target px-5 py-2 bg-gray-500 text-white border-none rounded-md cursor-pointer text-sm hover:bg-gray-600 transition-colors whitespace-nowrap">
                         Clear Filters
                     </button>
                 </div>
@@ -95,7 +95,7 @@
                             <span id="mobileCounter"
                                 class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">0</span>
                             <button id="showMobileList"
-                                class="px-3 py-2 bg-blue-500 text-white text-sm rounded-md hover:bg-blue-600 transition-colors">
+                                class="touch-target px-3 py-2 bg-blue-500 text-white text-sm rounded-md hover:bg-blue-600 transition-colors">
                                 View List
                             </button>
                         </div>
@@ -146,7 +146,7 @@
                             <span id="mobileEventCounter"
                                 class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">0</span>
                         </div>
-                        <button id="closeMobileList" class="text-gray-500 hover:text-gray-700" title="Close event list">
+                        <button id="closeMobileList" class="touch-target text-gray-500 hover:text-gray-700" title="Close event list">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M6 18L18 6M6 6l12 12"></path>
@@ -158,7 +158,7 @@
                     <!-- Load More for Mobile -->
                     <div id="mobileLoadMoreContainer" class="p-4 border-t border-gray-200 bg-white hidden">
                         <button id="mobileLoadMoreBtn"
-                            class="w-full py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors text-sm font-medium">
+                            class="touch-target w-full py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors text-sm font-medium">
                             Load More Events
                         </button>
                         <p id="mobileLoadingText" class="text-sm text-gray-500 text-center mt-2 hidden">Loading more
