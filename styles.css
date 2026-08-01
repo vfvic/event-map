@@ -47,6 +47,11 @@
 }
 
 /* Mobile-optimized popup content */
+.touch-target {
+    min-width: 44px !important;
+    min-height: 44px !important;
+}
+
 @media (max-width: 768px) {
     .leaflet-popup {
         max-width: calc(100vw - 16px) !important;
@@ -88,9 +93,9 @@
     }
 
     .leaflet-popup-close-button {
-        width: 36px !important;
-        height: 36px !important;
-        line-height: 36px !important;
+        width: 44px !important;
+        height: 44px !important;
+        line-height: 44px !important;
         font-size: 24px !important;
         right: 6px !important;
         top: 6px !important;
@@ -98,6 +103,19 @@
         background: #ffffff !important;
         box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
         z-index: 1002 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .leaflet-control-zoom a {
+        width: 44px !important;
+        height: 44px !important;
+        line-height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 22px !important;
     }
 
     .leaflet-popup-pane {
@@ -147,8 +165,15 @@
 /* Mobile touch improvements */
 @media (max-width: 768px) {
     /* Increase touch target sizes */
-    button, select, input {
+    button, select, input, .leaflet-popup-close-button, .leaflet-control-zoom a {
         min-height: 44px !important;
+        min-width: 44px !important;
+    }
+
+    button, .leaflet-popup-close-button, .leaflet-control-zoom a {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
 
     /* Ensure adequate spacing for touch */

@@ -1001,7 +1001,19 @@ class EventMap {
       this.map.invalidateSize();
     });
 
+    this.map.on("popupopen", () => {
+      this.enhancePopupAccessibility();
+    });
+
     this.addMarkers();
+  }
+
+  enhancePopupAccessibility() {
+    requestAnimationFrame(() => {
+      document.querySelectorAll(".leaflet-popup-close-button").forEach((button) => {
+        button.classList.add("touch-target");
+      });
+    });
   }
 
   createGroupedMarkerIcon(eventCount) {
