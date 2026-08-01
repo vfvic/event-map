@@ -1094,14 +1094,15 @@ class EventMap {
     const mapContainer = this.map?.getContainer?.();
     const containerWidth = mapContainer?.clientWidth || window.innerWidth || 360;
     const popupWidth = Math.max(200, containerWidth - 40);
+    const isMobileViewport = window.matchMedia("(max-width: 768px)").matches;
 
     return {
       maxWidth: Math.min(340, popupWidth),
       minWidth: 0,
-      autoPan: true,
-      keepInView: true,
-      autoPanPaddingTopLeft: L.point(10, 10),
-      autoPanPaddingBottomRight: L.point(10, 10),
+      autoPan: isMobileViewport,
+      keepInView: isMobileViewport,
+      autoPanPaddingTopLeft: L.point(12, 12),
+      autoPanPaddingBottomRight: L.point(12, 16),
     };
   }
 
