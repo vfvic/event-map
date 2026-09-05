@@ -1156,14 +1156,18 @@ class EventMap {
     const containerWidth = mapContainer?.clientWidth || window.innerWidth || 360;
     const popupWidth = Math.max(200, containerWidth - 40);
     const isMobileViewport = window.matchMedia("(max-width: 768px)").matches;
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 600;
+    const popupHeight = Math.min(Math.max(220, Math.floor(viewportHeight * 0.72)), 480);
+    const viewportPadding = isMobileViewport ? 20 : 16;
 
     return {
       maxWidth: Math.min(340, popupWidth),
       minWidth: 0,
+      maxHeight: isMobileViewport ? popupHeight : undefined,
       autoPan: isMobileViewport,
       keepInView: isMobileViewport,
-      autoPanPaddingTopLeft: L.point(12, 12),
-      autoPanPaddingBottomRight: L.point(12, 16),
+      autoPanPaddingTopLeft: L.point(viewportPadding, viewportPadding),
+      autoPanPaddingBottomRight: L.point(viewportPadding, viewportPadding + 12),
     };
   }
 
