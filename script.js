@@ -2246,6 +2246,8 @@ class EventMap {
     ];
 
     const queryLower = searchQuery.toLowerCase().trim();
+    if (!queryLower) return false;
+
     return knownPlaces.some(
       (place) =>
         place === queryLower ||
