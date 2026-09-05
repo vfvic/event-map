@@ -68,7 +68,7 @@
         max-width: calc(100vw - 16px) !important;
         max-height: calc(100vh - 96px) !important;
         border-radius: 12px !important;
-        padding: 10px 12px 12px !important;
+        padding: 54px 12px 12px !important;
         box-sizing: border-box !important;
         overflow: hidden !important;
     }
