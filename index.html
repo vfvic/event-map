@@ -94,10 +94,16 @@
                         <div class="flex gap-2">
                             <span id="mobileCounter"
                                 class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">0</span>
-                            <button id="showMobileList"
-                                class="touch-target px-3 py-2 bg-blue-500 text-white text-sm rounded-md hover:bg-blue-600 transition-colors">
-                                View List
-                            </button>
+                            <div class="flex rounded-md border border-gray-300 overflow-hidden" role="group" aria-label="Event view">
+                                <button id="showMapView" type="button" aria-pressed="true"
+                                    class="touch-target px-3 py-2 bg-blue-500 text-white text-sm hover:bg-blue-600 transition-colors">
+                                    View Map
+                                </button>
+                                <button id="showListView" type="button" aria-pressed="false"
+                                    class="touch-target px-3 py-2 bg-white text-gray-700 text-sm hover:bg-gray-100 transition-colors">
+                                    View List
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -106,7 +112,7 @@
             <!-- Desktop: Side-by-side layout, Mobile: Map-only with popups -->
             <div class="grid grid-cols-1 lg:grid-cols-event-layout gap-5 h-[70vh] md:h-[850px]">
                 <!-- Event list - hidden on mobile, shown on desktop -->
-                <div class="hidden lg:block bg-white rounded-lg shadow-md p-5 overflow-hidden order-2 lg:order-1">
+                <div id="eventListPanel" class="hidden lg:block bg-white rounded-lg shadow-md p-5 overflow-hidden order-2 lg:order-1">
                     <div class="flex items-center justify-between mb-3 pb-2 border-b border-gray-200">
                         <h3 class="text-xl font-semibold text-gray-800">Events</h3>
                         <span id="eventCounter" class="text-sm text-gray-600 bg-gray-100 px-2 py-1 rounded-full">0
@@ -137,36 +143,6 @@
                 </div>
             </div>
 
-            <!-- Mobile event list modal -->
-                <div class="absolute bottom-0 left-0 right-0 bg-white rounded-t-xl overflow-hidden pb-[env(safe-area-inset-bottom)]" style="max-height: 85vh; max-height: 85dvh;">
-                <div class="absolute bottom-0 left-0 right-0 bg-white rounded-t-xl max-h-[85dvh] overflow-hidden pb-[env(safe-area-inset-bottom)]">
-                    <div
-                        class="p-4 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white z-10">
-                        <div class="flex items-center gap-3">
-                            <h3 class="text-lg font-semibold text-gray-800">Events</h3>
-                            <span id="mobileEventCounter"
-                                class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">0</span>
-                        </div>
-                        <button id="closeMobileList" class="touch-target text-gray-500 hover:text-gray-700" title="Close event list">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    <div id="mobileEventItems" class="overflow-y-auto mobile-event-scroll"></div>
-
-                    <!-- Load More for Mobile -->
-                    <div id="mobileLoadMoreContainer" class="p-4 border-t border-gray-200 bg-white hidden">
-                        <button id="mobileLoadMoreBtn"
-                            class="touch-target w-full py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors text-sm font-medium">
-                            Load More Events
-                        </button>
-                        <p id="mobileLoadingText" class="text-sm text-gray-500 text-center mt-2 hidden">Loading more
-                            events...</p>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
