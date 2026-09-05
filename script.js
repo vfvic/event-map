@@ -1163,7 +1163,7 @@ class EventMap {
     return {
       maxWidth: Math.min(340, popupWidth),
       minWidth: 0,
-      maxHeight: popupHeight,
+      maxHeight: isMobileViewport ? popupHeight : undefined,
       autoPan: isMobileViewport,
       keepInView: isMobileViewport,
       autoPanPaddingTopLeft: L.point(viewportPadding, viewportPadding),
