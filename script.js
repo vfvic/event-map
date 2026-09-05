@@ -41,6 +41,7 @@ class EventMap {
 
     this.currentPage = 0;
     this.currentDateFilter = "all"; // 'today', 'week', 'month', 'all'
+    this.viewMode = "map";
 
     // WordPress / external data source URL (set by embedder or config)
     this.dataSourceUrl =
@@ -61,6 +62,52 @@ class EventMap {
     this.utils = window.EventMapUtils;
 
     this.init();
+  }
+
+  setViewMode(viewMode) {
+    this.viewMode = viewMode === "list" ? "list" : "map";
+
+    const eventListPanel = document.getElementById("eventListPanel");
+    const map = document.getElementById("map");
+    const mapButton = document.getElementById("showMapView");
+    const listButton = document.getElementById("showListView");
+    const isLargeViewport = window.matchMedia("(min-width: 1024px)").matches;
+
+    if (eventListPanel) {
+      eventListPanel.classList.toggle(
+        "hidden",
+        !isLargeViewport && this.viewMode !== "list",
+      );
+    }
+    if (map) {
+      map.classList.toggle(
+        "hidden",
+        !isLargeViewport && this.viewMode !== "map",
+      );
+    }
+
+    if (mapButton) {
+      mapButton.setAttribute("aria-pressed", String(this.viewMode === "map"));
+      mapButton.classList.toggle("bg-blue-500", this.viewMode === "map");
+      mapButton.classList.toggle("text-white", this.viewMode === "map");
+      mapButton.classList.toggle("bg-white", this.viewMode !== "map");
+      mapButton.classList.toggle("text-gray-700", this.viewMode !== "map");
+      mapButton.classList.toggle("hover:bg-blue-600", this.viewMode === "map");
+      mapButton.classList.toggle("hover:bg-gray-100", this.viewMode !== "map");
+    }
+    if (listButton) {
+      listButton.setAttribute("aria-pressed", String(this.viewMode === "list"));
+      listButton.classList.toggle("bg-blue-500", this.viewMode === "list");
+      listButton.classList.toggle("text-white", this.viewMode === "list");
+      listButton.classList.toggle("bg-white", this.viewMode !== "list");
+      listButton.classList.toggle("text-gray-700", this.viewMode !== "list");
+      listButton.classList.toggle("hover:bg-blue-600", this.viewMode === "list");
+      listButton.classList.toggle("hover:bg-gray-100", this.viewMode !== "list");
+    }
+
+    if (this.map && (isLargeViewport || this.viewMode === "map")) {
+      setTimeout(() => this.map.invalidateSize(), 0);
+    }
   }
 
   async init() {
@@ -1027,6 +1074,7 @@ class EventMap {
 
     // Also recalculate on window resize
     window.addEventListener("resize", () => {
+      this.setViewMode(this.viewMode);
       this.map.invalidateSize();
     });
 
@@ -1850,35 +1898,17 @@ class EventMap {
       );
     }
 
-    // Mobile list modal functionality
-    const showMobileList = document.getElementById("showMobileList");
-    const closeMobileList = document.getElementById("closeMobileList");
-    const mobileEventModal = document.getElementById("mobileEventModal");
+    const showMapView = document.getElementById("showMapView");
+    const showListView = document.getElementById("showListView");
 
-    if (showMobileList) {
-      showMobileList.addEventListener("click", () => {
-        this.displayMobileEventList();
-        mobileEventModal.classList.remove("hidden");
-        document.body.style.overflow = "hidden"; // Prevent background scrolling
-      });
+    if (showMapView) {
+      showMapView.addEventListener("click", () => this.setViewMode("map"));
+    }
+    if (showListView) {
+      showListView.addEventListener("click", () => this.setViewMode("list"));
     }
 
-    if (closeMobileList) {
-      closeMobileList.addEventListener("click", () => {
-        mobileEventModal.classList.add("hidden");
-        document.body.style.overflow = ""; // Restore scrolling
-      });
-    }
-
-    // Close modal when clicking backdrop
-    if (mobileEventModal) {
-      mobileEventModal.addEventListener("click", (e) => {
-        if (e.target === mobileEventModal) {
-          mobileEventModal.classList.add("hidden");
-          document.body.style.overflow = "";
-        }
-      });
-    }
+    this.setViewMode(this.viewMode);
   }
 
   async setDateFilter(filterType) {
