@@ -41,6 +41,9 @@ class EventMap {
 
     this.currentPage = 0;
     this.currentDateFilter = "all"; // 'today', 'week', 'month', 'all'
+    this.viewMode = window.matchMedia("(min-width: 1024px)").matches
+      ? "list"
+      : "map";
 
     // WordPress / external data source URL (set by embedder or config)
     this.dataSourceUrl =
@@ -61,6 +64,40 @@ class EventMap {
     this.utils = window.EventMapUtils;
 
     this.init();
+  }
+
+  setViewMode(viewMode) {
+    this.viewMode = viewMode === "list" ? "list" : "map";
+
+    const eventListPanel = document.getElementById("eventListPanel");
+    const map = document.getElementById("map");
+    const mapButton = document.getElementById("showMapView");
+    const listButton = document.getElementById("showListView");
+
+    if (eventListPanel) {
+      eventListPanel.classList.toggle("hidden", this.viewMode !== "list");
+    }
+    if (map) {
+      map.classList.toggle("hidden", this.viewMode !== "map");
+    }
+    if (mapButton) {
+      mapButton.setAttribute("aria-pressed", String(this.viewMode === "map"));
+      mapButton.classList.toggle("bg-blue-500", this.viewMode === "map");
+      mapButton.classList.toggle("text-white", this.viewMode === "map");
+      mapButton.classList.toggle("bg-white", this.viewMode !== "map");
+      mapButton.classList.toggle("text-gray-700", this.viewMode !== "map");
+    }
+    if (listButton) {
+      listButton.setAttribute("aria-pressed", String(this.viewMode === "list"));
+      listButton.classList.toggle("bg-blue-500", this.viewMode === "list");
+      listButton.classList.toggle("text-white", this.viewMode === "list");
+      listButton.classList.toggle("bg-white", this.viewMode !== "list");
+      listButton.classList.toggle("text-gray-700", this.viewMode !== "list");
+    }
+
+    if (this.viewMode === "map" && this.map) {
+      setTimeout(() => this.map.invalidateSize(), 0);
+    }
   }
 
   async init() {
@@ -1850,6 +1887,16 @@ class EventMap {
       );
     }
 
+    const showMapView = document.getElementById("showMapView");
+    const showListView = document.getElementById("showListView");
+
+    if (showMapView) {
+      showMapView.addEventListener("click", () => this.setViewMode("map"));
+    }
+    if (showListView) {
+      showListView.addEventListener("click", () => this.setViewMode("list"));
+    }
+
     // Mobile list modal functionality
     const showMobileList = document.getElementById("showMobileList");
     const closeMobileList = document.getElementById("closeMobileList");
@@ -1857,9 +1904,7 @@ class EventMap {
 
     if (showMobileList) {
       showMobileList.addEventListener("click", () => {
-        this.displayMobileEventList();
-        mobileEventModal.classList.remove("hidden");
-        document.body.style.overflow = "hidden"; // Prevent background scrolling
+        this.setViewMode("list");
       });
     }
 
@@ -1879,6 +1924,8 @@ class EventMap {
         }
       });
     }
+
+    this.setViewMode(this.viewMode);
   }
 
   async setDateFilter(filterType) {
