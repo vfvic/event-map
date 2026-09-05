@@ -106,7 +106,16 @@ class EventMap {
     }
 
     if (this.map && (isLargeViewport || this.viewMode === "map")) {
-      setTimeout(() => this.map.invalidateSize(), 0);
+      setTimeout(() => {
+        this.map.invalidateSize();
+
+        const openMarker = this.markers.find((marker) => marker.isPopupOpen());
+        const openPopup = openMarker?.getPopup();
+        if (openPopup) {
+          Object.assign(openPopup.options, this.getPopupOptions());
+          openPopup.update();
+        }
+      }, 0);
     }
   }
 
