@@ -1246,7 +1246,7 @@ class EventMap {
     const tagBadges = categories
       .map(
         (category) =>
-          `<span style="display: inline-block; padding: 5px 12px; border-radius: 12px; font-size: 13px; font-weight: 500; color: white; margin-right: 5px;" class="${this.getCategoryColorClass(
+          `<span style="display: inline-block; padding: 5px 12px; border-radius: 12px; font-size: 13px; font-weight: 500; color: white; margin-right: 6px; margin-bottom: 6px;" class="${this.getCategoryColorClass(
             category,
           )}">${this.formatCategoryName(category)}</span>`,
       )
