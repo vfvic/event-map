@@ -1930,37 +1930,40 @@ class EventMap {
   }
 
   updateDateFilterButtons() {
-    const buttons = {
-      today: document.getElementById("filterToday"),
-      week: document.getElementById("filterWeek"),
-      month: document.getElementById("filterMonth"),
-      all: document.getElementById("filterAll"),
+    // Each button gets its full class list reassigned deterministically
+    // (rather than patched via regex) so toggling filters back and forth
+    // never leaves stray classes (e.g. a lingering "text-white") behind.
+    const baseClasses =
+      "touch-target px-3 py-2 rounded-md text-sm transition-colors";
+
+    const buttonStyles = {
+      today: {
+        el: document.getElementById("filterToday"),
+        inactive: "bg-green-100 text-gray-800 hover:bg-green-200",
+        active: "bg-green-600 text-white hover:bg-green-700",
+      },
+      week: {
+        el: document.getElementById("filterWeek"),
+        inactive: "bg-blue-100 text-gray-800 hover:bg-blue-200",
+        active: "bg-blue-600 text-white hover:bg-blue-700",
+      },
+      month: {
+        el: document.getElementById("filterMonth"),
+        inactive: "bg-purple-100 text-purple-800 hover:bg-purple-200",
+        active: "bg-purple-600 text-white hover:bg-purple-700",
+      },
+      all: {
+        el: document.getElementById("filterAll"),
+        inactive: "bg-gray-100 text-gray-800 hover:bg-gray-200",
+        active: "bg-gray-600 text-white hover:bg-gray-700",
+      },
     };
 
-    // Reset all button styles
-    Object.values(buttons).forEach((btn) => {
-      if (btn) {
-        btn.className = btn.className.replace(
-          /bg-\w+-500|text-white/,
-          "bg-gray-100 text-gray-800",
-        );
-      }
+    Object.entries(buttonStyles).forEach(([key, { el, inactive, active }]) => {
+      if (!el) return;
+      const isActive = key === this.currentDateFilter;
+      el.className = `${baseClasses} ${isActive ? active : inactive}`;
     });
-
-    // Highlight active button
-    const activeBtn = buttons[this.currentDateFilter];
-    if (activeBtn) {
-      const colorMap = {
-        today: "bg-green-500 text-white",
-        week: "bg-blue-500 text-white",
-        month: "bg-purple-500 text-white",
-        all: "bg-gray-500 text-white",
-      };
-      activeBtn.className = activeBtn.className.replace(
-        /bg-\w+-\d+\s+text-\w+-\d+/,
-        colorMap[this.currentDateFilter],
-      );
-    }
   }
 
   filterEventsByDate(events) {
@@ -2154,6 +2157,9 @@ class EventMap {
 
     // Apply date range filtering based on quick filters
     this.filteredEvents = this.filterEventsByDate(this.filteredEvents);
+
+    // Keep the category dropdown counts in sync with the active filters
+    this.populateCategoryFilter();
 
     // If it was a postcode or place search, sort by distance
     if ((isPostcodeSearch || isPlaceSearch) && searchCoords) {
@@ -2377,6 +2383,31 @@ class EventMap {
     }
   }
 
+  // Events matching the currently active search/date filters, ignoring the
+  // category filter itself - used to keep the category dropdown counts in
+  // sync with "Today"/"This Week"/"This Month"/specific-date selections.
+  getEventsForCategoryCounts() {
+    const searchQuery = (document.getElementById("searchInput")?.value || "")
+      .toLowerCase()
+      .trim();
+    const dateFilterValue = document.getElementById("dateFilter")?.value || "";
+
+    const searchAndDateFiltered = this.events.filter((event) => {
+      const matchesSearch =
+        !searchQuery ||
+        event.title.toLowerCase().includes(searchQuery) ||
+        event.description.toLowerCase().includes(searchQuery) ||
+        event.location.toLowerCase().includes(searchQuery) ||
+        event.organizer.toLowerCase().includes(searchQuery);
+
+      const matchesDate = !dateFilterValue || event.date === dateFilterValue;
+
+      return matchesSearch && matchesDate;
+    });
+
+    return this.filterEventsByDate(searchAndDateFiltered);
+  }
+
   populateCategoryFilter() {
     // Get all unique categories from events
     const allCategories = new Set();
@@ -2411,13 +2442,18 @@ class EventMap {
     // Clear existing options except "All Categories"
     categoryFilter.innerHTML = '<option value="">All Categories</option>';
 
+    // Count against events matching the active search/date filters so the
+    // counts stay accurate when a quick date filter (Today/This Week/etc.)
+    // or the date picker is combined with a category selection.
+    const eventsForCounts = this.getEventsForCategoryCounts();
+
     // Add options for categories that actually have events
     availableCategories.forEach((category) => {
       const option = document.createElement("option");
       option.value = category;
 
       // Count events in this category for display
-      const eventCount = this.events.filter(
+      const eventCount = eventsForCounts.filter(
         (event) =>
           event.category === category ||
           (event.categories && event.categories.includes(category)),
